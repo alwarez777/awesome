@@ -140,15 +140,15 @@ body {
   }
 }
 
-body:not(.is-mobile) {
-  @keyframes modalIn {
-    from {
-      opacity: 0;
-      filter: blur(4px);
-      transform: scale(0.975);
-    }
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.975);
   }
+}
 
+body:not(.is-mobile) {
   .modal {
     animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
   }
