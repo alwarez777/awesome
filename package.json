@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "lightningcss --bundle --targets \">= 0.25%\" awesome.css -o theme.css",
+    "build": "lightningcss --bundle src.css -o theme.css",
     "dev": "chokidar \"**/*.css\" -i \"node_modules\" -c \"npm run build\" --initial"
   },
   "repository": {
