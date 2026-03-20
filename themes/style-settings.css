@@ -135,4 +135,52 @@ settings:
         title: 💻 Выпадающий список плагинов для левого сайдбара
         description: Заменяет сгруппированные иконки плагинов на иконку + надпись активного плагина и выбор плагинов с помощью выпадающего списка.
         type: class-toggle
+    - 
+        id: hm-show-indicators
+        title: 🏷️ Включить индикаторы (маркеры)
+        type: class-toggle
+        default: true
+    -
+        id: hm-indicator-style
+        title: 🎨 Стиль маркера (символы)
+        type: class-select
+        allowEmpty: false
+        default: hm-mark-hashes
+        options:
+        - label: Решетки (# ## ###)
+            value: hm-mark-hashes
+        - label: Уровни (L1 L2 L3)
+            value: hm-mark-levels
+        - label: Заголовки (H1 H2 H3)
+            value: hm-mark-headers
+        - label: Точки (• •• •••)
+            value: hm-mark-dots
+    -
+        id: hm-indicator-color-style
+        title: 🌈 Цвет маркеров
+        type: class-select
+        allowEmpty: false
+        default: hm-mark-accent
+        options:
+        - label: Стандартный (серый)
+            value: hm-mark-std
+        - label: Как текст заголовка
+            value: hm-mark-match
+        - label: Разноцветный
+            value: hm-mark-colorful
+        - label: Акцентный (системный)
+            value: hm-mark-accent
+    -
+        id: hm-bg-style
+        title: 🖼️ Фон заголовков
+        type: class-select
+        allowEmpty: false
+        default: hm-bg-off
+        options:
+        - label: Без фона
+            value: hm-bg-off
+        - label: Разноцветный (Colorful)
+            value: hm-bg-colorful
+        - label: Монохромный (Mono)
+            value: hm-bg-mono
 */
