@@ -1,1 +1,9 @@
-
+@import "theme/style-settings.css";
+@import "theme/root.css";
+@import "theme/workspace.css";
+@import "theme/editor.css";
+@import "theme/embeds.css";
+@import "theme/ui.css";
+@import "theme/core-plugins.css";
+@import "theme/community-plugins.css";
+@import "theme/features.css";
