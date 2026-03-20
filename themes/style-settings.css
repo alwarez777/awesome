@@ -1,14 +1,9 @@
 /*!
 /* @settings
 
-name: Cupertino
-id: cupertino
+name: Awesome
+id: awesome
 settings:
-    - 
-        id: cupertino-desc
-        description: "Cupertino offers simplified, native-style UI. For granular controls, try [Baseline](obsidian://show-theme?name=Baseline)."
-        type: info-text
-        markdown: true
     -
         id: colorful-frame
         title: Tinted sidebar
@@ -118,5 +113,26 @@ settings:
         id: clean-link-off
         title: Underlined links
         description: Always underline links for improved visibility.
+        type: class-toggle
+    -
+        id: customize
+        title: Customize
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: av-workspace-tabs-hide
+        title: 💻 Скрыть контейнер вкладок
+        description: Полностью скрывает панель вкладок для центральной части пространства (подходит для плагинов вроде Vertical Tabs).
+        type: class-toggle
+    -
+        id: av-workspace-tabs-opacity
+        title: 💻 Отображать вкладки при наведении
+        description: Скрывает вкладки на центральной панели через понижение прозрачности и отображает их при наведении через увеличение прозрачности.
+        type: class-toggle
+    -
+        id: tab-top-left-dropdown
+        title: 💻 Выпадающий список плагинов для левого сайдбара
+        description: Заменяет сгруппированные иконки плагинов на иконку + надпись активного плагина и выбор плагинов с помощью выпадающего списка.
         type: class-toggle
 */

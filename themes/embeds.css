@@ -1,1 +1,293 @@
+body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-reading-view,
+body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-source-view {
+    /* // Codeblocks */
+  .markdown-rendered pre {
+    -electron-corner-smoothing: var(--corner-smoothing);
+  }
+  .markdown-rendered code {
+    -electron-corner-smoothing: var(--corner-smoothing);
+    padding: 2px 4px;
+  }
+  .markdown-rendered pre code {
+    white-space: var(--code-white-space);
+  }
+  body:is(.mod-macos, .adaptive-mode-off) .markdown-rendered pre {
+    background: linear-gradient(var(--background-primary-alt), var(--background-secondary));
+    box-shadow: var(--shadow-tactile);
+  }
 
+  kbd {
+    box-shadow: var(--shadow-tactile);
+    border: 1px solid var(--background-modifier-border);
+    background-color: var(--background-secondary);
+    padding: var(--tag-padding-y) var(--tag-padding-x);
+    font-family: var(--font-text);
+    color: var(--text-muted);
+  }
+
+  /* // Dataview */
+  .dataview .inline-field-standalone-value,
+  .dataview.inline-field-key,
+  .dataview.inline-field-value {
+    font-family: var(--font-text);
+    font-size: var(--font-smaller);
+    background: transparent;
+    color: var(--text-faint);
+    padding-inline: 2px;
+  }
+
+  /* // Embeds */
+  .embed-strict {
+    --embed-border-start: none;
+    --embed-background: transparent;
+    --embed-padding: 0;
+  }
+  .embed-hide-title .embed-title,
+  .embed-title:empty {
+    display: none;
+  }
+
+  .markdown-embed {
+    -electron-corner-smoothing: var(--corner-smoothing);
+  }
+  .markdown-embed:not(.image-embed, .canvas-node-content) {
+    display: flex;
+    flex-direction: column;
+    max-height: var(--embed-max-height);
+    overflow: hidden;
+    border-start-end-radius: var(--media-radius);
+    border-end-end-radius: var(--media-radius);
+  }
+  .inline-embed > .markdown-embed-title {
+    padding-bottom: var(--inline-title-margin-bottom);
+  }
+  .inline-embed > .markdown-embed-content {
+    max-height: 100%;
+  }
+  .block-language-chart {
+    width: 100% !important;
+  }
+
+  /* // Media */
+  img:not(.link-favicon),
+  iframe,
+  video,
+  .file-embed {
+    -electron-corner-smoothing: var(--corner-smoothing);
+    border-radius: var(--media-radius);
+  }
+
+  .image-embed {
+    padding-bottom: 0px;
+    padding-inline-end: 0px;
+  }
+
+  body:not(.full-width-media-off) .workspace-leaf-content[data-type="markdown"] {
+    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, [alt="banner"]),
+    iframe,
+    video {
+      width: 100%;
+      border-radius: var(--media-radius);
+    }
+  }
+
+  /* // Image grid */
+  .img-grid .markdown-preview-section {
+    .el-p > p:has(> .image-embed):has(span:last-child),
+    .el-p > p:has(> img):not(:has(> :not(img))) {
+      --p-spacing: 4px;
+      display: flex;
+      gap: var(--img-grid-gap, 4px);
+
+      line-height: 0;
+
+      br {
+        display: none;
+      }
+
+      > img,
+      > .image-embed {
+        flex: 1;
+        object-fit: cover;
+      }
+
+      img {
+        height: -webkit-fill-available;
+        overflow: auto;
+        object-fit: cover;
+      }
+    }
+  }
+
+  /* // Tags */
+  body.unstyled-tags {
+    --tag-background: transparent;
+    --tag-background-hover: transparent;
+    --tag-border-width: 0px;
+    --tag-padding-x: 0;
+    --tag-padding-y: 0;
+    --tag-size: inherit;
+    --tag-color-hover: var(--text-accent-hover);
+  }
+}
+
+
+/* # ТАБЛИЦЫ */
+@media screen, print {
+  body {
+    --table-text-size: var(--font-small);
+
+    --table-add-button-border-width: 0;
+    --table-header-border-color: transparent;
+
+    --embed-block-shadow-hover: none;
+  }
+  body:not(.full-width-media-off) table,
+  body:not(.full-width-media-off) .markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+    min-width: 100%;
+  }
+
+  :root table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  blockquote,
+  .callout,
+  .el-table,
+  .cm-table-widget,
+  .block-language-dataview,
+  .block-language-dataviewjs,
+  .block-language-datacorejsx {
+    --table-border-color: var(--background-modifier-border);
+
+    table {
+      position: relative;
+
+      .table-cell-wrapper:active,
+      .table-cell-wrapper:focus,
+      .table-cell-wrapper:focus-within {
+        background-color: var(--background-modifier-hover);
+      }
+
+      th,
+      td {
+        -electron-corner-smoothing: var(--corner-smoothing);
+      }
+
+      > thead:only-child,
+      > tbody {
+        --table-header-border-color: var(--table-border-color);
+
+        background-color: var(--background-primary-alt);
+        position: relative;
+      }
+
+      > thead:not(:only-child) > tr > th,
+      > thead:not(:only-child) > tr > th .table-cell-wrapper {
+        border-radius: var(--radius-s);
+      }
+
+      > tbody > tr:not(:last-child) > td {
+        border-bottom: none;
+      }
+
+      > thead > tr > th:not(:last-child),
+      > tbody > tr > td:not(:last-child) {
+        border-right: none;
+      }
+
+      > :is(thead, tbody) > tr:first-child > :is(th, td):first-child,
+      > :is(thead, tbody) > tr:first-child > :is(th, td):first-child .table-cell-wrapper {
+        border-top-left-radius: var(--radius-s);
+      }
+      > :is(thead, tbody) > tr:first-child > :is(th, td):last-child,
+      > :is(thead, tbody) > tr:first-child > :is(th, td):last-child .table-cell-wrapper {
+        border-top-right-radius: var(--radius-s);
+      }
+      > :is(thead, tbody) > tr:last-child > :is(th, td):first-child,
+      > :is(thead, tbody) > tr:last-child > :is(th, td):first-child .table-cell-wrapper {
+        border-bottom-left-radius: var(--radius-s);
+      }
+      > :is(thead, tbody) > tr:last-child > :is(th, td):last-child,
+      > :is(thead, tbody) > tr:last-child > :is(th, td):last-child .table-cell-wrapper {
+        border-bottom-right-radius: var(--radius-s);
+      }
+
+      &[dir="rtl"] {
+        > thead > tr > th:not(:last-child),
+        > tbody > tr > td:not(:last-child) {
+          border-left: none;
+        }
+
+        > :is(thead, tbody) > tr:first-child > :is(th, td):first-child,
+        > :is(thead, tbody) > tr:first-child > :is(th, td):first-child .table-cell-wrapper {
+          border-top-right-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:first-child > :is(th, td):last-child,
+        > :is(thead, tbody) > tr:first-child > :is(th, td):last-child .table-cell-wrapper {
+          border-top-left-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:last-child > :is(th, td):first-child,
+        > :is(thead, tbody) > tr:last-child > :is(th, td):first-child .table-cell-wrapper {
+          border-bottom-right-radius: var(--radius-s);
+        }
+        > :is(thead, tbody) > tr:last-child > :is(th, td):last-child,
+        > :is(thead, tbody) > tr:last-child > :is(th, td):last-child .table-cell-wrapper {
+          border-bottom-left-radius: var(--radius-s);
+        }
+      }
+    }
+  }
+
+  .cm-html-embed th,
+  .markdown-rendered th,
+  .cm-html-embed td,
+  .markdown-rendered td,
+  .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+    padding: 8px;
+  }
+  .cm-html-embed th,
+  .markdown-rendered th {
+    text-align: var(--table-text-align-header);
+  }
+  .cm-html-embed td,
+  .markdown-rendered td {
+    text-align: var(--table-text-align-body);
+  }
+
+  .dataview,
+  .block-language-datacorejsx {
+    &.table-view-table {
+      &::before {
+        border: none;
+      }
+
+      tr:first-child > td {
+        border-top: none;
+      }
+    }
+
+    &.table-view-table > thead > tr > th,
+    .datacore-table-header-cell {
+      border-bottom: none;
+      font-weight: var(--table-header-weight);
+      font-size: var(--table-header-size);
+    }
+
+    &.table-view-table > tbody > tr:not(:only-child) > td {
+      max-width: 20em;
+    }
+
+    &.dataview-error-box {
+      border: none;
+      border-radius: var(--radius-s);
+      background-color: var(--background-secondary);
+      min-height: 80px;
+    }
+
+    .dc-paging-control-page {
+      padding: 0 !important;
+    }
+  }
+}
