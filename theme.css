@@ -5002,3 +5002,16 @@ body:not(.is-mobile).hover-ribbon.show-ribbon {
     }
   }
 }
+
+body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed.mod-left-split .workspace-tab-header-container-inner {
+  transition: margin-left .2s;
+  margin-left: 80px !important;
+}
+
+body:not(.is-mobile).hover-sidedock .mod-sidedock.mod-left-split:not(.is-sidedock-collapsed) .workspace-tab-header-container-inner {
+  margin-left: 0 !important;
+}
+
+body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed.mod-left-split .workspace-tab-header-container {
+  padding-left: 0 !important;
+}
