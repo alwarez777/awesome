@@ -667,18 +667,19 @@ body:is(.mod-macos, .adaptive-mode-off) {
     border-top: none;
   }
 }
+
+@keyframes bounceInScale {
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.99);
+  }
+}
+
 body:is(.mod-macos, .adaptive-mode-off):not(.is-phone) {
   --prompt-input-height: 56px;
-
-  @keyframes bounceInScale {
-    from {
-      transform: scale(1.15);
-      opacity: 0;
-    }
-    50% {
-      transform: scale(0.99);
-    }
-  }
 
   .prompt {
     animation: var(--anim-duration-moderate) bounceInScale var(--anim-motion-baseline) forwards;
@@ -934,15 +935,16 @@ body:is(.mod-macos, .adaptive-mode-off).is-tablet {
   }
 }
 
+@keyframes modalInCupertino {
+  from {
+    opacity: 1;
+    filter: none;
+    transform: scale(0.99);
+  }
+}
+
 /* // Modal */
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
-  @keyframes modalInCupertino {
-    from {
-      opacity: 1;
-      filter: none;
-      transform: scale(0.99);
-    }
-  }
   .modal {
     animation: modalInCupertino var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
   }
