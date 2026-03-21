@@ -15,6 +15,6 @@
   "license": "ISC",
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
-    "lightningcss-cli": "^0.1.2"
+    "lightningcss-cli": "^1.32.0"
   }
 }
