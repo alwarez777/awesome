@@ -1,8 +1,8 @@
 {
   "name": "awesome",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Obsidian theme development",
+  "main": "theme.css",
   "scripts": {
     "build": "lightningcss --bundle src.css -o theme.css",
     "dev": "chokidar \"**/*.css\" -i \"node_modules\" -c \"npm run build\" --initial"
@@ -11,16 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/alwarez777/awesome.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "ILKT",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/alwarez777/awesome/issues"
-  },
-  "homepage": "https://github.com/alwarez777/awesome#readme",
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
-    "lightningcss-cli": "^1.32.0"
+    "lightningcss-cli": "^0.1.2"
   }
 }
