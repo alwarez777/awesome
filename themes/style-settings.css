@@ -1,4 +1,3 @@
-/*!
 /* @settings
 
 name: Awesome
@@ -147,13 +146,13 @@ settings:
         allowEmpty: false
         default: hm-mark-hashes
         options:
-        - label: Решетки (# ## ###)
+          - label: "Решетки (# ## ###)"
             value: hm-mark-hashes
-        - label: Уровни (L1 L2 L3)
+          - label: "Уровни (L1 L2 L3)"
             value: hm-mark-levels
-        - label: Заголовки (H1 H2 H3)
+          - label: "Заголовки (H1 H2 H3)"
             value: hm-mark-headers
-        - label: Точки (• •• •••)
+          - label: "Точки (• •• •••)"
             value: hm-mark-dots
     -
         id: hm-indicator-color-style
@@ -162,13 +161,13 @@ settings:
         allowEmpty: false
         default: hm-mark-accent
         options:
-        - label: Стандартный (серый)
+          - label: "Стандартный (серый)"
             value: hm-mark-std
-        - label: Как текст заголовка
+          - label: "Как текст заголовка"
             value: hm-mark-match
-        - label: Разноцветный
+          - label: "Разноцветный"
             value: hm-mark-colorful
-        - label: Акцентный (системный)
+          - label: "Акцентный (системный)"
             value: hm-mark-accent
     -
         id: hm-bg-style
