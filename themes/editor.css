@@ -702,6 +702,28 @@ body:not(.is-mobile) .metadata-property-key {
   text-overflow: ellipsis;
 }
 
+/* 💻 Скрыть крестик для значений в свойствах типа "Список" */
+body:not(.is-phone) {
+  .multi-select-pill-remove-button {
+    width: 0;
+    margin-inline-end: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: 
+        width 0.2s ease, 
+        margin 0.2s ease, 
+        opacity 0.1s ease;
+  }
+  .multi-select-pill:hover .multi-select-pill-remove-button {
+    width: calc(var(--icon-size) + 2px);
+    margin-inline-end: var(--pill-padding-x);
+    opacity: 1;
+  }
+  .multi-select-pill {
+    transition: padding 0.2s ease;
+  }
+}
+
 
 /* # ХАЙЛАЙТ */
 
