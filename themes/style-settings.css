@@ -177,10 +177,10 @@ settings:
         allowEmpty: false
         default: hm-bg-off
         options:
-        - label: Без фона
-            value: hm-bg-off
-        - label: Разноцветный (Colorful)
-            value: hm-bg-colorful
-        - label: Монохромный (Mono)
-            value: hm-bg-mono
+          - label: Без фона
+          value: hm-bg-off
+          - label: Разноцветный (Colorful)
+          value: hm-bg-colorful
+          - label: Монохромный (Mono)
+          value: hm-bg-mono
 */
