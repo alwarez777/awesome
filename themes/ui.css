@@ -1412,3 +1412,39 @@ body:is(.mod-macos, .adaptive-mode-off) {
     inset-inline-start: 12px;
   }
 }
+
+
+
+/* 📱💻 Скрыть подсказки в поисковых строках */
+input[type="search"]::placeholder {
+  color: transparent !important; 
+}
+input[class="prompt-input"]::placeholder {
+  color: transparent !important; 
+}
+input::placeholder {
+    white-space-collapse: preserve;
+    text-wrap-mode: nowrap;
+    overflow-wrap: normal;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    line-height: initial;
+    color: transparent !important;
+}
+
+/* 📱💻 Улучшить выделенные слова в Поиске */
+.search-result-file-matched-text {
+  color: var(--text-normal);
+  background-color: hsla(var(--color-accent-hsl), 35%);
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px; 
+}
+.is-flashing {
+  transition: all 0.25s ease;
+  background-color: hsla(var(--color-accent-hsl), 35%) !important;
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px;
+  color: var(--text-normal);
+  mix-blend-mode: var(--highlight-mix-blend-mode);
+  border-radius: var(--radius-s); 
+}

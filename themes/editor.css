@@ -176,3 +176,689 @@ body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-source-
     --link-external-decoration: none;
   }
 }
+
+
+
+/* # ЗАГОЛОВКИ H1-H6 */
+
+/* –––––––––––– 1. ПАЛИТРА ДЛЯ ТЕМНОЙ ТЕМЫ –––––––––––– */
+.theme-dark {
+  --h1-tx: rgb(255, 255, 255);
+  --h2-tx: rgb(230, 230, 230);
+  --h3-tx: rgb(200, 200, 200);
+  --h4-tx: rgb(170, 170, 170);
+  --h5-tx: rgb(145, 145, 145);
+  --h6-tx: rgb(125, 125, 125);
+  /* Фон для монохромного режима в темной теме */
+  --h-mono-bg: rgba(255, 255, 255, 0.07);
+}
+
+/* –––––––––––– 2. ПАЛИТРА ДЛЯ СВЕТЛОЙ ТЕМЫ –––––––––––– */
+.theme-light {
+  --h1-tx: rgb(0, 0, 0);
+  --h2-tx: rgb(40, 40, 40);
+  --h3-tx: rgb(75, 75, 75);
+  --h4-tx: rgb(105, 105, 105);
+  --h5-tx: rgb(130, 130, 130);
+  --h6-tx: rgb(155, 155, 155);
+  /* Фон для монохромного режима в светлой теме */
+  --h-mono-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* Общие переменные размеров */
+body {
+  --h1-size: 1.50em; --h2-size: 1.45em; --h3-size: 1.40em;
+  --h4-size: 1.35em; --h5-size: 1.30em; --h6-size: 1.25em;
+}
+
+/* Применение цветов и размеров */
+.cm-header-1, .markdown-rendered h1 { color: var(--h1-tx) !important; font-size: var(--h1-size); }
+.cm-header-2, .markdown-rendered h2 { color: var(--h2-tx) !important; font-size: var(--h2-size); }
+.cm-header-3, .markdown-rendered h3 { color: var(--h3-tx) !important; font-size: var(--h3-size); }
+.cm-header-4, .markdown-rendered h4 { color: var(--h4-tx) !important; font-size: var(--h4-size); }
+.cm-header-5, .markdown-rendered h5 { color: var(--h5-tx) !important; font-size: var(--h5-size); }
+.cm-header-6, .markdown-rendered h6 { color: var(--h6-tx) !important; font-size: var(--h6-size); }
+
+/* –––––––––––– 3. ФОН (ОБЪЕДИНЕННАЯ ЛОГИКА) –––––––––––– */
+body:is(.hm-bg-colorful, .hm-bg-mono) :is(.markdown-rendered h1, .markdown-rendered h2, .markdown-rendered h3, .markdown-rendered h4, .markdown-rendered h5, .markdown-rendered h6, .HyperMD-header) {
+  width: fit-content !important;
+  padding: 0.15em 0.5em !important;
+  border-radius: 0.8em 0.3em !important;
+  margin-bottom: 0.2em !important;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Colorful */
+.hm-bg-colorful :is(.markdown-rendered h1, .HyperMD-header-1):not(.cm-formatting) { background-color: rgba(235, 22, 0, 0.3) !important; }
+.hm-bg-colorful :is(.markdown-rendered h2, .HyperMD-header-2):not(.cm-formatting) { background-color: rgba(255, 165, 0, 0.3) !important; }
+.hm-bg-colorful :is(.markdown-rendered h3, .HyperMD-header-3):not(.cm-formatting) { background-color: rgba(255, 255, 0, 0.25) !important; }
+.hm-bg-colorful :is(.markdown-rendered h4, .HyperMD-header-4):not(.cm-formatting) { background-color: rgba(0, 255, 0, 0.2) !important; }
+.hm-bg-colorful :is(.markdown-rendered h5, .HyperMD-header-5):not(.cm-formatting) { background-color: rgba(60, 146, 247, 0.3) !important; }
+.hm-bg-colorful :is(.markdown-rendered h6, .HyperMD-header-6):not(.cm-formatting) { background-color: rgba(139, 88, 228, 0.3) !important; }
+
+/* Mono (использует раздельные переменные фона для темной/светлой темы) */
+.hm-bg-mono :is(.markdown-rendered h1, .HyperMD-header-1, .markdown-rendered h2, .HyperMD-header-2, .markdown-rendered h3, .HyperMD-header-3, .markdown-rendered h4, .HyperMD-header-4, .markdown-rendered h5, .HyperMD-header-5, .markdown-rendered h6, .HyperMD-header-6):not(.cm-formatting) {
+  background-color: var(--h-mono-bg) !important;
+}
+
+/* –––––––––––– 4. МАРКЕРЫ И ИХ ЦВЕТА –––––––––––– */
+
+/* Контент символов */
+body.hm-mark-hashes { --m1: "# "; --m2: "## "; --m3: "### "; --m4: "#### "; --m5: "##### "; --m6: "###### "; }
+body.hm-mark-levels { --m1: "L1 "; --m2: "L2 "; --m3: "L3 "; --m4: "L4 "; --m5: "L5 "; --m6: "L6 "; }
+body.hm-mark-headers { --m1: "H1 "; --m2: "H2 "; --m3: "H3 "; --m4: "H4 "; --m5: "H5 "; --m6: "H6 "; }
+body.hm-mark-dots { --m1: "• "; --m2: "•• "; --m3: "••• "; --m4: "•••• "; --m5: "••••• "; --m6: "•••••• "; }
+
+/* Базовый вид маркера */
+body.hm-show-indicators :is(.cm-header, .markdown-rendered :is(h1,h2,h3,h4,h5,h6)):not(.cm-formatting):before {
+    font-family: var(--font-monospace);
+    font-weight: 700;
+    margin-right: 0px;
+}
+
+
+/* Цвет маркера: Standard */
+body.hm-mark-std :is(.cm-header, .markdown-rendered :is(h1,h2,h3,h4,h5,h6)):before { color: var(--text-faint); opacity: 0.5; }
+
+/* Цвет маркера: Matching (как текст) */
+body.hm-mark-match .cm-header-1:before, body.hm-mark-match .markdown-rendered h1:before { color: var(--h1-tx); }
+body.hm-mark-match .cm-header-2:before, body.hm-mark-match .markdown-rendered h2:before { color: var(--h2-tx); }
+body.hm-mark-match .cm-header-3:before, body.hm-mark-match .markdown-rendered h3:before { color: var(--h3-tx); }
+body.hm-mark-match .cm-header-4:before, body.hm-mark-match .markdown-rendered h4:before { color: var(--h4-tx); }
+body.hm-mark-match .cm-header-5:before, body.hm-mark-match .markdown-rendered h5:before { color: var(--h5-tx); }
+body.hm-mark-match .cm-header-6:before, body.hm-mark-match .markdown-rendered h6:before { color: var(--h6-tx); }
+
+/* Цвет маркера: Colorful */
+body.hm-mark-colorful .cm-header-1:before, body.hm-mark-colorful .markdown-rendered h1:before { color: #eb1600; }
+body.hm-mark-colorful .cm-header-2:before, body.hm-mark-colorful .markdown-rendered h2:before { color: #ffa500; }
+body.hm-mark-colorful .cm-header-3:before, body.hm-mark-colorful .markdown-rendered h3:before { color: #f5f500; }
+body.hm-mark-colorful .cm-header-4:before, body.hm-mark-colorful .markdown-rendered h4:before { color: #00ff00; }
+body.hm-mark-colorful .cm-header-5:before, body.hm-mark-colorful .markdown-rendered h5:before { color: #3c92f7; }
+body.hm-mark-colorful .cm-header-6:before, body.hm-mark-colorful .markdown-rendered h6:before { color: #8b58e4; }
+
+/* Цвет маркера: Accent */
+body.hm-mark-accent :is(.cm-header, .markdown-rendered :is(h1,h2,h3,h4,h5,h6)):before { color: var(--color-accent); }
+
+/* Применение контента символов */
+body.hm-show-indicators .cm-header-1:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h1:before { content: var(--m1); }
+body.hm-show-indicators .cm-header-2:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h2:before { content: var(--m2); }
+body.hm-show-indicators .cm-header-3:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h3:before { content: var(--m3); }
+body.hm-show-indicators .cm-header-4:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h4:before { content: var(--m4); }
+body.hm-show-indicators .cm-header-5:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h5:before { content: var(--m5); }
+body.hm-show-indicators .cm-header-6:not(.cm-formatting):before, body.hm-show-indicators .markdown-rendered h6:before { content: var(--m6); }
+
+/* ЛОГИКА СКРЫТИЯ: Когда курсор в строке, кастомные символы исчезают */
+body.hm-show-indicators .mod-cm6 .cm-active.HyperMD-header:before,
+body.hm-show-indicators .mod-cm6 .cm-active .cm-header:before { 
+    display: none !important; 
+}
+
+/* Скрываем стандартные решетки везде, кроме активной строки (опционально) */
+/* Если вы хотите, чтобы в неактивных строках НЕ было видно стандартных решеток */
+span.cm-formatting-header {
+    display: none;
+}
+.cm-active span.cm-formatting-header {
+    display: inline;
+}
+
+/* 3. Общая синхронизация шрифта: идентичные # при активном/неактивном курсоре в строке заголовка */
+:is(.cm-active .cm-formatting-header, body.hm-show-indicators [class^="cm-header"]:before) {
+    font-family: var(--font-monospace) !important;
+}
+
+
+/* 📱💻 Размеры заголовков */
+body {
+  --h1-size: 1.4875em;
+  --h2-size: 1.3875em;
+  --h3-size: 1.2875em;
+  --h4-size: 1.1875em;
+  --h5-size: 1.0875em;
+  --h6-size: 1.0275em; 
+}
+
+/* 📱💻 Шевроны свертывания/развертывания */
+.HyperMD-header .cm-fold-indicator {
+  position: absolute;
+  transform: translateX(-0.1rem); 
+}
+
+
+
+/* # СПИСКИ */
+
+/* 📱💻 Всегда отображать направляющие */
+.markdown-source-view.mod-cm6 .cm-indent::before {
+  border-inline-end: 1px solid var(--text-muted) !important;
+  opacity: 0.15 !important;
+}
+
+
+/* 💻 Выравнивание маркеров по одной линии
+----- Затрагивает все виды списков ----- */
+
+body:not(.is-mobile) { 
+  .markdown-source-view.mod-cm6 .cm-formatting-list-ul .list-bullet {
+      margin-right: 5px; }
+  .cm-formatting-list-ul {
+      padding-inline-start: 0.2em; }
+  .cm-formatting-list-ol {
+      padding-inline-start: 0.2em;
+      margin-right: 6px;
+      font-variant-numeric: unset; }
+  .markdown-source-view.mod-cm6.is-live-preview .cm-indent::before {
+      margin-inline-start: 0.25em; }
+  .markdown-source-view.mod-cm6 .task-list-label {
+      margin-inline-start: -0.75em;
+      margin-right: 2px; }  
+}
+
+/* 📱 Выравнивание маркеров по одной линии
+----- Затрагивает все виды списков ----- */
+
+body.is-mobile {
+  .markdown-source-view.mod-cm6 .cm-formatting-list-ul .list-bullet {
+    margin-right: 7px; }
+  .cm-formatting-list-ul {
+    padding-inline-start: 0.25em; }
+  .cm-formatting-list-ol {
+    padding-inline-start: 0.25em;
+    margin-right: 8px;
+    font-variant-numeric: unset; }
+  .markdown-source-view.mod-cm6.is-live-preview .cm-indent::before {
+    margin-inline-start: 0.35em; }
+  .markdown-source-view.mod-cm6 .task-list-label {
+    margin-inline-start: -0.65em;
+    margin-right: 6px; }  
+}
+
+/* 📱💻 Шевроны на одной линии
+Маркированные и нумерованные списки */
+
+/* Уровень 1 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-1:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-1.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-1, .cm-line.HyperMD-list-line.HyperMD-list-line-1.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 7px; 
+}
+/* Уровень 2 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-2:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-2.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-2, .cm-line.HyperMD-list-line.HyperMD-list-line-2.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 25px; 
+}
+/* Уровень 3 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-3:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-3.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-3, .cm-line.HyperMD-list-line.HyperMD-list-line-3.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 43px; 
+}
+/* Уровень 4 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-4:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-4.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-4, .cm-line.HyperMD-list-line.HyperMD-list-line-4.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 61px; 
+}
+/* Уровень 5 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-5:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-5.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-5, .cm-line.HyperMD-list-line.HyperMD-list-line-5.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 79px; 
+}
+/* Уровень 6 */
+.markdown-source-view.mod-cm6.is-live-preview .cm-active.HyperMD-list-line-6:not(.HyperMD-task-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+}
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line.HyperMD-list-line-6.cm-line .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem; 
+}
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-6, .cm-line.HyperMD-list-line.HyperMD-list-line-6.cm-line) .cm-fold-indicator .collapse-indicator {
+  padding-inline-end: 97px; 
+}
+
+/* 📱💻 Шевроны на одной линии
+-------- Чек-боксы -------- */
+
+/* Уровень 1 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 1px; 
+}
+/* Уровень 2 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-2.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line-2.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 19px; 
+}
+/* Уровень 3 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-3.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line-3.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 37px; 
+}
+/* Уровень 4 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-4.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line-4.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 56px; 
+}
+/* Уровень 5 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-5.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line-5.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 75px; 
+}
+/* Уровень 6 */
+.markdown-source-view.mod-cm6.is-live-preview :is(.cm-active.HyperMD-list-line-6.HyperMD-task-line, .HyperMD-list-line.HyperMD-list-line-6.HyperMD-task-line.cm-line) .cm-fold-indicator .collapse-indicator {
+  inset-inline-end: 0rem !important; 
+  padding-inline-end: 94px; 
+}
+
+/* 📱💻 Увеличить размер чек-боксов */
+.markdown-source-view.mod-cm6 .task-list-label .task-list-item-checkbox {
+  transform: scale(1.15);
+}
+
+
+/* # ЦИТАТЫ */
+
+/* 💻 Синхронизация выравнивания со списками
+Влияет на индикатор цитаты + отступ текста */
+
+body:not(.is-mobile) {
+  .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+    inset-inline-start: 5.5px;
+    margin-left: 5px !important; }
+  .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before {
+    inset-inline-start: -5px; }  
+}
+
+/* 📱 Синхронизация выравнивания со списками
+Влияет на индикатор цитаты + отступ текста */
+body.is-mobile {
+  .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+    inset-inline-start: 9px;
+    margin-left: 5px !important; }
+  .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before {
+    inset-inline-start: -7px; }  
+}
+
+
+
+
+
+/* 📱💻 Отключить кнопку Edit/View Mode */
+.mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+  display: none; 
+}
+
+
+/* # СВОЙСТВА */
+
+/* ––––––––––––––––––––––––––––––––––––––––––––––––
+## 📱💻 Улучшенный блок свойств с авто-скрытием (СТАРТ)
+––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.metadata-property-key,
+.metadata-property-value,
+.metadata-property,
+.metadata-property:hover,
+.metadata-property:active,
+.metadata-property:focus-within,
+.metadata-property-key:focus-within,
+.metadata-property-value:focus-within {
+  box-shadow: none;
+  border-bottom: none;
+  background-color: transparent;
+}
+
+/* 💻 Увеличить ширину блока свойств-ключей */
+body:not(.is-mobile) .metadata-property-key {
+  flex: 0 0 10em !important;
+}
+
+
+
+.metadata-property {
+  margin: -5px 0 -5px 0;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.metadata-property[data-property-key="tags"] .multi-select-pill {
+  background: var(--tag-background-image);
+  font-size: var(--font-smaller);
+  line-height: 1.1;
+  margin-inline-start: -4px;
+}
+
+.metadata-container {
+  border: 1px solid var(--background-modifier-border);
+  padding: 0.6em 0.5em; /* фиксированный верх/низ */
+  border-radius: 5px;
+  background: var(--background-secondary);
+  font-size: 13px;
+  --icon-size: 13px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.4s ease-in-out,
+    border-color 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out,
+    max-height 0.45s ease-in-out,
+    padding 0.4s ease-in-out;
+}
+
+.markdown-preview-view .metadata-properties-heading,
+.cm-editor .metadata-properties-heading {
+  display: none;
+}
+
+.metadata-container.collapsed {
+  max-height: 1.1em;
+  padding: 0.6em 0.5em;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+
+  .metadata-content {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
+  }
+  &::before {
+    content: '•••';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    text-indent: 3px;
+    font-size: 18px;
+    color: rgba(var(--mono-rgb-100), 0.15);
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 4px;
+    padding: 0.05em 0.35em;
+    animation: fadePulse 3.5s ease-in-out infinite;
+    transition: opacity 0.45s ease-in-out, background-color 0.25s ease-in-out;
+  }
+
+  &:hover::before {
+    background-color: rgba(var(--mono-rgb-100), 0.08);
+    box-shadow: 0 0 6px rgba(var(--mono-rgb-100), 0.08);
+  }
+}
+
+.metadata-container:not(.collapsed),
+.metadata-container.collapsed:hover {
+  max-height: 500px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-xs);
+
+  &::before {
+    opacity: 0;
+    animation: none;
+  }
+
+  .metadata-content {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+.popover { 
+	& .metadata-container {
+    margin-block-start: -15px !important; 
+    margin-block-end: 5px;   } 
+  }
+
+.cm-editor .metadata-container { 
+  margin-block-start: 10px; 
+  margin-block-end: 5px; 
+} 
+.markdown-preview-view .metadata-container { 
+  margin-block-start: 25px; 
+  margin-block-end: 45px; 
+}
+
+/* 📱💻 Включить автоскрытие блока и раскрытие при наведении */
+/* .cm-editor .metadata-container:not(:hover):not(:focus-within),
+.markdown-preview-view .metadata-container:not(:hover):not(:focus-within) {
+  max-height: 1.1em;
+  padding: 0.6em 0.5em;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+
+  &::before {
+    content: '•••';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    text-indent: -4px;
+    font-size: 18px;
+    color: rgba(var(--mono-rgb-100), 0.3);
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 4px;
+    padding: 0.05em 0.35em;
+    animation: fadePulse 3.5s ease-in-out infinite;
+    transition: opacity 0.45s ease-in-out, background-color 0.25s ease-in-out;
+  }
+
+  &:hover::before {
+    background-color: rgba(var(--mono-rgb-100), 0.08);
+    box-shadow: 0 0 6px rgba(var(--mono-rgb-100), 0.08);
+  }
+
+  .metadata-content {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+  }
+} */
+
+@keyframes fadePulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+.metadata-container .metadata-add-button {
+  font-variant: all-small-caps;
+}
+
+/* Снять ограничения на высоту блока 
+Закоммонетировать/удалить, когда верну автосвертывание */
+.metadata-container {
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* 📱💻 Убрать перенос слов в ссылке для свойств типа Список */
+.multi-select-pill {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* # ХАЙЛАЙТ */
+
+/* 📱💻 Улушчить выделение (хайлайт) ==== */
+.cm-s-obsidian span.cm-formatting-highlight,
+.cm-s-obsidian span.cm-highlight,
+.markdown-rendered mark {
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px;
+  font-family: var(--h1-font);
+  --text-highlight-bg: hsla(var(--color-accent-hsl), 25%); 
+}
+
+
+/* # ОТСТУПЫ */
+
+/* 📱💻 Уменьшить отступ от нижнего края заметки */
+
+/* Live Preview */
+body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
+/* Source Mode */
+body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
+/* Reading Mode */
+body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-reading-view > div > div {
+    padding-bottom: 50px !important;
+}
+/* Live Preview + если есть хлебные крошки Zoom */
+body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content:has(.cm-panels.cm-panels-top) > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div {
+  padding-bottom: 62.5px !important;
+}
+
+/* 💻 Увеличить отступ контейнера заметки от заголовка #1.11.4 */
+body:not(.is-phone) .workspace-split.mod-vertical.mod-root .markdown-source-view.mod-cm6 .cm-sizer {
+  margin-block-start: 40px !important;
+}
+
+
+/* # BOLD & ITALIC */
+
+/* 📱💻 Подчеркивание для Bold */
+/* strong, .cm-strong {
+  text-decoration-line: underline;
+  text-underline-offset: var(--size-2-1);
+  text-decoration-skip-ink: none; 
+  text-decoration-thickness: 2px;
+  transition: var(--anim-duration-moderate);
+} */
+
+/* 📱💻 Подчеркивание для Italic */
+/* em, .cm-em {
+  text-decoration-line: underline;
+  text-underline-offset: var(--size-2-1);
+  text-decoration-skip-ink: none; 
+  text-decoration-thickness: 1px;
+  transition: var(--anim-duration-moderate);
+} */
+
+
+/* # ССЫЛКИ */
+
+/* ## ССЫЛКИ - ВНУТРЕННИЕ */
+
+/* 📱💻 Добавить иконки в конце, улучшить подчеркивание */
+
+/* .markdown-source-view .cm-underline::before,
+.markdown-source-view .cm-underline::after,
+.is-live-preview .cm-underline::before,
+.is-live-preview .cm-underline::after,
+span.cm-hmd-internal-link.cm-link-alias-pipe::after,
+span.cm-hmd-internal-link.cm-link-alias::after {
+  content: none !important;
+  display: none !important; 
+} */
+.is-unresolved {
+  transition: var(--anim-duration-moderate);
+  border-radius: var(--radius-s);
+  text-underline-offset: var(--size-2-1);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: var(--link-thickness); 
+}
+:is(a.internal-link:not(.is-unresolved), .cm-hmd-internal-link .cm-underline) {
+  transition: var(--anim-duration-moderate);
+  border-radius: var(--radius-s);
+  text-underline-offset: var(--size-2-1);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: var(--link-thickness) !important; 
+}
+
+/* .kanban-plugin__markdown-preview-wrapper a.internal-link::after */
+
+/* .cm-hmd-internal-link:not(.is-unresolved)::after,
+.cm-hmd-internal-link .cm-underline:last-child::after,
+.cm-underline.cm-hmd-internal-link:last-child::after,
+a.internal-link:not(.is-unresolved)::after,
+.canvas-node-content.markdown-embed a.internal-link::after {
+  content: "";
+  display: inline-block;
+  width: calc(var(--font-text-size) - 1px);
+  height: calc(var(--font-text-size) - 1px);
+  margin-inline-start: 0.35ex;
+  vertical-align: middle;
+  transform: translateY(-1px);
+  transition: var(--anim-duration-moderate);
+  background-color: var(--link-color) !important;
+  pointer-events: none;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><path d="M14 2v6h6m-4 5H8m8 4H8m2-8H8"/></g></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><path d="M14 2v6h6m-4 5H8m8 4H8m2-8H8"/></g></svg>'); 
+} */
+/* Принудительное скрытие иконок только в Kanban */
+.kanban-plugin__item-title a.internal-link::after {
+  display: none !important;
+}
+/* body:not(.is-mobile) .is-unresolved,
+body:not(.is-mobile) .cm-hmd-internal-link.cm-link-alias {
+  padding-left: 0.5%; 
+}
+body.is-mobile .is-unresolved,
+body.is-mobile .cm-hmd-internal-link.cm-link-alias {
+  padding-left: 0.75%; 
+} */
+
+/* ## ССЫЛКИ - ВНЕШНИЕ */
+
+/* 📱💻 Добавить иконки в конце, улучшить подчеркивание */
+
+.external-link,
+.cm-link.cm-url,
+.cm-link:not(.cm-hmd-internal-link) {
+  color: var(--link-external-color);
+  cursor: var(--cursor-link);
+  filter: var(--link-external-filter);
+  transition: opacity var(--anim-duration-fast) ease-in-out;
+  background-image: none !important;
+  padding-inline-end: 0em;
+  position: relative;
+  text-decoration-line: var(--link-external-decoration);
+  text-underline-offset: var(--size-2-1);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: var(--link-thickness);
+}
+.external-link::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.25em;
+  vertical-align: middle;
+  transform: translateY(-1px);
+  background-color: var(--link-color) !important;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>'); 
+}

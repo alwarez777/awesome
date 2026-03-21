@@ -765,3 +765,40 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   mask-size: contain;
 }
 /* body > div.app-container > div.mobile-toolbar > div > div.mobile-toolbar-options-list-container.mod-raised > div > div:nth-child(14) > svg */
+
+/* 📱 Настроить контейнер плагинов на ширину сайдбара */
+.workspace-drawer-tab-options-list {
+  width: max-content !important;
+  min-width: 390px;
+}
+
+/* 📱 Отключить иконку Quick Switcher */
+body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mobile-navbar-action-quick-switcher {
+  display: none; 
+}
+
+/* 📱 Увеличить ширину заметки в левом сайдбаре */
+body > div.app-container > div.horizontal-main-container > div > div.workspace-drawer.mod-left > div > div.workspace-drawer-tab-container > div > div.workspace-drawer-active-tab-content > div > div > div.view-content {
+  width: 110% !important;
+  min-width: 100% !important;
+  max-width: 125% !important;
+  margin-left: -20px !important;
+}
+
+/* 📱 Всегда отображать заголовок вкладки */
+body.is-phone {
+  .view-header:not(.view-header-always-show):not(:hover) .view-header-title-container > div:not(:focus-within) {
+    opacity: 1 !important;
+  }
+}
+
+/* 📱 Вернуть стандартную иконку сайдбара */
+.workspace-leaf-content:not([data-type="empty"]) .mod-left-split-toggle svg.svg-icon {
+  --icon-size: var(--icon-l);
+  background-color: unset !important;
+  content: unset !important;
+  -webkit-mask-position: unset !important;
+  -webkit-mask-size: unset !important;
+  -webkit-mask-repeat: unset !important;
+  -webkit-mask-image: unset !important;
+}

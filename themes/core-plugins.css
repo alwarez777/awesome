@@ -95,6 +95,137 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .nav-files-container > d
 }
 
 
+/* 💻 Разместить шевроны в конце контейнера */
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .tree-item-self {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .tree-item-icon {
+  position: static !important;
+  margin-right: 4px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .tree-item-inner {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .tree-item-icon {
+  order: 99; 
+  margin-left: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--text-faint) !important;
+  transform: translateX(2px); 
+}
+
+/* 📱💻 Вертикальная черта рядом с активным файлом */
+.nav-file-title {
+position: relative; 
+}
+.nav-file-title.is-active::after {
+height: calc(100% - var(--size-4-2));
+transform: translateY(-50%); 
+}
+.nav-file-title::after {
+content: "";
+position: absolute;
+top: 50%;
+width: calc(var(--size-2-1) * 1.5);
+height: 0%;
+border-radius: var(--radius-s);
+background: hsla(var(--color-accent-hsl), 100%); 
+}
+body:not(.is-phone) .nav-file-title::after {
+left: 4px; }
+body.is-phone .nav-file-title::after {
+right: 4px; }
+
+/* 📱 Изменить цвет выбранного файла */
+body.is-phone .nav-files-container > div {
+  --nav-item-color-active: var(--text-normal) !important;
+  --nav-item-background-active: var(--background-secondary) !important;
+}
+
+
+
+/* # СТРУКТУРА */
+
+/* 📱💻 Вертикальная черта справа от активного заголовка */
+.workspace-leaf-content[data-type="outline"] .view-content {
+  .tree-item-self.is-active::after {
+    height: calc(100% - var(--size-4-2));
+    transform: translateY(-50%); 
+  }
+  .tree-item-self::after {
+    content: "";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    width: calc(var(--size-2-1) * 1.5);
+    height: 0%;
+    border-radius: var(--radius-s);
+    background: hsla(var(--color-accent-hsl), 100%); 
+  }
+}
+
+
+/* # ЗАКЛАДКИ */
+
+/* 💻 Вертикальная черта справа от активного заголовка */
+body:not(.is-phone) .workspace-leaf-content[data-type="bookmarks"] .view-content {
+  .tree-item-self.is-active::after {
+    height: calc(100% - var(--size-4-2));
+    transform: translateY(-50%); 
+  }
+  .tree-item-self::after {
+    content: "";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    width: calc(var(--size-2-1) * 1.5);
+    height: 0%;
+    border-radius: var(--radius-s);
+    background: hsla(var(--color-accent-hsl), 100%); 
+  }
+}
+/* 📱 Вертикальная черта справа от активного заголовка */
+body.is-phone .workspace-leaf-content[data-type="bookmarks"] .view-content {
+  .tree-item-self.is-active::after {
+    height: calc(100% - var(--size-4-3));
+    transform: translateY(-50%); 
+  }
+  .tree-item-self::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: calc(var(--size-2-1) * 1.5);
+    height: 0%;
+    border-radius: var(--radius-s);
+    background: hsla(var(--color-accent-hsl), 100%); 
+  }
+}
+
+/* 📱 Сместить иконку/название закладок */
+body.is-phone {
+  .workspace-leaf-content[data-type="bookmarks"] .tree-item-icon.iconic-icon {
+    margin-left: -10px !important; 
+  }
+  .workspace-leaf-content[data-type="bookmarks"] .tree-item-inner {
+    padding-left: 10px !important;
+  }
+}
+
+
+
 /* # PDF VIEWER */
 body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-reading-view,
 body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-source-view {
@@ -290,3 +421,47 @@ body:not(.is-mobile) {
   transition: var(--anim-duration-moderate) var(--anim-motion-cupertino) !important;
 }
 
+/* 📱💻 Уменьшить яркость соед. стрелок */
+.canvas-edges path.canvas-display-path {
+  stroke: rgb(var(--canvas-color), 25%); 
+}
+
+/* 📱💻 Добавить свойство для изображений */
+.canvas img[alt~="canvas-top"] {
+  position: relative;
+  left: -24px;
+  top: -24px;
+  object-fit: cover;
+  width: calc(100% + 48px);
+  max-width: none;
+  display: block;
+  margin-bottom: -12px; 
+}
+.canvas-node-content.markdown-embed.is-loaded {
+  margin: 0; 
+}
+.canvas .markdown-preview-sizer {
+  display:flex;
+  flex-direction: column; 
+}
+.canvas div:has(img[alt~="canvas-top"]) {
+  display: flex;
+  order: -1; 
+}
+
+/* 📱💻 Скрывать кнопки создания/контроля */
+.canvas-card-menu,
+.canvas-controls {
+  opacity: 0 !important;
+  transition: all 0.5s; 
+}
+.canvas-card-menu:hover,
+.canvas-controls:hover {
+  opacity: 1 !important;
+  transition: all 0.5s; 
+}
+
+/* 📱 Выровнять кнопки управления с ••• */
+body.is-phone .canvas-controls {
+  margin-right: 5px;
+}

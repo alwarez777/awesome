@@ -138,6 +138,117 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
 }
 
 
+.omnisearch-modal.prompt input.prompt-input {
+  border-bottom: 0px solid var(--background-secondary); 
+}
+.omnisearch-result__folder-path {
+  display: none; 
+}
+.omnisearch-result__extension {
+  display: none; 
+}
+.omnisearch-result__counter {
+  margin-left: auto; 
+}
+.omnisearch-result__body {
+  margin-left: 0;
+  font-style: italic; 
+}
+.omnisearch-result {
+  padding-top: var(--size-4-3);
+  padding-bottom: var(--size-4-3);
+  margin-top: calc((-1 * var(--size-4-2)) / 2); 
+}
+.omnisearch-highlight {
+  text-underline-offset:3px;
+  text-decoration-thickness:1px;
+  background-color: hsla(var(--color-accent-hsl), 35%);
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px; 
+} 
+.omnisearch-modal.prompt {
+  :has(> .omnisearch-result__title-container) {
+      width:100%; 
+  }
+  .omnisearch-result__title {
+    display:flex;
+    width:100%;
+    font-size:1rem;
+    font-weight:500;
+    margin-bottom:3px;
+    :has(svg) {
+      display:none;
+      margin-left:-2px;
+      transform:scale(0.9) translate(0, 2px) 
+    }  
+  }  
+}
+
+/* 📱💻 Текст капсом - кнопка создания заметки */
+.omnisearch-input-container__buttons > button {
+    font-variant: all-small-caps;
+}
+
+/* Конфигурация только для 📱 */
+body.is-phone {
+  /* Параметры контейнера поиск + кнопки */
+  .omnisearch-input-container {
+    position: absolute;
+    inset: auto 0 var(--safe-area-inset-bottom);
+    z-index: 1;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-inline: 0;
+  }
+  .omnisearch-input-field {
+    flex: 1;
+    min-width: 0;
+    margin-left: 5px;
+  }
+  .omnisearch-input-field .prompt-input {
+    width: 100%;
+  }
+  /* Настройка кнопки создания заметки */
+  .omnisearch-input-container__buttons > button {
+    max-width: 80% !important;
+    font-size: 10px;
+    min-height: unset !important;
+    max-height: 35px !important;
+    margin: 0;
+    box-shadow: var(--shadow-s);
+  }
+  /* Скрыть кнопку поиска внутри файла */
+  .omnisearch-input-container__buttons > button:nth-child(2) {
+    display: none; 
+  }
+  .omnisearch-input-container__buttons {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: -22px;
+    max-width: unset !important;
+  }
+}
+
+/* Конфигурация только для 💻 */
+body:not(.is-phone) {
+  /* Увеличить отступ текста у кнопки создания заметки */
+  .omnisearch-input-container__buttons > button {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
+/* Вернуть кнопку создания заметки */
+  .omnisearch-input-container__buttons {
+    display: unset !important;
+  }
+  .omnisearch-input-container__buttons {
+    margin-inline-end: 8px;
+  }
+}
+
+
+
 /* # NOTEBOOK NAVIGATOR */
 
 body {
@@ -216,6 +327,85 @@ body.is-mobile .view-content.notebook-navigator-mobile {
   }
 }
 
+/* 💻 Сдвинуть кнопки действий для Notebook Navigator */
+/* Устанавливаем контекст для позиционирования */
+body:not(.is-mobile) .nn-navigation-pane .nn-pane-header {
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+  min-height: 40px; /* Высота стандартной шапки */
+}
+/* Вырываем блок с кнопками из общего потока и ставим в центр */
+body:not(.is-mobile) .nn-navigation-pane .nn-header-actions {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important; /* Убираем все отступы */
+  display: flex !important;
+  gap: 4px; /* Расстояние между иконками */
+  width: max-content !important;
+}
+/* Скрываем текст заголовка, чтобы он не перекрывал иконки в центре */
+body:not(.is-mobile) .nn-navigation-pane .nn-pane-header .nav-header-title,
+body:not(.is-mobile) .nn-navigation-pane .nn-header-left {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 💻 Автоскрытие кнопок навигации для Notebook Navigator */
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-header-actions {
+    display: flex !important;
+    gap: 2px !important; /* Минимальный зазор в стиле Cupertino */
+    padding: 2px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: transparent !important; /* Прозрачный в покое */
+    border-radius: var(--radius-m) !important;
+    transition: all 0.2s ease !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:hover .nn-header-actions {
+    background-color: var(--background-modifier-hover) !important; /* Светло-серый фон контейнера */
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:not(:hover) .nn-header-actions button {
+    width: 6px !important;
+    height: 6px !important;
+    min-width: 6px !important;
+    min-height: 6px !important;
+    margin: 0 3px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background-color: var(--text-faint) !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:hover .nn-header-actions button {
+    width: 26px !important;
+    height: 26px !important;
+    background-color: transparent !important; /* Прозрачные по умолчанию внутри капсулы */
+    border-radius: var(--radius-s) !important;
+    margin: 0 !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:hover .nn-header-actions button:hover {
+    background-color: var(--background-modifier-hover-emphasis) !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-header-actions button.is-active {
+    background-color: var(--background-modifier-error-hover) !important; /* Или var(--background-primary-emphasis) */
+    color: var(--text-accent) !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:not(:hover) .nn-header-actions button.is-active {
+    background-color: var(--text-accent) !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:not(:hover) .nn-header-actions button span {
+    display: none !important;
+}
+body:not(.is-mobile) .view-content.notebook-navigator .nn-navigation-pane-chrome .nn-pane-header:hover .nn-header-actions button span {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+
 
 /* # KANBAN */
 
@@ -223,3 +413,277 @@ body.is-mobile .kanban-plugin__item,
 body.is-mobile .kanban-plugin__item-input-wrapper {
   border-radius: var(--radius-s);
 }
+
+/* 📱💻 Настройка завершенных задач */
+.kanban-plugin__item.is-complete .kanban-plugin__item-markdown {
+  color: var(--text-faint);
+  text-decoration-line: line-through;
+}
+
+/* 📱💻 Выделить подпункты курсивом */
+.kanban-plugin__meta-table td:only-child {
+  font-style: italic; 
+}
+
+/* 📱💻 Выровнять элементы ••• в карточках */
+.kanban-plugin__item-postfix-button-wrapper {
+  margin-top: -5px;
+  margin-right: -5px;
+}
+
+/* 💻 KANBAN - Скрыть кнопку ••• в карточках */
+body:not(.is-mobile) .kanban-plugin__item .kanban-plugin__item-postfix-button {
+  display: none; 
+}
+  
+/* 📱💻 KANBAN - Скрыть кнопку архивации карточек */
+.kanban-plugin__item-prefix-button-wrapper {
+  display: none;
+}
+
+
+/* # BEAUTITAB */
+
+/* ## BEAUTITAB */
+
+.workspace-tabs .workspace-leaf-content.beautitab {
+  color: hsla(var(--color-accent-hsl), 75%); 
+}
+.workspace-tabs .workspace-leaf-content.beautitab .beautitab-root {
+  height: 75% !important;
+  width: 100% !important;
+  text-shadow: rgba(0, 0, 0, .1) 0px 1px 5px !important;
+  background: var(--background) !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important; 
+}
+.workspace-tabs .workspace-leaf-content.beautitab .beautitab-root .beautitab-wrapper .beautitab-center {
+  flex: 0 !important;
+  margin-top: 3rem !important; 
+}
+.workspace-tabs .workspace-leaf-content.beautitab .beautitab-root .beautitab-wrapper .beautitab-bottom .beautitab-search .beautitab-search-wrapper {
+  height: 50px;
+  border-radius: var(--radius-m);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  background: #ffffff1a;
+  box-shadow: 0 4px 30px #00000026;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+  padding-left: 20px; 
+}
+.workspace-tabs .workspace-leaf-content.beautitab .beautitab-root .beautitab-wrapper .beautitab-bottom .beautitab-search .beautitab-search-wrapper .beautitab-icon svg {
+  height: 22px;
+  width: 22px; 
+}
+.workspace-tabs .workspace-leaf-content.beautitab .beautitab-root .beautitab-wrapper .beautitab-bottom .beautitab-search .beautitab-search-wrapper .beautitab-search-text {
+  display: none;
+  font-size: 18px;
+  opacity: .8;
+  padding-left: 20px; 
+}
+
+/* 📱 Восстановить расположение кнопки сайдбара */
+body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-left {
+  margin-left: unset;
+}
+
+
+
+/* # ZOOM */
+
+/* 💻 Конфигурация */
+body:not(.is-mobile) {
+  .markdown-source-view.mod-cm6 .cm-panels {
+    position: absolute;
+    top: 3.5vh !important;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center; /* можно поменять на flex-start */
+    align-items: center;
+    height: 10px; /* подгоняем под высоту header */
+    padding: 5px 0 10px 35px;
+    margin: -4px 0;
+    pointer-events: auto;
+    z-index: 5;
+    background-color: transparent;
+    border-bottom: 0px solid; 
+  }
+  .cm-panels.cm-panels-top { }
+  .zoom-plugin-header.cm-panel {}
+  .zoom-plugin-header {
+    display: inline-flex !important;
+    align-items: center;
+    max-width: 400px; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-wrap: nowrap;
+    margin: var(--file-margins);
+    margin-top: var(--size-4-2);
+    margin-bottom: var(--size-4-2); 
+  }
+  .zoom-plugin-delimiter {
+    font-size: 10px;
+    font-style: italic; 
+  }
+  .zoom-plugin-title {
+    font-size: 10px;
+    font-style: italic;
+    display: inline-block;
+    flex-shrink: 1;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    max-width: 100%;   
+  }
+  div.cm-panels.cm-panels-top > div > a:nth-child(5),
+  div.cm-panels.cm-panels-top > div > a:nth-child(6),
+  div.cm-panels.cm-panels-top > div > a:nth-child(7),
+  div.cm-panels.cm-panels-top > div > a:nth-child(8) {
+    overflow: hidden !important; 
+  }
+  .mod-root .workspace-leaf-content:is([data-type="markdown"],[data-mode="source"]) .markdown-source-view.mod-cm6 .cm-contentContainer {
+    margin-block-start: 10px; 
+  } 
+}
+
+/* 📱 Конфигурация */
+body.is-mobile {
+  .markdown-source-view.mod-cm6 .cm-panels {
+    position: absolute;
+    top: 7.75vh !important;
+    left: 5.275vh !important;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 10px; /* подгоняем под высоту header */
+    padding: 5px 0 10px 0;
+    pointer-events: auto;
+    z-index: 5;
+    background-color: transparent;
+    border-bottom: 0px solid; 
+  }
+  .zoom-plugin-header {
+    display: inline-flex !important;
+    align-items: center;
+    max-width: 400px; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-wrap: nowrap; 
+  }
+  .zoom-plugin-delimiter {
+    font-size: 10px;
+    font-style: italic; 
+  }
+  .zoom-plugin-title {
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 700;
+    display: inline-block;
+    flex-shrink: 1;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    max-width: 100%;   
+  }
+  div.cm-panels.cm-panels-top > div > a:nth-child(5),
+  div.cm-panels.cm-panels-top > div > a:nth-child(6),
+  div.cm-panels.cm-panels-top > div > a:nth-child(7),
+  div.cm-panels.cm-panels-top > div > a:nth-child(8) {
+    overflow: hidden !important; 
+  }
+  .mod-root .workspace-leaf-content:is([data-type="markdown"],[data-mode="source"]) .markdown-source-view.mod-cm6 .cm-contentContainer {
+    margin-block-start: 0.625rem; 
+  }
+  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root.mod-visible > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content:has(.cm-panels.cm-panels-top) > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer {
+    margin-block-start: 5.9375rem !important;
+  }
+}
+
+
+
+/* # DATAVIEW */
+
+/* 📱💻 Убрать тень и фон при наведении на элементы */
+.dataview.task-list-item:hover,
+.dataview.task-list-basic-item:hover,
+.table-view-table > tbody > tr:hover {
+  background-color: transparent !important;
+  box-shadow: none; 
+}
+
+
+
+/* # VERTICAL TABS */
+
+/* 💻 Выровнять панель заголовка с сайдбарами */
+body:not(.is-mobile).vt-auto-hide-horizontal-tabs .view-header {
+  margin-top: 15px !important;
+}
+
+/* 📱💻 Отключить иконки для заметок */
+.vertical-tabs .tree-item-children .tree-item-self .tree-item-icon {
+  display: none !important;
+}
+
+/* 📱💻 Уменьшить отступ от левого края */
+.obsidian-vertical-tabs-container .tree-item .tree-item-self {
+  padding-left: 10px !important; /* 25px - если вкл иконки */
+}
+
+/* 💻 Уменьшить контейнер с крестиком */
+body:not(.is-phone) .obsidian-vertical-tabs-container .tree-item .tree-item-flair-outer .action-button {
+    --icon-size: var(--icon-xs);
+    padding: 0px !important;
+    margin-right: -10px;
+    min-width: 25px !important;
+}
+
+
+/* # LIST CALLOUT */
+
+/* 📱💻 Добавить затемнение текста для пунктов с "х" */
+.markdown-source-view.mod-cm6 .lc-list-callout:is([data-callout="x"], [data-callout="х"]) {
+  color: var(--text-faint) !important;
+}
+.markdown-source-view.mod-cm6 .lc-list-callout:is([data-callout="x"], [data-callout="х"]) :is(.cm-link, .cm-url, .cm-underline, .cm-hmd-internal-link, .external-link, .is-unresolved) {
+  opacity: 0.65 !important;
+}
+
+/* 📱💻 Улучшить фоновый цвет для строк с символом */
+/* 📱💻 */
+.lc-list-callout {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.lc-list-bg {
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important;
+  border-radius: 4px !important;
+}
+/* 💻 */
+body:not(.is-phone) .lc-list-bg {
+  left: -6px !important;
+  right: -6px !important;
+  top: -2px !important;
+}
+/* 📱 */
+body.is-phone .lc-list-bg {
+  left: -8px !important; 
+  right: -4px !important;
+  top: -2px !important;
+}
+/* .lc-list-marker {
+  margin-right: 8px !important;
+} */

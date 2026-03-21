@@ -9,6 +9,14 @@ body:not(.active-line-off) .markdown-source-view .cm-line.cm-active:not(:has(.cm
     content: "";
 }
 
+/* 📱💻 Граница при наведении на блок текста */
+.markdown-source-view .cm-line.cm-active,
+.markdown-source-view .cm-line:hover {
+  border-bottom: 0.5px solid;
+  border-color: rgba(var(--mono-rgb-100), 0.15);
+  transition: border-color 0.15s ease;
+}
+
 
 /* # BLOCK WIDTH */
 
