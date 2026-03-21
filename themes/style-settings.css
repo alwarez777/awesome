@@ -178,9 +178,9 @@ settings:
         default: hm-bg-off
         options:
           - label: Без фона
-          value: hm-bg-off
+            value: hm-bg-off
           - label: Разноцветный (Colorful)
-          value: hm-bg-colorful
+            value: hm-bg-colorful
           - label: Монохромный (Mono)
-          value: hm-bg-mono
+            value: hm-bg-mono
 */
