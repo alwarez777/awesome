@@ -724,6 +724,11 @@ body:not(.is-phone) {
   }
 }
 
+/* 📱💻 Скрытие свойств в Live Preview и Reading Mode */
+.hide-properties .metadata-container {
+  display: none !important;
+}
+
 
 /* # ХАЙЛАЙТ */
 
