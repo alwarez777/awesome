@@ -1213,7 +1213,7 @@ body.is-grabbing.is-grabbing.is-grabbing.is-grabbing.is-grabbing .app-container:
     &.theme-dark .mod-root .workspace-tab-container {
       box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px, rgba(0, 0, 0, 0.12) 0px 4px 16px;
     }
-    .workspace-leaf-content[data-type="markdown"] {
+    .workspace-split.mod-vertical.mod-root .workspace-leaf-content[data-type="markdown"] {
         .view-header,
         .markdown-source-view .document-search-container {
           background-color: transparent;
@@ -1323,4 +1323,16 @@ body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-p
 /* 💻 Скрыть статус-бар на экране пустой вкладки */
 .status-bar:has(.status-bar-item-icon:empty) {
   display: none; 
+}
+
+
+/* 🖥️ Минимизация отступов для левого сайдбара macOS */
+.workspace-tabs.mod-top.mod-top-left-space .workspace-tab-container .view-content {
+  padding: 0 !important;
+}
+.workspace-tabs.mod-top.mod-top-left-space .workspace-tab-container .view-content .markdown-reading-view {
+  padding: 0 !important;
+}
+.workspace-tabs.mod-top.mod-top-left-space .workspace-tab-container .view-content .markdown-reading-view > .markdown-preview-view {
+  padding: 20px 10px !important;
 }

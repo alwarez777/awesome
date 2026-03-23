@@ -777,12 +777,17 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   display: none; 
 }
 
-/* 📱 Увеличить ширину заметки в левом сайдбаре */
-body > div.app-container > div.horizontal-main-container > div > div.workspace-drawer.mod-left > div > div.workspace-drawer-tab-container > div > div.workspace-drawer-active-tab-content > div > div > div.view-content {
-  width: 110% !important;
-  min-width: 100% !important;
-  max-width: 125% !important;
-  margin-left: -20px !important;
+/* 📱 Оптимизация заметки в левом сайдбаре iOS */
+.workspace-drawer.mod-left .view-content {
+  padding: 0 !important;
+}
+.workspace-drawer.mod-left .markdown-source-view.mod-cm6 .cm-scroller,
+.workspace-drawer.mod-left .markdown-rendered {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+.workspace-drawer.mod-left .view-header {
+  display: none;
 }
 
 /* 📱 Всегда отображать заголовок вкладки */
