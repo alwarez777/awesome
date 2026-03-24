@@ -1245,7 +1245,9 @@ body.is-grabbing.is-grabbing.is-grabbing.is-grabbing.is-grabbing .app-container:
           margin: 0;
           background-color: var(--background-primary) !important;
         }
-        .view-content > .markdown-reading-view > div:first-child:not(.document-search-container),
+        .view-content > .markdown-reading-view > div:first-child:not(.document-search-container) {
+          padding-top: 50px !important;
+      }
         .view-content > .markdown-source-view > .cm-editor > .cm-scroller {
           padding-top: calc(var(--file-margins) + 30px) !important;
       }

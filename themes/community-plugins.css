@@ -499,138 +499,146 @@ body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-lef
 
 /* 💻 Конфигурация */
 body:not(.is-mobile) {
-  /* --- 1. СТАБИЛЬНОЕ ПОЗИЦИОНИРОВАНИЕ --- */
-  .markdown-source-view.mod-cm6 .cm-panels {
-    position: absolute;
-    top: 18px !important; 
-    left: 0;
+  /* 1. ВЕРТИКАЛЬНЫЙ СТЭК И ЦЕНТРИРОВАНИЕ */
+  /* Делаем так, чтобы название файла и крошки были друг под другом и оба по центру */
+  .view-header-title-container {
+    display: flex !important;
+    flex-direction: column !important; /* Текст над крошками */
+    align-items: center !important;    /* Центрируем всё по горизонтали */
+    justify-content: center !important;
+    width: 100% !important;
+    
+    overflow: visible !important;
+    position: relative !important;
+  }
+  /* 2. КОНТЕЙНЕР КРОШЕК */
+  .zoom-injected-header {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important; /* Центрируем пункты внутри строки */
+    align-items: center !important;
+    
+    width: auto !important;
+    max-width: 90% !important; /* Чтобы не упирались в края */
+
+    position: absolute !important;
+    top: 24px !important;
+    left: 0; 
     right: 0;
     
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    height: 40px; 
-    padding: 0 0 0 35px;
-    
-    pointer-events: auto;
-    z-index: var(--layer-menu);
-    background-color: transparent;
-    border: none;
-    
+    /* Скрываем по умолчанию, показываем при наведении */
     opacity: 0;
-    transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: opacity 0.2s ease-in-out;
   }
-
-  /* --- 2. СИНХРОНИЗАЦИЯ ВИДИМОСТИ --- */
-  /* Показываем крошки, если наведен заголовок ИЛИ сами крошки */
-  .workspace-leaf:has(.view-header:hover) .cm-panels,
-  .workspace-leaf:has(.cm-panels:hover) .cm-panels {
-    opacity: 1 !important;
+  /* Показываем при наведении на всю шапку */
+  .view-header:hover .zoom-injected-header {
+    opacity: 1;
   }
-  /* Показываем ЗАГОЛОВОК, если наведены крошки */
-  .workspace-leaf:has(.cm-panels:hover) .view-header-title-container > div {
-    opacity: 1 !important;
-  }
-
-  /* --- 3. ОСТАЛЬНОЙ РАБОЧИЙ КОД --- */
-  .zoom-plugin-header {
-    display: inline-flex !important;
-    align-items: center;
-    max-width: 400px; 
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex-wrap: nowrap;
-    margin: var(--file-margins);
-    margin-top: var(--size-4-2);
-    margin-bottom: var(--size-4-2); 
-  }
-  .zoom-plugin-title,
-  .zoom-plugin-delimiter {
-    font-size: 10px;
-    font-style: italic; 
+  /* 3. УМНАЯ ОБРЕЗКА ТЕКСТА УРОВНЕЙ */
+  .zoom-injected-header .zoom-plugin-title {
+    font-size: 11px !important;
+    font-style: italic !important;
     color: var(--text-muted);
+    font-weight: 500;
+    
+    flex: 0 1 auto;        /* Позволяет сжиматься */
+    min-width: 0;          /* Критично для ellipsis */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    
+    padding: 0 !important;
   }
-  .zoom-plugin-title {
-    display: inline-block;
-    flex-shrink: 1;
-    overflow: visible;
-    text-overflow: ellipsis;
-    white-space: nowrap; 
-    max-width: 100%;   
+  /* 4. ЛИКВИДАЦИЯ ПУСТОТЫ ВОКРУГ СТРЕЛКИ */
+  .zoom-injected-header .zoom-plugin-delimiter {
+    font-size: 9px !important;
+    flex-shrink: 0;        /* Стрелка не исчезает */
+    opacity: 0.5;
+    
+    /* Управление зазорами: */
+    padding-left: 0 !important;    /* Убираем пустоту слева */
+    padding-right: 0px !important; /* Оставляем небольшой зазор справа перед следующим словом */
+    margin-left: 2px !important;  /* Притягиваем стрелку ближе к предыдущему слову */
   }
-  div.cm-panels.cm-panels-top > div > a:nth-child(5),
-  div.cm-panels.cm-panels-top > div > a:nth-child(6),
-  div.cm-panels.cm-panels-top > div > a:nth-child(7),
-  div.cm-panels.cm-panels-top > div > a:nth-child(8) {
-    overflow: hidden !important; 
+  /* 5. КОРРЕКЦИЯ ОТСТУПОВ КОНТЕНТА */
+  /* Убираем лишнее место сверху в редакторе, так как панелей больше нет */
+  .markdown-source-view.mod-cm6 .cm-panels-top {
+    display: none !important; 
   }
-
-  /* Контейнер контента — убираем лишние отступы, так как крошки теперь "над" ним */
-  .mod-root .workspace-leaf-content:is([data-type="markdown"],[data-mode="source"]) .markdown-source-view.mod-cm6 .cm-contentContainer {
-    margin-block-start: 0px; 
-  } 
+  .workspace-leaf.is-zoomed .markdown-source-view.mod-cm6 .cm-sizer {
+    padding-top: 20px !important;
+  }
 }
 
-
-
-
 /* 📱 Конфигурация */
-body.is-mobile {
-  .markdown-source-view.mod-cm6 .cm-panels {
-    position: absolute;
-    top: 7.75vh !important;
-    left: 5.275vh !important;
-    right: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 10px; /* подгоняем под высоту header */
-    padding: 5px 0 10px 0;
-    pointer-events: auto;
-    z-index: 5;
-    background-color: transparent;
-    border-bottom: 0px solid; 
-  }
-  .zoom-plugin-header {
-    display: inline-flex !important;
-    align-items: center;
-    max-width: 400px; 
+body.is-phone {
+  /* 1. ВЫРАВНИВАНИЕ ПО ЛЕВОМУ КРАЮ */
+  /* Убираем все системные отступы, которые двигают крошки вправо */
+  .view-header-title-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding-left: 0 !important; /* Обнуляем системный отступ */
+    margin-left: 0 !important;
+    width: 100%;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex-wrap: nowrap; 
   }
-  .zoom-plugin-delimiter {
-    font-size: 10px;
-    font-style: italic; 
+  /* Прижимаем само название заметки влево */
+  .view-header-title {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
   }
-  .zoom-plugin-title {
+  /* 2. СТРОКА КРОШЕК (Ультра-компактная) */
+  .zoom-injected-header {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: -2px !important;
+    margin-left: 2px !important; /* Убираем возможный сдвиг */
+    padding: 0 !important;
+    z-index: 10;
+  }
+  /* 3. УМНАЯ ОБРЕЗКА И СЖАТИЕ ТЕКСТА */
+  .zoom-injected-header .zoom-plugin-title {
     font-size: 10px;
     font-style: italic;
     font-weight: 700;
-    display: inline-block;
-    flex-shrink: 1;
-    overflow: visible;
-    text-overflow: ellipsis;
-    white-space: nowrap; 
-    max-width: 100%;   
+    color: var(--text-muted);
+    
+    flex: 0 1 auto;        
+    min-width: 0;          /* Позволяет тексту сжиматься до минимума */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Теперь точно будет "..." в конце */
+    
+    padding: 0 !important;  /* Убираем боковые отступы у слов */
+    margin: 0 !important;
   }
-  div.cm-panels.cm-panels-top > div > a:nth-child(5),
-  div.cm-panels.cm-panels-top > div > a:nth-child(6),
-  div.cm-panels.cm-panels-top > div > a:nth-child(7),
-  div.cm-panels.cm-panels-top > div > a:nth-child(8) {
-    overflow: hidden !important; 
+  /* 4. МИНИМАЛЬНЫЕ РАЗДЕЛИТЕЛИ */
+  .zoom-injected-header .zoom-plugin-delimiter {
+    font-size: 9px;
+    font-style: italic;
+    flex-shrink: 0;         /* Стрелка никогда не исчезает */
+    padding-left: 0 !important;    /* Убираем внутренний отступ слева */
+    padding-right: 2px !important; /* Регулируем отступ ПОСЛЕ стрелки */
+    margin-left: -1px !important;  /* «Брутфорс»: нагло двигаем стрелку влево на текст */
+    opacity: 0.6;
   }
+  /* Убираем лишние отступы контента под шапкой */
   .mod-root .workspace-leaf-content:is([data-type="markdown"],[data-mode="source"]) .markdown-source-view.mod-cm6 .cm-contentContainer {
-    margin-block-start: 0.625rem; 
+    margin-block-start: 0px; 
   }
-  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root.mod-visible > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content:has(.cm-panels.cm-panels-top) > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer {
-    margin-block-start: 5.9375rem !important;
-  }
+  /* Запас под крошки для текста 
+  .workspace-leaf.is-zoomed .markdown-source-view.mod-cm6 .cm-sizer {
+    padding-top: 10px !important;
+  } 
+  */
 }
-
 
 
 /* # DATAVIEW */
