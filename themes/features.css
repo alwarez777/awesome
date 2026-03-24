@@ -801,12 +801,22 @@ table.dataview {
 	}
 }
 
-/* 📱💻 Увеличить шрифт для подпунктов */
-body.is-phone .list-cards.markdown-preview-view div ul ul > li {
+/* 📱💻 Увеличить шрифт для пунктов/подпунктов */
+body.is-phone {
+  .list-cards.markdown-preview-view div ul li {
+    font-size: 1.1rem !important;
+  }
+  .list-cards.markdown-preview-view div ul ul > li {
     font-size: 1.05rem !important;
+  }
 }
-body:not(.is-phone) .list-cards.markdown-preview-view div ul ul > li {
+body:not(.is-phone) {
+  .list-cards.markdown-preview-view div ul li {
+    font-size: 1rem;
+  }
+  .list-cards.markdown-preview-view div ul ul > li {
     font-size: 0.90rem;
+  }
 }
 
 /* ------------------- */
@@ -876,4 +886,55 @@ body:not(.is-phone) .list-cards.markdown-preview-view div ul ul > li {
 	.cards-cols-8 {
 		--cards-columns: repeat(8, minmax(0, 1fr));
 	}
+}
+
+
+/* 📱💻 CSS-класс для List Cards - [💎 DASHBOARD PREMIUM] */
+.list-cards.dashboard-premium.markdown-preview-view {
+  --hover-lift: -5px;
+  --accent-glow: var(--interactive-accent);
+  --card-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+/* 1. КАРТОЧКА (LI) */
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--background-primary);
+  box-shadow: var(--card-shadow);
+  /* Тонкая цветная граница в статике (40% насыщенности цвета) */
+  border: 1px solid color-mix(in srgb, var(--accent-glow), transparent 60%);
+  padding: 0.9rem !important;
+  border-radius: 12px;
+  font-weight: 600;
+}
+/* 2. НАЗНАЧАЕМ ЦВЕТА БЛОКОВ */
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(1) { --accent-glow: #3498db; }
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(2) { --accent-glow: #f1c40f; }
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(3) { --accent-glow: #9b59b6; }
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(4) { --accent-glow: #e67e22; }
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(5) { --accent-glow: #2ecc71; }
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(6) { --accent-glow: #e74c3c; }
+/* 3. ЭФФЕКТ ПРИ НАВЕДЕНИИ НА КАРТОЧКУ */
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:hover {
+  transform: translateY(var(--hover-lift));
+  /* Усиливаем границу (100% цвета) */
+  border-color: var(--accent-glow); 
+  border-width: 1px; /* Оставляем 1px, чтобы не было "прыжка" контента, но цвет ярче */
+  box-shadow: 0 12px 24px -8px color-mix(in srgb, var(--accent-glow), transparent 80%), 
+              0 4px 10px rgba(0, 0, 0, 0.05);
+}
+/* 4. СТИЛЬ ССЫЛОК (ВНУТРИ СПИСКА) */
+.list-cards.dashboard-premium.markdown-preview-view div ul > li > a {
+  text-decoration: none !important;
+  color: var(--text-normal);
+  font-weight: 400;
+  border-radius: 6px; /* Чуть мягче углы */
+  transition: all 0.2s ease;
+  display: inline-block; /* Чтобы padding работал корректно */
+}
+/* 5. ЭФФЕКТ ПРИ НАВЕДЕНИИ НА ПУНКТЫ */
+.list-cards.dashboard-premium.markdown-preview-view div ul > li > a:hover {
+  /* Фон: берем цвет блока и делаем его едва заметным (92% прозрачности) */
+  background-color: color-mix(in srgb, var(--accent-glow), transparent 92%);
+  color: var(--accent-glow);
+  padding-left: 6px; /* Твой фирменный сдвиг */
 }

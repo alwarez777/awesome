@@ -499,24 +499,41 @@ body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-lef
 
 /* 💻 Конфигурация */
 body:not(.is-mobile) {
+  /* --- 1. СТАБИЛЬНОЕ ПОЗИЦИОНИРОВАНИЕ --- */
   .markdown-source-view.mod-cm6 .cm-panels {
     position: absolute;
-    top: 3.5vh !important;
+    top: 18px !important; 
     left: 0;
     right: 0;
+    
     display: flex;
-    justify-content: center; /* можно поменять на flex-start */
+    justify-content: center;
     align-items: center;
-    height: 10px; /* подгоняем под высоту header */
-    padding: 5px 0 10px 35px;
-    margin: -4px 0;
+    
+    height: 40px; 
+    padding: 0 0 0 35px;
+    
     pointer-events: auto;
-    z-index: 5;
+    z-index: var(--layer-menu);
     background-color: transparent;
-    border-bottom: 0px solid; 
+    border: none;
+    
+    opacity: 0;
+    transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline);
   }
-  .cm-panels.cm-panels-top { }
-  .zoom-plugin-header.cm-panel {}
+
+  /* --- 2. СИНХРОНИЗАЦИЯ ВИДИМОСТИ --- */
+  /* Показываем крошки, если наведен заголовок ИЛИ сами крошки */
+  .workspace-leaf:has(.view-header:hover) .cm-panels,
+  .workspace-leaf:has(.cm-panels:hover) .cm-panels {
+    opacity: 1 !important;
+  }
+  /* Показываем ЗАГОЛОВОК, если наведены крошки */
+  .workspace-leaf:has(.cm-panels:hover) .view-header-title-container > div {
+    opacity: 1 !important;
+  }
+
+  /* --- 3. ОСТАЛЬНОЙ РАБОЧИЙ КОД --- */
   .zoom-plugin-header {
     display: inline-flex !important;
     align-items: center;
@@ -529,13 +546,13 @@ body:not(.is-mobile) {
     margin-top: var(--size-4-2);
     margin-bottom: var(--size-4-2); 
   }
+  .zoom-plugin-title,
   .zoom-plugin-delimiter {
     font-size: 10px;
     font-style: italic; 
+    color: var(--text-muted);
   }
   .zoom-plugin-title {
-    font-size: 10px;
-    font-style: italic;
     display: inline-block;
     flex-shrink: 1;
     overflow: visible;
@@ -549,10 +566,15 @@ body:not(.is-mobile) {
   div.cm-panels.cm-panels-top > div > a:nth-child(8) {
     overflow: hidden !important; 
   }
+
+  /* Контейнер контента — убираем лишние отступы, так как крошки теперь "над" ним */
   .mod-root .workspace-leaf-content:is([data-type="markdown"],[data-mode="source"]) .markdown-source-view.mod-cm6 .cm-contentContainer {
-    margin-block-start: 10px; 
+    margin-block-start: 0px; 
   } 
 }
+
+
+
 
 /* 📱 Конфигурация */
 body.is-mobile {
