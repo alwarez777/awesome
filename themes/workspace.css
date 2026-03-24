@@ -1258,7 +1258,7 @@ body.is-grabbing.is-grabbing.is-grabbing.is-grabbing.is-grabbing .app-container:
 /* 💻 Уменьшить высоту заголовка вкладки */
 body:not(.is-phone) .mod-root {
   .view-header {
-    height: 1.5625rem;
+    height: 2.5625rem;
   }
 }
 
@@ -1270,34 +1270,37 @@ body.is-phone .mod-root:has(.cm-panels.cm-panels-top) .view-header-title-contain
 
 /* 📱 Прозрачный заголовок вкладки для Graph, Kanban, Canvas */
 
-body.is-phone .mod-root .workspace-leaf-content[data-type="kanban"] .view-header::before,
-body.is-phone .mod-root .workspace-leaf-content[data-type=graph] .view-header::before,
-body.is-phone .mod-root .workspace-leaf-content[data-type=canvas] .view-header::before {
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  mask: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0.79) 9.7%, hsla(0, 0%, 0%, 0.761) 18.7%, hsla(0, 0%, 0%, 0.717) 27.2%, hsla(0, 0%, 0%, 0.66) 35.1%, hsla(0, 0%, 0%, 0.593) 42.6%, hsla(0, 0%, 0%, 0.518) 49.6%, hsla(0, 0%, 0%, 0.44) 56.2%, hsla(0, 0%, 0%, 0.36) 62.5%, hsla(0, 0%, 0%, 0.282) 68.4%, hsla(0, 0%, 0%, 0.207) 74.1%, hsla(0, 0%, 0%, 0.14) 79.5%, hsla(0, 0%, 0%, 0.083) 84.8%, hsla(0, 0%, 0%, 0.039) 89.9%, hsla(0, 0%, 0%, 0.01) 95%, hsla(0, 0%, 0%, 0) 100%);
-  inset-inline: 0;
-  background-color: var(--system-status-background);
-  height: calc(var(--safe-area-inset-top) + var(--view-header-height) - 32px);
-  pointer-events: none;
-  content: "";
+body.is-phone {
+  .mod-root .workspace-leaf-content[data-type="kanban"] .view-header::before,
+  .mod-root .workspace-leaf-content[data-type=graph] .view-header::before,
+  .mod-root .workspace-leaf-content[data-type=canvas] .view-header::before {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    mask: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0.79) 9.7%, hsla(0, 0%, 0%, 0.761) 18.7%, hsla(0, 0%, 0%, 0.717) 27.2%, hsla(0, 0%, 0%, 0.66) 35.1%, hsla(0, 0%, 0%, 0.593) 42.6%, hsla(0, 0%, 0%, 0.518) 49.6%, hsla(0, 0%, 0%, 0.44) 56.2%, hsla(0, 0%, 0%, 0.36) 62.5%, hsla(0, 0%, 0%, 0.282) 68.4%, hsla(0, 0%, 0%, 0.207) 74.1%, hsla(0, 0%, 0%, 0.14) 79.5%, hsla(0, 0%, 0%, 0.083) 84.8%, hsla(0, 0%, 0%, 0.039) 89.9%, hsla(0, 0%, 0%, 0.01) 95%, hsla(0, 0%, 0%, 0) 100%);
+    inset-inline: 0;
+    background-color: var(--system-status-background);
+    height: calc(var(--safe-area-inset-top) + var(--view-header-height) - 32px);
+    pointer-events: none;
+    content: "";
+  }
 }
 
-body.is-phone .mod-root .workspace-leaf-content[data-type="kanban"] .view-header::after,
-body.is-phone .mod-root .workspace-leaf-content[data-type=graph] .view-header::after,
-body.is-phone .mod-root .workspace-leaf-content[data-type=canvas] .view-header::after {
-  position: absolute;
-  top: 0;
-  z-index: -2;
-  backdrop-filter: blur(2px);
-  mask: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
-  inset-inline: 0;
-  height: calc(var(--safe-area-inset-top) + var(--view-header-height) - 32px);
-  pointer-events: none;
-  content: "";
+body.is-phone {
+  .mod-root .workspace-leaf-content[data-type="kanban"] .view-header::after,
+  .mod-root .workspace-leaf-content[data-type=graph] .view-header::after,
+  .mod-root .workspace-leaf-content[data-type=canvas] .view-header::after {
+    position: absolute;
+    top: 0;
+    z-index: -2;
+    backdrop-filter: blur(2px);
+    mask: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
+    inset-inline: 0;
+    height: calc(var(--safe-area-inset-top) + var(--view-header-height) - 32px);
+    pointer-events: none;
+    content: "";
+  }
 }
-
 
 /* ## СКРОЛЛБАР */
 
@@ -1336,3 +1339,4 @@ body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-p
 .workspace-tabs.mod-top.mod-top-left-space .workspace-tab-container .view-content .markdown-reading-view > .markdown-preview-view {
   padding: 20px 10px !important;
 }
+
