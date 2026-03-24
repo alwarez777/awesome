@@ -626,7 +626,7 @@ body.is-phone {
     flex-shrink: 0;         /* Стрелка никогда не исчезает */
     padding-left: 0 !important;    /* Убираем внутренний отступ слева */
     padding-right: 2px !important; /* Регулируем отступ ПОСЛЕ стрелки */
-    margin-left: -1px !important;  /* «Брутфорс»: нагло двигаем стрелку влево на текст */
+    margin-left: 1px !important;  /* «Брутфорс»: нагло двигаем стрелку влево на текст */
     opacity: 0.6;
   }
   /* Убираем лишние отступы контента под шапкой */
@@ -638,6 +638,11 @@ body.is-phone {
     padding-top: 10px !important;
   } 
   */
+}
+/* 📱 Подвинуть заголовок вкладки ближе к верху
+  Только когда активны хлебные крошки Zoom */
+  body.is-phone .mod-root:has(.cm-panels.cm-panels-top) .view-header-title-container {
+    margin-bottom: 1rem;
 }
 
 
