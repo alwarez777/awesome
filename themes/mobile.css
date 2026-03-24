@@ -484,107 +484,6 @@ body.is-phone {
   }
 }
 
-body.is-tablet {
-  --titlebar-background: var(--background-secondary) !important;
-  --titlebar-background-focused: var(--background-secondary) !important;
-
-  --mobile-sidebar-min-width: unset;
-
-  .workspace {
-    background-color: var(--mobile-sidebar-background);
-  }
-
-  .workspace-tab-header {
-    padding-bottom: 0 !important;
-  }
-
-  .workspace-tab-header-new-tab,
-  .workspace-tab-header-tab-list,
-  .sidebar-toggle-button,
-  .view-header-left,
-  .view-actions {
-    padding: 4px 0;
-  }
-
-  .workspace .mod-root .workspace-tab-header-container .clickable-icon,
-  .view-header .clickable-icon,
-  .workspace-drawer-header-icon {
-    border-radius: 100vh;
-    padding: 10px;
-    position: relative;
-    margin-left: 0;
-  }
-
-  .workspace-drawer.is-pinned,
-  .workspace-split.mod-root,
-  .workspace-split.mod-root .workspace-split {
-    background-color: transparent;
-    border-width: 0;
-  }
-
-  .workspace-drawer {
-    .workspace-drawer-ribbon .side-dock-actions {
-      padding-block: 12px;
-    }
-
-    .workspace-drawer-header-left {
-      margin-left: 12px;
-    }
-
-    .workspace-leaf-content .nav-header ~ div:last-child {
-      mask: linear-gradient(to bottom, transparent, black 16px, black calc(100% - 16px), transparent);
-    }
-
-    .workspace-drawer-tab-options-list {
-      margin: var(--touch-size-l) 0 0;
-    }
-
-    &:not(.is-pinned).mod-left {
-      max-width: var(--mobile-left-sidebar-width, var(--mobile-sidebar-max-width));
-    }
-    &:not(.is-pinned).mod-right {
-      max-width: var(--mobile-right-sidebar-width, var(--mobile-sidebar-max-width));
-    }
-    &.is-pinned.mod-left {
-      width: var(--mobile-left-sidebar-width-pinned, var(--mobile-sidebar-width-pinned));
-    }
-    &.is-pinned.mod-right {
-      width: var(--mobile-right-sidebar-width-pinned, var(--mobile-sidebar-width-pinned));
-    }
-    &:not(.is-pinned) {
-      margin: var(--safe-area-inset-top) 8px calc(var(--keyboard-height) + 8px);
-      padding-top: 0;
-      border-radius: var(--mobile-sidebar-radius);
-      height: auto;
-    }
-    &:not(.is-pinned) .workspace-drawer-inner {
-      padding-top: 0px;
-    }
-
-    &.is-pinned {
-      flex-shrink: 0;
-      max-width: 35%;
-    }
-
-    .workspace-drawer-tab-options {
-      margin: 8px;
-    }
-
-    .workspace-drawer-active-tab-container {
-      background-color: transparent;
-    }
-  }
-
-  .workspace-drawer-header-icon.mod-raised {
-    backdrop-filter: none;
-    box-shadow: none;
-    background-color: transparent;
-    border: none;
-  }
-  .workspace-drawer-header-icon::after {
-    content: none !important;
-  }
-}
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   /* // Liquid Glass */
@@ -772,7 +671,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   min-width: 390px;
 }
 
-/* 📱 Отключить иконку Quick Switcher */
+/* 📱 Отключить иконку Quick Switcher в навбаре */
 body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mobile-navbar-action-quick-switcher {
   display: none; 
 }
@@ -790,14 +689,17 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   display: none;
 }
 
-/* 📱 Всегда отображать заголовок вкладки */
+/* 📱 Всегда отображать заголовок вкладки кроме пустой вкладки */
 body.is-phone {
   .view-header:not(.view-header-always-show):not(:hover) .view-header-title-container > div:not(:focus-within) {
     opacity: 1 !important;
   }
+  .mod-root .workspace-leaf-content[data-type="beautitab-react-view"] .view-header .view-header-title-container {
+    opacity: 0;
+  }
 }
 
-/* 📱 Вернуть стандартную иконку сайдбара */
+/* 📱 Вернуть стандартную иконку сайдбара вместо < Cupertino */
 .workspace-leaf-content:not([data-type="empty"]) .mod-left-split-toggle svg.svg-icon {
   --icon-size: var(--icon-l);
   background-color: unset !important;
