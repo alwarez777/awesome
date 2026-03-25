@@ -117,7 +117,7 @@ body.is-mobile {
       content: none !important;
     }
 
-    .workspace-drawer-inner {
+    /* .workspace-drawer-inner {
       background-color: transparent;
     }
 
@@ -158,7 +158,7 @@ body.is-mobile {
     }
     .workspace-drawer-tab-options .workspace-drawer-tab-select .workspace-tab-header-inner {
       background-color: transparent;
-    }
+    } */
 
     .nav-header {
       padding: 0;
@@ -182,7 +182,7 @@ body.is-mobile {
   }
 
   /* // Side panels: Horizontal tab selector */
-  &.horizontal-tab-options .workspace-drawer-tab-options-list {
+/*   &.horizontal-tab-options .workspace-drawer-tab-options-list {
     flex-direction: row;
     overflow: visible;
 
@@ -204,7 +204,7 @@ body.is-mobile {
       color: var(--text-muted);
       text-align: center;
     }
-  }
+  } */
 
   /* // Toolbar */
   .mobile-toolbar-spacer {
@@ -283,9 +283,9 @@ body.is-phone {
     margin-inline: var(--safe-area-inset-side);
     height: var(--touch-size-m);
   }
-  .workspace-drawer-tab-options.is-collapsed {
+/*   .workspace-drawer-tab-options.is-collapsed {
     margin-right: calc(var(--safe-area-inset-side) + var(--touch-size-m));
-  }
+  } */
   .workspace-drawer-tab-select {
     height: 100%;
   }
@@ -296,9 +296,9 @@ body.is-phone {
     flex: unset;
     width: auto;
   }
-  .workspace-drawer-tab-options-list {
+/*   .workspace-drawer-tab-options-list {
     margin: 0 0 var(--touch-size-m);
-  }
+  } */
   .workspace-drawer .workspace-leaf-content > div:nth-child(1 of div:not(.nav-header):not(.view-header)) {
     padding-top: 48px !important;
   }
@@ -374,7 +374,7 @@ body.is-phone {
     }
   }
   &:not(html:where([style*="--keyboard-height: 0px"], :not([style*="--keyboard-height"])) body):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] {
-    .view-actions button:nth-last-child(2) {
+    .view-actions button:nth-last-child(1) {
       opacity: 0;
       pointer-events: none;
     }
@@ -384,37 +384,6 @@ body.is-phone {
     > .view-content::after {
       content: none !important;
     }
-  }
-
-  /* // Mode Switcher */
-  &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
-    position: fixed;
-    transition:
-      var(--anim-duration-moderate) var(--anim-motion-baseline),
-      height 0s,
-      opacity 0s !important;
-    right: var(--navbar-side-offset);
-    bottom: var(--navbar-bottom-offset);
-    margin-bottom: 0;
-    border-radius: 100%;
-    width: var(--touch-size-l);
-    height: var(--touch-size-l);
-    background-color: var(--background-secondary);
-    border: var(--border-width) solid var(--background-modifier-border);
-  }
-  &.mod-toolbar-open:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
-    width: var(--touch-size-m);
-    height: var(--touch-size-m);
-    right: var(--keyboard-spacing);
-    bottom: var(--keyboard-spacing);
-  }
-  &:not(.is-floating-nav):not(.mode-switcher-off):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
-    right: 16px;
-    bottom: calc(var(--navbar-height) + 16px);
-  }
-  & > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content:not([data-type="markdown"])) .view-actions button:nth-last-child(2) {
-    opacity: 0;
-    pointer-events: none;
   }
 
   /* // Navigation bar */
@@ -487,8 +456,6 @@ body.is-phone {
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   /* // Liquid Glass */
-  &:where(.is-phone) .mod-root .workspace-leaf-content .view-header-left,
-  &:where(.is-phone) .mod-root .workspace-leaf-content .view-actions button:nth-last-child(1),
   &:where(.is-phone) .prompt-input,
   &:where(.is-phone) .prompt-input-container .prompt-input-cta:not(:empty),
   &:where(.is-phone) .prompt-input-container .search-input-clear-button,
@@ -648,6 +615,72 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   }
 }
 
+/* 📱 Улучшение Tab Switcher */
+body.is-phone {
+  /* 1. ГАРМОНИЗАЦИЯ ПАНЕЛИ */
+  .mobile-tab-switcher-menubar {
+    display: flex !important;
+    gap: 12px !important;
+  }
+  /* Фиксируем ширину боковых контейнеров, чтобы кнопки не плющило */
+  .mobile-tab-switcher-menu-spacer:first-child,
+  .mobile-tab-switcher-menu-spacer:last-child {
+    flex: 0 0 var(--input-height) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  /* 2. ЛЕВАЯ И ПРАВАЯ КНОПКИ (+ и Х) — ИДЕАЛЬНЫЙ КРУГ */
+  .mobile-tab-switcher-menu-spacer:first-child .clickable-icon,
+  .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
+    width: var(--input-height) !important;
+    height: var(--input-height) !important;
+    background-color: var(--background-primary) !important;
+    border-radius: 50% !important; 
+    box-shadow: var(--shadow-s) !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* 3. ЦЕНТРАЛЬНАЯ КНОПКА (СЧЕТЧИК) — ОВАЛ */
+  .mobile-tab-switcher-menu-button {
+    flex: 0 1 auto !important; /* 1 - сделать шире */
+    min-width: 80px !important; /* убрать при flex: 1 */
+    height: var(--input-height) !important;
+    background-color: var(--background-primary) !important;
+    border-radius: calc(var(--input-height) / 2) !important;
+    box-shadow: var(--shadow-s) !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 16px !important;
+  }
+  /* 4. АДАПТИВНЫЙ КРЕСТИК (X) */
+  .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E") !important;
+    color: var(--text-normal) !important;
+    padding: 11px !important; 
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  &.theme-light .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
+    background-color: var(--background-primary) !important;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E") !important;
+  }
+  &.theme-dark .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
+    background-color: var(--background-primary) !important;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E") !important;
+  }
+}
+
 
 /* 📱 Заменить иконку скрипта Templater в тулбаре */
 .mobile-toolbar-option:has(.templater-icon) svg {
@@ -706,29 +739,125 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   opacity: 1;
   transition: none;
 }
-body.is-phone {
-  /* Меню селектора */
-  .workspace-drawer-tab-options {
-    width: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-  }
-  /* Иконка плагина */
-  .workspace-tab-header-inner-icon {
-    display: none;
-  }
+body.is-phone :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron) {
+  display: none;
 }
 
-/*
-.workspace-drawer-tab-options
-.workspace-drawer-tab-options-list
-.workspace-drawer-tab-select
-.workspace-tab-header-inner
-.workspace-tab-header-inner-icon
-.workspace-tab-header-inner-title
-.workspace-tab-header-inner-chevron
-*/
+body.is-phone {
+  /* 1. ОБЩИЙ КОНТЕЙНЕР (Синхронизируем ширину) */
+  .workspace-drawer-tab-select {
+    position: relative !important;
+    /* Устанавливаем фиксированную ширину, чтобы низ и верх совпали */
+    width: 320px !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: 10001 !important;
+  }
+  /* 2. НАДПИСЬ ВНИЗУ (Плашка) */
+  .workspace-drawer-tab-select > .workspace-tab-header-inner {
+    padding-left: var(--safe-area-inset-side, 16px) !important; 
+    justify-content: flex-start !important;
+    height: 48px !important;
+    width: 100% !important;
+    border-radius: 12px !important;
+    background-color: var(--background-primary-alt) !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    
+    color: var(--text-normal) !important;
+    font-weight: 700 !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Когда меню открыто — нижняя надпись "растворяется" в общем фоне */
+  .workspace-drawer-tab-options + .workspace-drawer-tab-select > .workspace-tab-header-inner {
+    opacity: 0.3 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
+
+  /* 3. ОБЩИЙ КОНТЕЙНЕР МЕНЮ */
+  .workspace-drawer-tab-options {
+    position: absolute !important;
+    bottom: -52px !important;
+    left: 0 !important;
+    width: 320px !important; /* СТРОГО совпадает с селектором */
+    z-index: 10000 !important;
+    background: transparent !important;
+    border: none !important;
+    
+    animation: popover-slide 0.2s ease-out !important;
+    &::before { display: none !important; }
+  }
+
+  /* 4. СПИСОК (ОБЛАКО) */
+  .workspace-drawer-tab-options-list {
+    position: absolute !important;
+    bottom: 0 !important; 
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 6px 0 48px 0 !important;
+
+    background-color: var(--background-primary-alt) !important; 
+    border: 1px solid var(--background-modifier-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 5. ПУНКТЫ ВНУТРИ СПИСКА */
+  .workspace-drawer-tab-options-list .workspace-tab-header-inner {
+    padding-left: var(--safe-area-inset-side, 16px) !important; 
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    width: calc(100% - 12px) !important;
+    margin: 2px 6px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ПУНКТ 4: ВЫДЕЛЕННЫЙ ПУНКТ (АКТИВНЫЙ ПЛАГИН) */
+  .workspace-drawer-tab-options-list .workspace-tab-header-inner.is-active {
+    background-color: var(--background-modifier-hover) !important;
+    font-weight: 700 !important;
+    color: var(--text-accent) !important;
+  }
+}
+/* АНИМАЦИЯ */
+@keyframes popover-slide {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Синхронизировать селектор плагина и кнопки навигации правого сайдбара с левым сайдбаром */
+body.is-phone {
+  /* 1. Работаем с хедером правой панели */
+  .workspace-drawer.mod-right .workspace-drawer-header {
+  /* Обнуляем внутренние отступы, которые тянут всё вниз */
+    padding-top: 0 !important;
+    padding-bottom: 20px !important; /* Увеличиваем снизу, чтобы "выдавить" контент вверх */
+    height: 48px !important; /* Фиксируем высоту */
+    display: flex !important;
+    align-items: flex-start !important; /* Прижимаем к самому верху */
+  }
+  /* 2. Поднимаем контейнер с кнопками в правой панели */
+  .workspace-drawer.mod-right .nav-buttons-container {
+    margin-top: -8px !important; /* Тянем кнопки вверх */
+  }
+  /* 3. Поднимаем надпись "Пульт управления" в правой панели */
+  .workspace-drawer.mod-right .workspace-drawer-tab-select {
+    margin-top: -8px !important; /* Тянем надпись вверх, чтобы совпало с кнопками */
+    display: flex !important;
+  }
+  /* 4. Убираем лишние зазоры у навигации */
+  .workspace-drawer.mod-right .nav-header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
 
 
 
@@ -771,9 +900,8 @@ body.is-phone {
       opacity 0s !important;
 
     border-radius: 100% !important;
-    background-color: var(--raised-background) !important;
-    box-shadow: var(--shadow-xs) !important;
-    
+    box-shadow: var(--shadow-s) !important;
+
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -785,12 +913,16 @@ body.is-phone {
     left: 20px !important;
     width: 46px !important;
     height: 46px !important;
+    backdrop-filter: unset !important;
+    background-color: unset !important;
   }
   .mod-root .workspace-leaf-content .view-actions button:nth-last-child(1) { 
     right: 6px !important; 
     left: auto !important;
     width: 44px !important;
     height: 46px !important;
+    background-color: var(--raised-background) !important;
+    border: var(--raised-mask-border-width) solid transparent !important;
   }
   .mobile-navbar {
     left: 72px !important;
@@ -815,5 +947,71 @@ body.is-phone {
       right: 58px !important;
       width: auto !important;
     }
+  }
+}
+
+
+body.is-phone {
+  /* Заголовки разделов (Ссылки, Упоминания без ссылки и т.д.) */
+  .workspace-drawer .search-result-header,
+  .workspace-drawer .nav-header,
+  .workspace-drawer .pane-list-item-header,
+  .workspace-drawer .backlink-pane .tree-item-self,
+  .workspace-drawer .outgoing-link-pane .tree-item-self {
+    font-size: var(--font-ui-medium) !important;
+    font-weight: 600 !important;
+    color: var(--text-muted) !important;
+    text-transform: none !important; /* Убираем капс, если он есть */
+  }
+  /* Сами элементы ссылок и списков */
+  .workspace-drawer .tree-item-inner,
+  .workspace-drawer .search-result-file-title,
+  .workspace-drawer .nav-file-title-content {
+    font-size: var(--font-ui-medium) !important;
+    line-height: var(--line-height-tight) !important;
+  }
+  /* Исправление для Обратных и Исходящих ссылок (Backlinks/Outgoing) */
+  .workspace-drawer .backlink-pane, 
+  .workspace-drawer .outgoing-link-pane {
+    --nav-item-size: var(--font-ui-medium);
+    
+    .tree-item-inner {
+      font-size: var(--nav-item-size) !important;
+    }
+    /* Текст внутри найденных упоминаний */
+    .search-result-file-match {
+      font-size: var(--font-ui-small) !important;
+    }
+  }
+}
+
+/* 📱 Счетчик для заголовков и объектов в Обратных ссылках */
+body.is-phone {
+  /* Делаем все строки в обратных ссылках одинаковыми по структуре */
+  .backlink-pane .tree-item-self {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding-right: 8px !important;
+  }
+  /* Текст (название заметки или заголовок) забирает всё свободное место */
+  .backlink-pane .tree-item-inner,
+  .backlink-pane .tree-item-self .tree-item-inner {
+    flex: 1 1 auto !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  /* Цифра всегда прижата к правому краю */
+  .backlink-pane .tree-item-flair-outer {
+    display: flex !important;
+    margin-left: auto !important; /* Теперь это сработает, так как inner имеет flex-grow */
+    padding-left: 10px !important;
+    flex-shrink: 0 !important;
+  }
+  .backlink-pane .tree-item-flair {
+    font-size: var(--font-ui-smaller) !important;
+    text-align: right !important;
   }
 }

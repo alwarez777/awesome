@@ -1264,12 +1264,6 @@ body:not(.is-phone) .mod-root {
   }
 }
 
-/* 📱 Подвинуть заголовок вкладки ближе к верху
-    Только когда активны хлебные крошки Zoom */
-body.is-phone .mod-root:has(.cm-panels.cm-panels-top) .view-header-title-container {
-    margin-bottom: 1rem;
-}
-
 /* 📱 Прозрачный заголовок вкладки для Graph, Kanban, Canvas */
 
 body.is-phone {
@@ -1342,3 +1336,9 @@ body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-p
   padding: 20px 10px !important;
 }
 
+
+
+/* 💻 Увеличить отступ контента от заголовка вкладки */
+body:not(.is-phone) .workspace-split.mod-vertical.mod-root .markdown-source-view.mod-cm6 .cm-sizer {
+  padding-top: 15px !important;
+}
