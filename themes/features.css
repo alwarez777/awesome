@@ -14,17 +14,9 @@ body:not(.active-line-off) .workspace-split.mod-vertical.mod-root .markdown-sour
   border-bottom: 0.5px solid;
   border-color: rgba(var(--mono-rgb-100), 0.15);
   transition: border-color 0.15s ease;
-  transform: scale(1.015);
-  transform-origin: left center;
-  transition: transform 0.12s ease;
 }
-/* 
-📱💻 Увеличение при наведении на блок текста 
-.markdown-source-view .cm-line:hover {
-  border-bottom: 0.5px solid;
-  border-color: rgba(var(--mono-rgb-100), 0.075);
-  transition: border-color 0.15s ease; }
-*/
+/* 📱💻 При наведении на блок текста 
+.markdown-source-view .cm-line:hover */
 
 
 /* # BLOCK WIDTH */
