@@ -689,43 +689,32 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
 /* 📱 Настройка селектора плагинов, названия плагинов в сайдбарах */
 /* Название хранилища */
 .workspace-drawer-header-name {
-  opacity: 0.1;
+  opacity: 0.2;
   transition: var(--anim-duration-fast);
-}
-.workspace-drawer-header-info {
-  opacity: 0.85;
-  transition: var(--anim-duration-fast);
-}
-.workspace-drawer-header-name:hover,
-.workspace-drawer-header-info:hover {
-  opacity: 1;
-  transition: none;
 }
 /* Кнопка настроек */
 .workspace-drawer-header-icon {
-  opacity: 0.25;
+  opacity: 0.5;
   transition: var(--anim-duration-fast);
 }
-.workspace-drawer-header-icon:hover {
-  opacity: 1;
-  transition: none;
-}
+/* Селектор плагина */
 .workspace-drawer-tab-select {
   opacity: 0.1;
   transition: var(--anim-duration-fast);
 }
-.workspace-drawer-tab-select:hover {
+:is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):hover {
   opacity: 1;
   transition: none;
 }
-
 body.is-phone {
+  /* Меню селектора */
   .workspace-drawer-tab-options {
     width: 100% !important;
     left: 0 !important;
     right: 0 !important;
     margin: 0 !important;
   }
+  /* Иконка плагина */
   .workspace-tab-header-inner-icon {
     display: none;
   }
@@ -776,9 +765,14 @@ body.is-phone {
     position: absolute !important;
     top: calc(100% + 82vh) !important; 
 
-    border-radius: 50% !important;
+    transition:
+      var(--anim-duration-moderate) var(--anim-motion-baseline),
+      height 0s,
+      opacity 0s !important;
+
+    border-radius: 100% !important;
     background-color: var(--raised-background) !important;
-    box-shadow: var(--shadow-s) !important;
+    box-shadow: var(--shadow-xs) !important;
     
     display: flex !important;
     align-items: center;
@@ -787,7 +781,6 @@ body.is-phone {
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .mod-root .workspace-leaf-content .view-header-left { 
     left: 20px !important;
     width: 46px !important;
@@ -799,22 +792,17 @@ body.is-phone {
     width: 44px !important;
     height: 46px !important;
   }
-
-  /* Навбар */
   .mobile-navbar {
     left: 72px !important;
     right: 72px !important;
     width: auto !important;
   }
-
   /* 2. РЕЖИМ КЛАВИАТУРЫ (ИСПРАВЛЯЕМ СКРИН №2) */
   &.mod-toolbar-open {
     .view-header-left, .mobile-navbar { 
       display: none !important; 
     }
-
     .mod-root .workspace-leaf-content .view-actions button:nth-last-child(1) {
-      /* Здесь top должен быть меньше, так как клавиатура "поднимает" вьюпорт */
       top: calc(100% + 47.25vh) !important; 
       right: -6px !important;
       width: 44px !important;
@@ -822,7 +810,6 @@ body.is-phone {
       background-color: var(--raised-background) !important;
       box-shadow: var(--shadow-s) !important;
     }
-
     .mobile-toolbar {
       left: 8px !important;
       right: 58px !important;
