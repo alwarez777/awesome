@@ -500,10 +500,11 @@ body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-lef
 /* 💻 Конфигурация */
 body:not(.is-mobile) {
   /* 1. ВЕРТИКАЛЬНЫЙ СТЭК И ЦЕНТРИРОВАНИЕ */
-  /* Делаем так, чтобы название файла и крошки были друг под другом и оба по центру */
+  /* Исправлено: используем row + wrap вместо column, чтобы не разрывать строку заголовка */
   .view-header-title-container {
     display: flex !important;
-    flex-direction: column !important; /* Текст над крошками */
+    flex-direction: row !important;    /* Элементы заголовка в одну строку */
+    flex-wrap: wrap !important;        /* Позволяет контенту группироваться */
     align-items: center !important;    /* Центрируем всё по горизонтали */
     justify-content: center !important;
     width: 100% !important;
@@ -511,6 +512,7 @@ body:not(.is-mobile) {
     overflow: visible !important;
     position: relative !important;
   }
+
   /* 2. КОНТЕЙНЕР КРОШЕК */
   .zoom-injected-header {
     display: flex !important;
@@ -523,7 +525,7 @@ body:not(.is-mobile) {
     max-width: 90% !important; /* Чтобы не упирались в края */
 
     position: absolute !important;
-    top: 24px !important;
+    top: 24px !important; /* Опускаем крошки под основной заголовок */
     left: 0; 
     right: 0;
     
@@ -567,7 +569,7 @@ body:not(.is-mobile) {
     display: none !important; 
   }
   .workspace-leaf.is-zoomed .markdown-source-view.mod-cm6 .cm-sizer {
-    padding-top: 20px !important;
+    padding-top: 25px !important;
   }
 }
 
