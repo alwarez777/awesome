@@ -94,6 +94,17 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .nav-files-container > d
   --nav-item-color-active: var(--text-accent);
 }
 
+/* 📱 Убираем странное скругление при клике на папки/файлы */
+body.is-phone .nav-files-container .tree-item-self.is-active,
+body.is-phone .nav-files-container .tree-item-self.mobile-tap {
+    border-radius: var(--radius-m) !important; /* Делаем ровный прямоугольник со скруглениями по всем углам */
+}
+/* 📱 Убираем конфликт с nth-child из темы */
+body.is-phone .nav-files-container > div > .tree-item .tree-item-self {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 
 /* 💻 Разместить шевроны в конце контейнера */
 body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .tree-item-self {
