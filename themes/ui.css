@@ -36,6 +36,7 @@
   }
 }
 
+
 body:not(.is-phone) {
   --menu-padding: 4px;
 
@@ -249,6 +250,15 @@ body.is-phone {
       padding: calc(16px * var(--density-modifier)) 16px;
     }
   }
+}
+
+
+/* 📱💻 Скрыть подсказки в промптах (поиск, команды и т.д) */
+.prompt-instructions {
+  display: none; 
+}
+.prompt-input-cta {
+    display: none !important;
 }
 
 
