@@ -720,62 +720,51 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
 
 
 /* 📱 Настройка селектора плагинов, названия плагинов в сайдбарах */
-/* Название хранилища */
-.workspace-drawer-header-name {
-  opacity: 0.2;
-  transition: var(--anim-duration-fast);
-}
-/* Кнопка настроек */
-.workspace-drawer-header-icon {
-  opacity: 0.5;
-  transition: var(--anim-duration-fast);
-}
-/* Селектор плагина */
+/* Базовое состояние (тусклое) */
+.workspace-drawer-header-name,
+.workspace-drawer-header-icon,
 .workspace-drawer-tab-select {
-  opacity: 0.1;
-  transition: var(--anim-duration-fast);
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
 }
-:is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):hover {
-  opacity: 1;
-  transition: none;
+/* 1. Состояние при нажатии (визуальный отклик) */
+:is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):active {
+  opacity: 1 !important;
+  transition: none !important; 
+  transform: none !important; /* Убиваем системное сжатие (прыжок) в левом сайдбаре */
 }
+/* 2. Если меню открыто (селектор плагинов активен) */
+.workspace-drawer-tab-select.is-active {
+  opacity: 1 !important;
+}
+
+/* Скрыть иконку плагина и шеврон селектора */
 body.is-phone :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron) {
   display: none;
 }
 
 body.is-phone {
-  /* 1. ОБЩИЙ КОНТЕЙНЕР (Синхронизируем ширину) */
-  .workspace-drawer-tab-select {
-    position: relative !important;
-    /* Устанавливаем фиксированную ширину, чтобы низ и верх совпали */
-    width: 320px !important; 
-    margin: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    z-index: 10001 !important;
-  }
   /* 2. НАДПИСЬ ВНИЗУ (Плашка) */
   .workspace-drawer-tab-select > .workspace-tab-header-inner {
-    padding-left: var(--safe-area-inset-side, 16px) !important; 
+    padding-left: calc(var(--safe-area-inset-side, 16px) + 6px) !important; 
     justify-content: flex-start !important;
     height: 48px !important;
     width: 100% !important;
     border-radius: 12px !important;
     background-color: var(--background-primary-alt) !important;
-    border: 1px solid var(--background-modifier-border) !important;
-    
     color: var(--text-normal) !important;
     font-weight: 700 !important;
     box-sizing: border-box !important;
-    transition: all 0.2s ease !important;
+    contain: paint !important;
+    transition: opacity 0.2s ease, background-color 0.1s ease, border-color 0.1s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
-
-  /* Когда меню открыто — нижняя надпись "растворяется" в общем фоне */
-  .workspace-drawer-tab-options + .workspace-drawer-tab-select > .workspace-tab-header-inner {
-    opacity: 0.3 !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
+  /* Убираем системный фон при нажатии */
+  .workspace-drawer-tab-select:active > .workspace-tab-header-inner {
+    background-color: var(--background-primary-alt) !important;
+    transform: none !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   /* 3. ОБЩИЙ КОНТЕЙНЕР МЕНЮ */
@@ -787,6 +776,8 @@ body.is-phone {
     z-index: 10000 !important;
     background: transparent !important;
     border: none !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
     
     animation: popover-slide 0.2s ease-out !important;
     &::before { display: none !important; }
@@ -800,14 +791,15 @@ body.is-phone {
     width: 100% !important;
     margin: 0 !important;
     padding: 6px 0 48px 0 !important;
-
     background-color: var(--background-primary-alt) !important; 
-    border: 1px solid var(--background-modifier-border) !important;
+    /* border: 1px solid var(--background-modifier-border) !important; */
     border-radius: 12px !important;
     box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important;
     box-sizing: border-box !important;
   }
-
+  .workspace-drawer.mod-left .workspace-drawer-tab-options {
+    padding: 6px 0 52px 0 !important;
+  }
   /* 5. ПУНКТЫ ВНУТРИ СПИСКА */
   .workspace-drawer-tab-options-list .workspace-tab-header-inner {
     padding-left: var(--safe-area-inset-side, 16px) !important; 
@@ -843,14 +835,23 @@ body.is-phone {
     display: flex !important;
     align-items: flex-start !important; /* Прижимаем к самому верху */
   }
+  .workspace-drawer.mod-right .workspace-drawer-tab-options {
+  animation: popover-slide 0.1s ease-out !important;
+    &::before { display: none !important; }
+  }
   /* 2. Поднимаем контейнер с кнопками в правой панели */
   .workspace-drawer.mod-right .nav-buttons-container {
     margin-top: -8px !important; /* Тянем кнопки вверх */
   }
   /* 3. Поднимаем надпись "Пульт управления" в правой панели */
   .workspace-drawer.mod-right .workspace-drawer-tab-select {
-    margin-top: -8px !important; /* Тянем надпись вверх, чтобы совпало с кнопками */
+    margin-top: -8px !important; 
     display: flex !important;
+    /* Фиксируем высоту и запрещаем сжатие/расширение, чтобы текст не дергался */
+    height: 48px !important;
+    flex-shrink: 0 !important;
+    align-items: center !important;
+    padding: 12px 0 0 0 !important;
   }
   /* 4. Убираем лишние зазоры у навигации */
   .workspace-drawer.mod-right .nav-header {
@@ -950,7 +951,7 @@ body.is-phone {
   }
 }
 
-
+/* 📱 ОДИНАКОВЫЙ РАЗМЕР ШРИФТА ДЛЯ ВСЕХ ПАНЕЛЕЙ */
 body.is-phone {
   /* Заголовки разделов (Ссылки, Упоминания без ссылки и т.д.) */
   .workspace-drawer .search-result-header,
@@ -984,7 +985,6 @@ body.is-phone {
     }
   }
 }
-
 /* 📱 Счетчик для заголовков и объектов в Обратных ссылках */
 body.is-phone {
   /* Делаем все строки в обратных ссылках одинаковыми по структуре */
