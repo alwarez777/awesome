@@ -611,6 +611,9 @@ body.is-phone {
     transition: none !important; 
     transform: none !important;
   }
+  .workspace-drawer-header-info {
+    color: var(--text-faint);
+  }
 
   /* Скрываем лишнее */
   :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron, .workspace-drawer-header-name-chevron) {
