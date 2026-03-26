@@ -108,58 +108,6 @@ body.is-mobile {
 
   /* // Side panels */
   .workspace-drawer {
-    .workspace-leaf-content > .node-insert-event,
-    .workspace-leaf-content > .view-content > .node-insert-event {
-      padding-inline: var(--safe-area-inset-side);
-    }
-
-    .workspace-leaf-content:after {
-      content: none !important;
-    }
-
-    /* .workspace-drawer-inner {
-      background-color: transparent;
-    }
-
-    .workspace-drawer-header {
-      padding-top: 8px;
-      padding-inline: var(--safe-area-inset-side);
-      z-index: 1;
-      min-height: var(--touch-size-m);
-      box-sizing: content-box;
-    }
-    .workspace-drawer-header-name-text {
-      font-family: var(--h1-font);
-    }
-    .workspace-drawer-active-tab-chevron {
-      margin-inline-start: 0;
-    }
-
-    .workspace-drawer-tab-options.is-collapsed::before {
-      background-color: transparent;
-      pointer-events: none;
-    }
-    .workspace-drawer-tab-options::before {
-      position: fixed;
-      z-index: 1;
-      transition: var(--anim-duration-fast);
-      inset: 0;
-      background-color: var(--mobile-sidebar-background);
-      content: "";
-    }
-
-    .workspace-drawer-tab-options-list {
-      background-color: transparent;
-      padding: 0;
-    }
-    .workspace-drawer-tab-options .workspace-tab-header-inner {
-      padding: calc(12px * var(--density-modifier)) 16px;
-      font-weight: var(--font-normal);
-    }
-    .workspace-drawer-tab-options .workspace-drawer-tab-select .workspace-tab-header-inner {
-      background-color: transparent;
-    } */
-
     .nav-header {
       padding: 0;
     }
@@ -180,31 +128,6 @@ body.is-mobile {
       color: var(--interactive-accent);
     }
   }
-
-  /* // Side panels: Horizontal tab selector */
-/*   &.horizontal-tab-options .workspace-drawer-tab-options-list {
-    flex-direction: row;
-    overflow: visible;
-
-    .workspace-tab-header {
-      flex: 1;
-      animation: none !important;
-    }
-    .workspace-tab-header-inner {
-      padding-inline: 0 !important;
-    }
-    .workspace-tab-header:not(.is-swiping) .workspace-tab-header-inner-title {
-      opacity: 0;
-    }
-    .workspace-tab-header-inner-title {
-      position: fixed;
-      align-self: center;
-      inset: 0;
-      width: 100%;
-      color: var(--text-muted);
-      text-align: center;
-    }
-  } */
 
   /* // Toolbar */
   .mobile-toolbar-spacer {
@@ -253,52 +176,6 @@ body.is-phone {
   .workspace-drawer {
     width: var(--mobile-sidebar-width-override, var(--mobile-sidebar-width));
   }
-  .workspace-drawer-header {
-    z-index: 1;
-    justify-content: flex-end;
-  }
-  .workspace-drawer-header-left {
-    position: absolute;
-    flex-direction: row;
-    align-items: center;
-    margin: 8px;
-    inset: var(--safe-area-inset-top) var(--safe-area-inset-side) auto;
-    gap: 8px;
-  }
-  .workspace-drawer-header-name {
-    white-space: nowrap;
-    min-width: 0;
-  }
-  .workspace-drawer-header-info {
-    margin-top: 0;
-    margin-left: auto;
-    color: var(--text-faint);
-    white-space: nowrap;
-  }
-  .workspace-drawer-tab-options {
-    position: fixed;
-    bottom: var(--safe-area-inset-bottom);
-    z-index: 2;
-    width: stretch;
-    margin-inline: var(--safe-area-inset-side);
-    height: var(--touch-size-m);
-  }
-/*   .workspace-drawer-tab-options.is-collapsed {
-    margin-right: calc(var(--safe-area-inset-side) + var(--touch-size-m));
-  } */
-  .workspace-drawer-tab-select {
-    height: 100%;
-  }
-  .workspace-drawer-tab-select .workspace-tab-header-inner {
-    justify-content: flex-start;
-  }
-  .workspace-drawer-tab-select .workspace-tab-header-inner-title {
-    flex: unset;
-    width: auto;
-  }
-/*   .workspace-drawer-tab-options-list {
-    margin: 0 0 var(--touch-size-m);
-  } */
   .workspace-drawer .workspace-leaf-content > div:nth-child(1 of div:not(.nav-header):not(.view-header)) {
     padding-top: 48px !important;
   }
@@ -719,146 +596,111 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
 }
 
 
-/* 📱 Настройка селектора плагинов, названия плагинов в сайдбарах */
-/* Базовое состояние (тусклое) */
-.workspace-drawer-header-name,
-.workspace-drawer-header-icon,
-.workspace-drawer-tab-select {
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-}
-/* 1. Состояние при нажатии (визуальный отклик) */
-:is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):active {
-  opacity: 1 !important;
-  transition: none !important; 
-  transform: none !important; /* Убиваем системное сжатие (прыжок) в левом сайдбаре */
-}
-/* 2. Если меню открыто (селектор плагинов активен) */
-.workspace-drawer-tab-select.is-active {
-  opacity: 1 !important;
-}
-
-/* Скрыть иконку плагина и шеврон селектора */
-body.is-phone :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron) {
-  display: none;
-}
+/* 📱 МИНИМАЛИСТИЧНЫЙ КОНТРОЛЬ-ЦЕНТР САЙДБАРА */
 
 body.is-phone {
-  /* 2. НАДПИСЬ ВНИЗУ (Плашка) */
-  .workspace-drawer-tab-select > .workspace-tab-header-inner {
-    padding-left: calc(var(--safe-area-inset-side, 16px) + 6px) !important; 
-    justify-content: flex-start !important;
-    height: 48px !important;
-    width: 100% !important;
-    border-radius: 12px !important;
-    background-color: var(--background-primary-alt) !important;
-    color: var(--text-normal) !important;
-    font-weight: 700 !important;
-    box-sizing: border-box !important;
-    contain: paint !important;
-    transition: opacity 0.2s ease, background-color 0.1s ease, border-color 0.1s ease !important;
-    -webkit-tap-highlight-color: transparent !important;
+  /* Базовые состояния и отклик */
+  .workspace-drawer-header-name,
+  .workspace-drawer-header-icon,
+  .workspace-drawer-tab-select {
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
   }
-  /* Убираем системный фон при нажатии */
-  .workspace-drawer-tab-select:active > .workspace-tab-header-inner {
-    background-color: var(--background-primary-alt) !important;
+  :is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):active {
+    opacity: 1 !important;
+    transition: none !important; 
     transform: none !important;
+  }
+
+  /* Скрываем лишнее */
+  :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron, .workspace-drawer-header-name-chevron) {
+    display: none !important;
+  }
+  /* 🌟 УМНЫЙ КОНТЕЙНЕР БЕЗ КОСТЫЛЕЙ 🌟 */
+  .workspace-drawer-header {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important; /* Левая колонка для текста (1fr), правая для шестеренки (auto) */
+    grid-template-rows: auto auto !important;   /* Две строки по высоте текста */
+    row-gap: 0px !important;                    /* Тот самый идеальный зазор между "Пультом" и "Awesome" */
+    align-items: center !important;             /* Идеальное центрирование по вертикали */
+    padding-top: 0 !important;
+    padding-bottom: calc(var(--safe-area-inset-bottom, 16px) - 32px) !important; /* Упираем в безопасную зону экрана снизу */
+  }
+  /* СТРОКА 1: Селектор плагина */
+  .workspace-drawer.mod-left .workspace-drawer-tab-select {
+    grid-column: 1 !important; /* Ставим в первую колонку */
+    grid-row: 1 !important;    /* Ставим в первую строку */
+    margin: 0 !important;
+    margin-bottom: -24px !important;
+    height: auto !important; 
+  }
+  .workspace-drawer.mod-right .workspace-drawer-tab-select {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    margin-bottom: -6px !important; /* МЕНЬШЕ нахлест, чтобы не наезжали */
+  }
+  .workspace-drawer.mod-right .workspace-drawer-header-right {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    padding-left: 6px !important;
+    display: flex !important;
+  }
+  .workspace-drawer-tab-select .workspace-tab-header-inner {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-  }
-
-  /* 3. ОБЩИЙ КОНТЕЙНЕР МЕНЮ */
-  .workspace-drawer-tab-options {
-    position: absolute !important;
-    bottom: -52px !important;
-    left: 0 !important;
-    width: 320px !important; /* СТРОГО совпадает с селектором */
-    z-index: 10000 !important;
+    min-height: 20px !important; 
     background: transparent !important;
-    border: none !important;
-    height: 48px !important;
-    flex-shrink: 0 !important;
-    
-    animation: popover-slide 0.2s ease-out !important;
-    &::before { display: none !important; }
   }
 
-  /* 4. СПИСОК (ОБЛАКО) */
-  .workspace-drawer-tab-options-list {
-    position: absolute !important;
-    bottom: 0 !important; 
-    left: 0 !important;
-    width: 100% !important;
+  .workspace-drawer-tab-select .workspace-tab-header-inner-title {
+    font-size: var(--font-ui-small) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  /* СТРОКА 2: Название + Статистика */
+  .workspace-drawer-header-left {
+    grid-column: 1 !important; /* Ставим в первую колонку, под селектор */
+    grid-row: 2 !important;    /* Ставим во вторую строку */
+    margin: 0 !important;      /* Убиваем твои 30px */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    gap: 8px !important;
+  }
+  .workspace-drawer-header-name-text,
+  .workspace-drawer-header-info {
+    font-size: var(--font-ui-small) !important;
     margin: 0 !important;
-    padding: 6px 0 48px 0 !important;
-    background-color: var(--background-primary-alt) !important; 
-    /* border: 1px solid var(--background-modifier-border) !important; */
-    border-radius: 12px !important;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3) !important;
-    box-sizing: border-box !important;
+    line-height: 1 !important;
   }
-  .workspace-drawer.mod-left .workspace-drawer-tab-options {
-    padding: 6px 0 52px 0 !important;
+  /* ИКОНКА ⚙️: Центрируем по высоте двух строк */
+  .workspace-drawer-header-icon {
+    grid-column: 2 !important;       /* Ставим во вторую колонку справа */
+    grid-row: 1 / span 2 !important; /* УКАЗЫВАЕМ ЗАНЯТЬ ВЫСОТУ ОБЕИХ СТРОК */
+    align-self: center !important;   /* ЦЕНТРИРУЕМ ТОЧНО ПО СЕРЕДИНЕ */
+    justify-self: end !important;    /* Прижимаем вправо */
+    margin: 0 !important;
+    padding: 4px !important;
   }
-  /* 5. ПУНКТЫ ВНУТРИ СПИСКА */
-  .workspace-drawer-tab-options-list .workspace-tab-header-inner {
-    padding-left: var(--safe-area-inset-side, 16px) !important; 
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    width: calc(100% - 12px) !important;
-    margin: 2px 6px !important;
-    border-radius: 8px !important;
-    box-sizing: border-box !important;
+  /* ПУНКТЫ МЕНЮ СЕЛЕКТОРА */
+  .workspace-drawer-tab-options-list {
+    padding-top: var(--size-4-2);
+    padding-bottom: calc(var(--touch-size-l) - 24px); /* var(--touch-size-l) */
+    bottom: 0;
+    top: unset;
+    transition: none !important; 
+    animation: none !important;
+    opacity: 1 !important;
   }
-
-  /* ПУНКТ 4: ВЫДЕЛЕННЫЙ ПУНКТ (АКТИВНЫЙ ПЛАГИН) */
-  .workspace-drawer-tab-options-list .workspace-tab-header-inner.is-active {
-    background-color: var(--background-modifier-hover) !important;
-    font-weight: 700 !important;
-    color: var(--text-accent) !important;
+  .workspace-drawer-tab-options.is-collapsed .workspace-drawer-tab-options-list {
+    display: none !important;
   }
-}
-/* АНИМАЦИЯ */
-@keyframes popover-slide {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 📱 Синхронизировать селектор плагина и кнопки навигации правого сайдбара с левым сайдбаром */
-body.is-phone {
-  /* 1. Работаем с хедером правой панели */
-  .workspace-drawer.mod-right .workspace-drawer-header {
-  /* Обнуляем внутренние отступы, которые тянут всё вниз */
-    padding-top: 0 !important;
-    padding-bottom: 20px !important; /* Увеличиваем снизу, чтобы "выдавить" контент вверх */
-    height: 48px !important; /* Фиксируем высоту */
-    display: flex !important;
-    align-items: flex-start !important; /* Прижимаем к самому верху */
-  }
-  .workspace-drawer.mod-right .workspace-drawer-tab-options {
-  animation: popover-slide 0.1s ease-out !important;
-    &::before { display: none !important; }
-  }
-  /* 2. Поднимаем контейнер с кнопками в правой панели */
-  .workspace-drawer.mod-right .nav-buttons-container {
-    margin-top: -8px !important; /* Тянем кнопки вверх */
-  }
-  /* 3. Поднимаем надпись "Пульт управления" в правой панели */
-  .workspace-drawer.mod-right .workspace-drawer-tab-select {
-    margin-top: -8px !important; 
-    display: flex !important;
-    /* Фиксируем высоту и запрещаем сжатие/расширение, чтобы текст не дергался */
-    height: 48px !important;
-    flex-shrink: 0 !important;
-    align-items: center !important;
-    padding: 12px 0 0 0 !important;
-  }
-  /* 4. Убираем лишние зазоры у навигации */
-  .workspace-drawer.mod-right .nav-header {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-}
 
 
 
