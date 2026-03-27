@@ -691,13 +691,15 @@ body.is-phone {
   }
   /* ПУНКТЫ МЕНЮ СЕЛЕКТОРА */
   .workspace-drawer-tab-options-list {
+    transition: none !important; 
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .workspace-drawer.mod-left .workspace-drawer-tab-options-list {
     padding-top: var(--size-4-2);
     padding-bottom: calc(var(--touch-size-l) - 24px); /* var(--touch-size-l) */
     bottom: 0;
     top: unset;
-    transition: none !important; 
-    animation: none !important;
-    opacity: 1 !important;
   }
   .workspace-drawer-tab-options.is-collapsed .workspace-drawer-tab-options-list {
     display: none !important;
