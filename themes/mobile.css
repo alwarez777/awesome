@@ -625,17 +625,18 @@ body.is-phone {
     grid-template-columns: 1fr auto !important; /* Левая колонка для текста (1fr), правая для шестеренки (auto) */
     grid-template-rows: auto auto !important;   /* Две строки по высоте текста */
     row-gap: 0px !important;                    /* Тот самый идеальный зазор между "Пультом" и "Awesome" */
-    align-items: center !important;             /* Идеальное центрирование по вертикали */
+    align-items: end !important;             /* Идеальное центрирование по вертикали */
     padding-top: 0 !important;
-    padding-bottom: calc(var(--safe-area-inset-bottom, 16px) - 32px) !important; /* Упираем в безопасную зону экрана снизу */
+    margin-top: auto !important; /* padding-bottom: calc(var(--safe-area-inset-bottom, 16px) - 32px) */
   }
   /* СТРОКА 1: Селектор плагина */
   .workspace-drawer.mod-left .workspace-drawer-tab-select {
     grid-column: 1 !important; /* Ставим в первую колонку */
     grid-row: 1 !important;    /* Ставим в первую строку */
     margin: 0 !important;
-    margin-bottom: -24px !important;
-    height: auto !important; 
+    min-height: 0 !important;
+    height: auto !important;
+    line-height: 1 !important;
   }
   .workspace-drawer.mod-right .workspace-drawer-tab-select {
     grid-column: 1 !important;
