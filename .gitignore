@@ -1,4 +1,5 @@
 # Зависимости
+node_modules.nosync/
 node_modules/
 dist/
 .npm/
