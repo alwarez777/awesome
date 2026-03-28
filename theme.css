@@ -1772,6 +1772,10 @@ body:not(.is-phone) .mod-root {
   & .view-header {
     height: 2.5625rem;
   }
+
+  & .workspace-leaf-content[data-type="beautitab-react-view"] .view-header .view-header-title-container {
+    opacity: 0;
+  }
 }
 
 body.is-phone {
@@ -2418,19 +2422,21 @@ body.is-phone {
   }
 
   & .workspace-drawer-header {
-    padding-top: 0 !important;
-    padding-bottom: calc(var(--safe-area-inset-bottom, 16px) - 32px) !important;
     grid-template-rows: auto auto !important;
     grid-template-columns: 1fr auto !important;
-    align-items: center !important;
+    align-items: end !important;
     row-gap: 0 !important;
+    margin-top: auto !important;
+    padding-top: 0 !important;
     display: grid !important;
   }
 
   & .workspace-drawer.mod-left .workspace-drawer-tab-select {
     grid-area: 1 / 1 !important;
     height: auto !important;
-    margin: 0 0 -24px !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
   }
 
   & .workspace-drawer.mod-right .workspace-drawer-tab-select {
@@ -2483,13 +2489,16 @@ body.is-phone {
   }
 
   & .workspace-drawer-tab-options-list {
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  & .workspace-drawer.mod-left .workspace-drawer-tab-options-list {
     padding-top: var(--size-4-2);
     padding-bottom: calc(var(--touch-size-l) - 24px);
     bottom: 0;
     top: unset;
-    opacity: 1 !important;
-    transition: none !important;
-    animation: none !important;
   }
 
   & .workspace-drawer-tab-options.is-collapsed .workspace-drawer-tab-options-list {
