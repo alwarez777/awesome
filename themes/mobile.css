@@ -636,29 +636,31 @@ body.is-phone {
     margin: 0 !important;
     min-height: 0 !important;
     height: auto !important;
-    line-height: 1 !important;
+    margin-bottom: calc(var(--size-4-4) * (-1)) !important;
   }
   .workspace-drawer.mod-right .workspace-drawer-tab-select {
     grid-column: 1 !important;
     grid-row: 1 !important;
     margin: 0 !important;
-    margin-bottom: -6px !important; /* МЕНЬШЕ нахлест, чтобы не наезжали */
+    margin-bottom: calc(var(--size-3-2) * (-1)) !important;
   }
-  .workspace-drawer.mod-right .workspace-drawer-header-right {
+  .workspace-drawer.mod-right .workspace-drawer-header-left {
     grid-column: 1 !important;
     grid-row: 2 !important;
-    padding-left: 6px !important;
+    margin: 0 !important;
+    margin-bottom: calc(var(--size-2-2) * 1) !important;
     display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
   }
   .workspace-drawer-tab-select .workspace-tab-header-inner {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    min-height: 20px !important; 
+    min-height: 20px !important;
     background: transparent !important;
   }
-
   .workspace-drawer-tab-select .workspace-tab-header-inner-title {
-    font-size: var(--font-ui-small) !important;
+    font-size: var(--font-ui-medium) !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     transition: none !important;
@@ -677,7 +679,7 @@ body.is-phone {
   }
   .workspace-drawer-header-name-text,
   .workspace-drawer-header-info {
-    font-size: var(--font-ui-small) !important;
+    font-size: var(--font-ui-medium) !important;
     margin: 0 !important;
     line-height: 1 !important;
   }
