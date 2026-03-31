@@ -1083,77 +1083,102 @@ body:not(.is-phone) .workspace-leaf-content[data-type="empty"] {
 
 
 
-/* 💻 Плагин в левом сайдбаре с полным названием и выпадающим списком из Baseline */
-/* Основная настройка */
-body.tab-top-left-dropdown .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header {
-  padding: 0;
-}
-body.tab-top-left-dropdown .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space {
-  --sidebar-tab-text-display: inline-block;
+/* 💻 Выпадающий список плагинов для левого сайдбара */
 
-  .workspace-tab-header-container-inner {
-    flex-direction: column;
-    align-self: flex-start;
-    gap: 0 !important;
-    z-index: 1;
-    padding: 0 !important;
-    width: 100%;
-    height: 100%;
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-    /* border-radius: var(--radius-s); */
-    background-color: transparent;
-    outline: 0px solid transparent;
+body:not(.is-mobile).tab-top-left-dropdown {
+  /* 1. Мастер-настройки проявления текста */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space {
+    --sidebar-tab-text-display: inline-block;
+    overflow: visible;
   }
-  
-  .workspace-tab-header {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-    padding: 8px 0;
-    height: calc(var(--header-height) - 8px * 2);
+  /* 2. Базовый контейнер селектора */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner {
+    position: absolute;
+    top: 0;
+    left: 90px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    
+    background-color: transparent;
+    border-radius: var(--radius-m);
+    border: 1px solid transparent;
+    outline: 0px solid transparent;
+    
+    /* Плавная анимация высоты */
+    max-height: 32px;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.2s ease, 
+                box-shadow 0.2s ease,
+                border-color 0.2s ease !important;
+    
+    z-index: 100;
+    overflow: hidden;
+  }
+  /* 3. Логика раскрытия (Наведение) */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner:hover {
+    max-height: 500px;
+    background-color: var(--background-secondary);
+    border-color: var(--background-modifier-border);
+    box-shadow: var(--shadow-s);
+  }
+  /* 4. Оформление строк (Пункты меню) */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header {
+    height: 32px;
+    width: 100%;
+    margin: 0;
+    padding: 0 8px;
+    background-color: transparent !important;
+    border-radius: var(--radius-s);
+    border: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     flex-shrink: 0;
   }
-
-  .workspace-tab-header-container-inner:hover {
-    height: calc-size(auto, size);
-    background-color: transparent !important;
-    /* outline: 4px solid var(--interactive-normal); */
-    transition-delay: var(--anim-duration-moderate);
-
-    .workspace-tab-header {
-      transition-property: order, opacity;
-      transition-delay: var(--anim-duration-moderate), 0s;
-    }
+  /* Ховер на конкретную строку */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header:hover {
+    background-color: var(--interactive-hover) !important;
   }
-  .workspace-tab-header-container-inner:not(:hover) .workspace-tab-header.is-active {
+  /* 5. Исправление видимости текста и иконок */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner {
+    background-color: transparent !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner-title {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+    color: var(--text-normal);
+    font-weight: 500;
+  }
+  /* 6. УМНАЯ ЛОГИКА ОТОБРАЖЕНИЯ (Fix) */
+  /* Когда НЕ наведены: показываем ТОЛЬКО активный */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner:not(:hover) .workspace-tab-header:not(.is-active) {
+    display: none;
+  }
+  /* Когда НАВЕДЕНЫ: показываем ВСЕ пункты */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner:hover .workspace-tab-header {
+    display: flex;
+    opacity: 1;
+  }
+  /* Всегда активный сверху в списке */
+  .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header.is-active {
     order: -1;
   }
-}
-
-/* Фикс для Cupertino - Отобразить название плагина */
-body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner {
-    border-radius: var(--clickable-icon-radius);
-    width: unset !important;
-    height: fit-content;
-    z-index: 1;
-}
-
-/* Центрирование - Сдвинуть название плагина */
-/* 1. Центрируем контейнер вкладок относительно ширины сайдбара */
-body.tab-top-left-dropdown .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner {
-  align-items: center !important;
-  align-self: center !important;
-  width: 100% !important;
-  margin: 0 !important;
-  display: flex !important;
-}
-/* 2. Центрируем содержимое каждой вкладки */
-body.tab-top-left-dropdown .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-}
-/* 3. Смещаем текст вправо на 15px внутри центрированного блока */
-body.tab-top-left-dropdown .mod-sidedock.mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner-title {
-  padding-right: 40px !important;
+  /* Убираем кнопку закрытия */
+  .workspace-tab-header-inner-close-button { 
+    display: none; 
+  }
 }
 
 
