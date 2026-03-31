@@ -668,7 +668,10 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
     background-color: var(--background-modifier-border-hover);
     padding-inline: 8px;
     width: fit-content;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+  }
+  .workspace-drawer.mod-left .nav-buttons-container {
+    margin-bottom: var(--size-4-5);
   }
 
   &:not(.is-floating-nav) .workspace-drawer .nav-buttons-container {
