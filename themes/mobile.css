@@ -129,6 +129,29 @@ body.is-mobile {
     }
   }
 
+  &:is(.mod-macos, .adaptive-mode-off).is-mobile {
+    .workspace-drawer .nav-buttons-container {
+      justify-self: center;
+      gap: 0;
+      backdrop-filter: var(--raised-blur);
+      border-radius: 100vh;
+      background-color: var(--background-modifier-border-hover);
+      padding-inline: 8px;
+      width: fit-content;
+      margin-bottom: 0;
+    }
+    .workspace-drawer.mod-left .nav-buttons-container {
+      margin-bottom: var(--size-4-5);
+    }
+    .workspace-drawer.mod-right .nav-buttons-container {
+      margin-bottom: var(--size-2-1);
+    }
+  
+    &:not(.is-floating-nav) .workspace-drawer .nav-buttons-container {
+      margin-bottom: 0;
+    }
+  }
+
   /* // Toolbar */
   .mobile-toolbar-spacer {
     background-color: transparent;
