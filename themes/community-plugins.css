@@ -442,8 +442,6 @@ body:not(.is-mobile) .kanban-plugin__item .kanban-plugin__item-postfix-button {
 }
 
 
-/* # BEAUTITAB */
-
 /* ## BEAUTITAB */
 
 .workspace-tabs .workspace-leaf-content.beautitab {
@@ -650,18 +648,48 @@ body.is-phone {
 
 /* # DATAVIEW */
 
-/* 📱💻 Убрать тень и фон при наведении на элементы */
-.dataview.task-list-item:hover,
-.dataview.task-list-basic-item:hover,
-.table-view-table > tbody > tr:hover {
-  background-color: transparent !important;
-  box-shadow: none; 
+/* 📱 Настройка блоков Dataview/DataviewJS */
+body.is-phone {
+  .cm-html-embed tbody tr > td:last-child, 
+  .markdown-rendered tbody tr > td:last-child {
+  font-size: 12px; }
 }
 
-/* 📱 Настройка блоков Dataview/DataviewJS */
-body.is-phone .cm-html-embed tbody tr > td:last-child, 
-body.is-phone .markdown-rendered tbody tr > td:last-child {
-  font-size: 12px; }
+/* 📱💻 Убрать тень и фон при наведении на элементы */
+.dataview.task-list-item:hover,
+.dataview.task-list-basic-item:hover {
+  border-radius: var(--radius-s);
+}
+.table-view-table > tbody > tr:hover {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+body {
+  /* Блок кода DataviewJS */
+  .block-language-dataviewjs {
+    padding: 5px 2px;
+    padding-inline-start: 15px;
+    border: 0px solid var(--background-secondary);
+    border-radius: 7px; }
+  /* Задачи через Dataview */
+  .dataview.task-list-item, 
+  .dataview.task-list-basic-item {
+    inset-inline-start: 0;
+    padding-bottom: var(--size-4-1); 
+  }
+  .dataview .task-list-item-checkbox {
+    inset-inline-start: 0;
+  }
+  /* Маркеры пунктов */
+  .block-language-dataviewjs div ul li input {
+    margin-bottom: calc(var(--size-2-1) * (-1));
+  }
+  /* Текст пунктов */
+  .block-language-dataviewjs div span {
+    padding: 0;
+  }
+}
 
 
 
