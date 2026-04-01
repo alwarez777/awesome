@@ -490,6 +490,10 @@ body:not(.is-mobile) .kanban-plugin__item .kanban-plugin__item-postfix-button {
 body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-left {
   margin-left: unset;
 }
+/* 💻 Скрывать новую вкладку */
+.workspace-tab-header[data-type="beautitab-react-view"] {
+  display: none;
+}
 
 
 
