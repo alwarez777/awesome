@@ -922,7 +922,7 @@ body:not(.is-phone) {
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li {
   grid-column: span 6; /* Дефолтное поведение: 2 колонки */
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-bg-opacity))));
+  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (0.99 - var(--dp-bg-opacity))));
   box-shadow: 0 8px 24px -6px color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-shadow-opacity)))),
               0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-border-opacity))));
