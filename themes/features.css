@@ -997,9 +997,13 @@ body:not(.is-phone) {
 /* 1. Основной контейнер */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) {
   grid-column: span 12 !important; 
-  border: 1px solid color-mix(in srgb, var(--accent-glow), transparent 75%);
+  border: none !important;
+  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), transparent 75%) !important;
+  border-radius: 0 8px 8px 0;
+  box-shadow: -6px 0 10px -4px color-mix(in srgb, var(--accent-glow), transparent 80%);
   padding: 12px 10px 8px 10px !important;
   display: block;
+  margin-block-start: var(--size-4-1);
 }
 /* 2. Заголовок "Система" */
 .list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
@@ -1021,9 +1025,9 @@ body:not(.is-phone) {
 }
 /* 4. Сами карточки-кнопки */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li {
-  background-color: color-mix(in srgb, var(--accent-glow), transparent 95%);
+  background-color: color-mix(in srgb, var(--accent-glow), transparent 99%);
   border: 1px solid color-mix(in srgb, var(--accent-glow), transparent 85%);
-  border-radius: 8px !important;
+  border-radius: 25px !important;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -1062,7 +1066,7 @@ body:not(.is-phone) {
   border-radius: 0 8px 8px 0; 
   padding: 0.4rem 0.8rem; 
   justify-content: flex-start;
-  margin-block-start: var(--size-4-2);
+  margin-block-start: var(--size-4-1);
 }
 
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover {
@@ -1101,7 +1105,7 @@ body:not(.is-phone) {
   box-shadow: -6px 0 10px -4px color-mix(in srgb, var(--accent-glow), transparent 80%);
   padding: 5px 0 !important;
   display: block;
-  margin-block-start: var(--size-4-2);
+  margin-block-start: var(--size-4-1);
 }
 /* 2. Сетка для колонок */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
