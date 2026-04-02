@@ -418,6 +418,16 @@ body:not(.is-mobile) {
 .code-line-number .cm-contentContainer .cm-line.HyperMD-codeblock-end {
   counter-set: code-line;
 }
+
+/* 📱💻 Скрыть направляющие линии внутри блоков кода */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent::before,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-active-indent::before {
+    display: none;
+}
+/* 📱💻 Убрать фоновые элементы отступов в коде */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent {
+    border: none;
+}
   
   
 /* # СТРОЧНЫЙ КОД */
