@@ -4,7 +4,7 @@
   "description": "Obsidian theme development",
   "main": "theme.css",
   "scripts": {
-    "build": "lightningcss --bundle src.css -o \"/Users/iliakotlov/Library/Mobile Documents/iCloud~md~obsidian/Documents/Awesome by ILKT/.obsidian/themes/Awesome/theme.css\"",
+    "build": "lightningcss --bundle src.css -o \"/Users/iliakotlov/Library/Mobile Documents/iCloud~md~obsidian/Documents/Awesomebrain/.obsidian/themes/Awesome/theme.css\"",
     "dev": "chokidar \"**/*.css\" -c \"npm run build\" --await-write-finish 3000 --initial"
   },
   "repository": {
