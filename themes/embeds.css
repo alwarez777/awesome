@@ -394,11 +394,80 @@ body:not(.is-mobile) {
     width: 25px;
     height: 25px; 
   }
+
+  /* 📱💻 Нумерация строк в блоке кода */
+.code-line-number .cm-contentContainer {
+  counter-reset: code-line;
+}
+.code-line-number .cm-contentContainer .cm-line.HyperMD-codeblock {
+  padding-left: var(--size-4-12) !important;
+}
+.code-line-number .cm-contentContainer .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end)::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  position: absolute;
+  text-align: right;
+  width: var(--size-4-8);
+  left: 0;
+  color: var(--accent-active);
+  opacity: 0.6;
+}
+.code-line-number .cm-contentContainer .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end).cm-active::before {
+  opacity: 1;
+}
+.code-line-number .cm-contentContainer .cm-line.HyperMD-codeblock-end {
+  counter-set: code-line;
+}
   
   
-  /* # СТРОЧНЫЙ КОД */
+/* # СТРОЧНЫЙ КОД */
   
-  /* 💻 Увеличить размер шрифта */
-  body:not(.is-phone) .cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
-    font-size: calc(var(--code-size) + 5%);
-  }
+/* 💻 Увеличить размер шрифта */
+/* body:not(.is-phone) .cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
+  font-size: calc(var(--code-size) + 5%);
+} */
+body {
+  --inline-code: var(--color-red) !important;
+}
+.cm-hmd-codeblock.cm-formatting,
+.markdown-rendered code {
+  color: var(--inline-code);
+}
+.markdown-preview-view pre code {
+  color: var(--code-normal);
+  border: none;
+  border-radius: 0;
+}
+.cm-inline-code {
+  --code-normal: var(--inline-code);
+  --code-radius: var(--radius-s);
+  color: var(--inline-code) !important;
+}
+.cm-inline-code * {
+  color: var(--inline-code) !important;
+}
+.cm-inline-code:not(.cm-formatting) {
+  padding-inline: var(--size-2-1);
+}
+.cm-formatting-code + .cm-inline-code {
+  padding: 0;
+}
+.cm-inline-code.cm-header {
+  color: var(--inline-code) !important;
+}
+.cm-formatting-code:has(+ .cm-inline-code) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+  padding-left: var(--size-2-1);
+}
+.cm-formatting-code + .cm-inline-code {
+  border-radius: 0;
+  border-inline: 0;
+}
+.cm-inline-code + .cm-formatting-code {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+  padding-right: var(--size-2-1);
+}
