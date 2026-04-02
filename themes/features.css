@@ -1,22 +1,86 @@
 /* # ACTIVE LINE */
-body:not(.active-line-off) .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active:not(:has(.cm-fold-indicator):hover)::after {
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
-    inset-inline-start: -16px;
-    border-left: 4px solid var(--background-modifier-border-hover);
-    border-radius: var(--input-radius);
-    content: "";
+
+body {
+  /* --- ЛОГИКА ЦВЕТОВ (СЕРЫЙ ПО УМОЛЧАНИЮ) --- */
+  --al-main: var(--text-muted); /* Для индикатора и границы */
+  --al-bg: var(--background-modifier-hover);         /* Для фоновой заливки */
+
+  /* РАССЧЕТ ХОВЕРА (зависит от выбранного выше цвета) */
+  --al-main-hover: color-mix(in srgb, var(--al-main), transparent 70%);
+  --al-bg-hover: color-mix(in srgb, var(--al-bg), transparent 60%);
+
+  /* --- ЛОГИКА ЦВЕТОВ (АКЦЕНТНЫЙ ЦВЕТ) --- */
+  &.awe-feature-activeline-accent {
+    --al-main: var(--interactive-accent);
+    --base-accent-h: var(--accent-h, 210);
+    --base-accent-s: var(--accent-s, 70%);
+    --bg-sat: calc(15% + var(--base-accent-s) / 10);
+
+    &.theme-light {
+      --al-bg: hsl(var(--base-accent-h), var(--bg-sat), 92%);
+    }
+    &.theme-dark {
+      --al-bg: hsl(var(--base-accent-h), var(--bg-sat), 14%);
+    }
+  }
 }
 
-/* 📱💻 Граница для активного блока текста */
-.workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active {
-  border-bottom: 0.5px solid;
-  border-color: rgba(var(--mono-rgb-100), 0.15);
-  transition: border-color 0.15s ease;
+/* --- 1. ИНДИКАТОР СЛЕВА --- */
+
+/* Активная строка */
+body.awe-feature-activeline-line .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active::after {
+  content: ""; 
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  inset-inline-start: calc(var(--size-4-4) * (-1));
+  border-left: 4px solid var(--al-main); 
+  border-radius: var(--input-radius);
 }
-/* 📱💻 При наведении на блок текста 
-.markdown-source-view .cm-line:hover */
+/* При наведении */
+body.awe-feature-activeline-line.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active)::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  inset-inline-start: calc(var(--size-4-4) * (-1));
+  border-left: 4px solid var(--al-main-hover); 
+  border-radius: var(--input-radius);
+}
+
+/* --- 2. НИЖНЯЯ ГРАНИЦА --- */
+
+/* Активная строка */
+body.awe-feature-activeline-bord .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active {
+  border-bottom: 0.5px solid var(--al-main);
+}
+/* При наведении */
+body.awe-feature-activeline-bord.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active) {
+  border-bottom: 0.5px solid var(--al-main-hover);
+}
+
+/* --- 3. ФОНОВЫЙ ЦВЕТ --- */
+
+/* Активная строка */
+body.awe-feature-activeline-bg {
+  .workspace-leaf.mod-active .markdown-source-view .cm-scroller .cm-line.cm-active {
+    background-color: var(--al-bg) !important;
+  }
+  .table-cell-wrapper .cm-line:is(.cm-active, :hover) {
+    background-color: transparent;
+  }
+  .workspace-leaf .markdown-source-view .cm-scroller .cm-line:is(.cm-active, :hover):not(.HyperMD-quote) {
+    border-radius: var(--radius-s);
+  }
+}
+
+/* При наведении */
+body.awe-feature-activeline-bg.awe-feature-activeline-hover {
+  .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active) {
+    background-color: var(--al-bg-hover) !important;
+    border-radius: var(--radius-s);
+  }
+}
 
 
 /* # BLOCK WIDTH */
@@ -1148,6 +1212,13 @@ body:not(.is-phone) {
   padding: 2px 0;
 }
 
+/* Эффект при наведении на ссылки внутри #list и #multilist */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"], a[href="#multilist"]) ul > li > a:hover {
+  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-bg-hover-opacity))));
+  color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-text-hover-opacity))));
+  padding-left: var(--size-4-1) !important;
+}
+
 
 /* АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ */
 @media (max-width: 800px) {
@@ -1175,6 +1246,23 @@ body:not(.is-phone) {
   .list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
     font-size: 1.0em;
   }
+}
+
+/* =========================================
+   ВНУТРЕННИЕ ЭЛЕМЕНТЫ (ССЫЛКИ И ТЕГИ)
+   ========================================= */
+
+/* Оформление ссылок */
+.list-cards.dashboard-premium.markdown-preview-view div ul li a {
+  text-decoration: none !important;
+  color: var(--text-normal);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+/* Скрытие служебных ссылок-тегов */
+.list-cards.dashboard-premium.markdown-preview-view a[href*="#"] { 
+  display: none !important; 
 }
 
 
@@ -1205,27 +1293,3 @@ body:not(.is-phone) {
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
-
-/* =========================================
-   ВНУТРЕННИЕ ЭЛЕМЕНТЫ (ССЫЛКИ И ТЕГИ)
-   ========================================= */
-
-.list-cards.dashboard-premium.markdown-preview-view div ul li a {
-  text-decoration: none !important;
-  color: var(--text-normal);
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-.list-cards.dashboard-premium.markdown-preview-view div ul > li > a {
-  padding: 2px 6px;
-}
-.list-cards.dashboard-premium.markdown-preview-view div ul > li > a:hover {
-  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-bg-hover-opacity))));
-  color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-text-hover-opacity))));
-  padding-left: 10px;
-}
-/* Скрытие служебных ссылок-тегов */
-.list-cards.dashboard-premium.markdown-preview-view a[href*="#"] { 
-  display: none !important; 
-}
