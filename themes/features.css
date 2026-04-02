@@ -28,7 +28,7 @@ body {
 /* --- 1. ИНДИКАТОР СЛЕВА --- */
 
 /* Активная строка */
-body.awe-feature-activeline-line .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active::after {
+body.awe-feature-activeline-line .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active:not(:has(br:only-child))::after {
   content: ""; 
   position: absolute;
   top: 4px;
@@ -38,7 +38,7 @@ body.awe-feature-activeline-line .workspace-split.mod-vertical.mod-root .markdow
   border-radius: var(--input-radius);
 }
 /* При наведении */
-body.awe-feature-activeline-line.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active)::after {
+body:not(.is-phone).awe-feature-activeline-line.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active):not(:has(br:only-child))::after {
   content: "";
   position: absolute;
   top: 4px;
@@ -51,11 +51,11 @@ body.awe-feature-activeline-line.awe-feature-activeline-hover .workspace-split.m
 /* --- 2. НИЖНЯЯ ГРАНИЦА --- */
 
 /* Активная строка */
-body.awe-feature-activeline-bord .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active {
+body.awe-feature-activeline-bord .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line.cm-active:not(:has(br:only-child)) {
   border-bottom: 0.5px solid var(--al-main);
 }
 /* При наведении */
-body.awe-feature-activeline-bord.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active) {
+body:not(.is-phone).awe-feature-activeline-bord.awe-feature-activeline-hover .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active):not(:has(br:only-child)) {
   border-bottom: 0.5px solid var(--al-main-hover);
 }
 
@@ -63,20 +63,20 @@ body.awe-feature-activeline-bord.awe-feature-activeline-hover .workspace-split.m
 
 /* Активная строка */
 body.awe-feature-activeline-bg {
-  .workspace-leaf.mod-active .markdown-source-view .cm-scroller .cm-line.cm-active {
+  .workspace-leaf.mod-active .markdown-source-view .cm-scroller .cm-line.cm-active:not(:has(br:only-child)) {
     background-color: var(--al-bg) !important;
   }
   .table-cell-wrapper .cm-line:is(.cm-active, :hover) {
     background-color: transparent;
   }
-  .workspace-leaf .markdown-source-view .cm-scroller .cm-line:is(.cm-active, :hover):not(.HyperMD-quote) {
+  .workspace-leaf .markdown-source-view .cm-scroller .cm-line:is(.cm-active, :hover):not(.HyperMD-quote):not(:has(br:only-child)) {
     border-radius: var(--radius-s);
   }
 }
 
 /* При наведении */
-body.awe-feature-activeline-bg.awe-feature-activeline-hover {
-  .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active) {
+body:not(.is-phone).awe-feature-activeline-bg.awe-feature-activeline-hover {
+  .workspace-split.mod-vertical.mod-root .markdown-source-view .cm-line:hover:not(.cm-active):not(:has(br:only-child)) {
     background-color: var(--al-bg-hover) !important;
     border-radius: var(--radius-s);
   }
