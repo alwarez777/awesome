@@ -695,6 +695,18 @@ body {
   }
 }
 
+/* Настройка разделителя внутри блока Dataview */
+.block-language-dataviewjs .gtd-separator {
+  border: none;
+  border-top: 1px dashed var(--background-modifier-border);
+  margin: 12px 0;
+  opacity: 1;
+  height: 0px;
+  width: 100%;
+}
+
+/* Если хочешь вернуть сплошную линию, просто поменяй dashed на solid */
+
 
 
 /* # VERTICAL TABS */
