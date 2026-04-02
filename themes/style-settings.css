@@ -70,9 +70,32 @@ settings:
         level: 1
         collapsed: true
     -
-        id: active-line-off
-        title: Disable active line highlight
+        id: awe-feature-activeline
+        title: 📱💻 Стиль оформления линии
+        type: class-select
+        allowEmpty: false
+        default: awe-feature-activeline-def
+        options:
+          - label: "Стандартный"
+            value: awe-feature-activeline-def
+          - label: "Индикатор слева"
+            value: awe-feature-activeline-line
+          - label: "Нижняя граница"
+            value: awe-feature-activeline-bord
+          - label: "Фоновый цвет"
+            value: awe-feature-activeline-bg
+    -
+        id: awe-feature-activeline-hover
+        title: 🖱️ Включить эффект наведения (Hover)
+        description: Подсвечивает строку под курсором мыши в том же стиле, что и активную.
         type: class-toggle
+        value: awe-hover-enabled
+    -
+        id: awe-feature-activeline-accent
+        title: ✨ Использовать акцентный цвет
+        description: Если выключено — используется системный серый, если включено — твой акцентный цвет.
+        type: class-toggle
+        default: false
     -
         id: banner-off
         title: Disable banner
@@ -183,4 +206,10 @@ settings:
             value: hm-bg-colorful
           - label: "Монохромный (Mono)"
             value: hm-bg-mono
+    -
+        id: code-line-number
+        title: 📱💻 Отображать номера строк в блоке кода
+        description: Добавляет нумерацию для строк слева внутри блока
+        type: class-toggle
+        default: true
 */
