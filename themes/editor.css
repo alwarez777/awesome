@@ -335,6 +335,10 @@ body {
   opacity: 0.15 !important;
 }
 
+/* 📱💻 Увеличить размер маркеров в марк. списке */
+body {
+--list-bullet-size: calc(var(--font-text-size) / 3 + var(--size-2-1))
+}
 
 /* 💻 Выравнивание маркеров по одной линии
 ----- Затрагивает все виды списков ----- */
@@ -633,7 +637,7 @@ body:not(.is-mobile) .metadata-property-key {
 }
 
 /* 📱💻 Включить автоскрытие блока и раскрытие при наведении */
-/* .cm-editor .metadata-container:not(:hover):not(:focus-within),
+.cm-editor .metadata-container:not(:hover):not(:focus-within),
 .markdown-preview-view .metadata-container:not(:hover):not(:focus-within) {
   max-height: 1.1em;
   padding: 0.6em 0.5em;
@@ -667,7 +671,7 @@ body:not(.is-mobile) .metadata-property-key {
     transform: translateY(-6px);
     pointer-events: none;
   }
-} */
+}
 
 @keyframes fadePulse {
   0%, 100% { opacity: 0.15; }
@@ -678,10 +682,10 @@ body:not(.is-mobile) .metadata-property-key {
 }
 /* Снять ограничения на высоту блока 
 Закоммонетировать/удалить, когда верну автосвертывание */
-.metadata-container {
+/* .metadata-container {
   max-height: none !important;
   height: auto !important;
-}
+} */
 /* 📱💻 Убрать перенос слов в ссылке для свойств типа Список */
 .multi-select-pill {
   white-space: nowrap;
