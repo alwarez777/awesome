@@ -519,48 +519,48 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
 body.is-phone {
   /* 1. ГАРМОНИЗАЦИЯ ПАНЕЛИ */
   .mobile-tab-switcher-menubar {
-    display: flex !important;
-    gap: 12px !important;
+    display: flex;
+    gap: 12px;
   }
   /* Фиксируем ширину боковых контейнеров, чтобы кнопки не плющило */
   .mobile-tab-switcher-menu-spacer:first-child,
   .mobile-tab-switcher-menu-spacer:last-child {
-    flex: 0 0 var(--input-height) !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    flex: 0 0 var(--input-height);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   /* 2. ЛЕВАЯ И ПРАВАЯ КНОПКИ (+ и Х) — ИДЕАЛЬНЫЙ КРУГ */
   .mobile-tab-switcher-menu-spacer:first-child .clickable-icon,
   .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
-    width: var(--input-height) !important;
-    height: var(--input-height) !important;
-    background-color: var(--background-primary) !important;
-    border-radius: 50% !important; 
-    box-shadow: var(--shadow-s) !important;
-    border: 1px solid var(--background-modifier-border) !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    width: var(--input-height);
+    height: var(--input-height);
+    background-color: var(--background-primary);
+    border-radius: 50%; 
+    box-shadow: var(--shadow-s);
+    border: 1px solid var(--background-modifier-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
   }
   /* 3. ЦЕНТРАЛЬНАЯ КНОПКА (СЧЕТЧИК) — ОВАЛ */
   .mobile-tab-switcher-menu-button {
     flex: 0 1 auto !important; /* 1 - сделать шире */
     min-width: 80px !important; /* убрать при flex: 1 */
-    height: var(--input-height) !important;
+    height: var(--input-height);
     background-color: var(--background-primary) !important;
     border-radius: calc(var(--input-height) / 2) !important;
     box-shadow: var(--shadow-s) !important;
     border: 1px solid var(--background-modifier-border) !important;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 0 16px !important;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
   }
   /* 4. АДАПТИВНЫЙ КРЕСТИК (X) */
   .mobile-tab-switcher-menu-spacer:last-child .clickable-icon {
