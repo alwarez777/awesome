@@ -327,6 +327,9 @@ body.is-mobile .view-content.notebook-navigator-mobile {
   }
 }
 
+
+/* # NOTEBOOK NAVIGATOR */
+
 /* 💻 Сдвинуть кнопки действий для Notebook Navigator */
 /* Устанавливаем контекст для позиционирования */
 body:not(.is-mobile) .nn-navigation-pane .nn-pane-header {
@@ -773,3 +776,18 @@ body.is-phone .lc-list-bg {
 /* .lc-list-marker {
   margin-right: 8px !important;
 } */
+
+
+
+/* # METABIND */
+
+/* Скрыть сообщения об ошибке */
+.mb-error-collection,
+.mb-error,
+div:has(> .mb-error-collection) {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
