@@ -949,322 +949,50 @@ body:not(.is-phone) {
    📱💻 CSS-класс: [💎 DASHBOARD PREMIUM 11.0: OPTIMIZED 12-GRID]
 ======================================================================== */
 
-.list-cards.dashboard-premium.markdown-preview-view {
-  /* --- СТАТИКА (Обычное состояние) --- */
-  --dp-bg-opacity: 0.025; 
-  --dp-border-opacity: 0.35;
-  --dp-shadow-opacity: 0.12;
+/* ========================================================================
+   ⚙️ DASHBOARD PREMIUM: GLOBAL ENGINE (VARIABLES)
+======================================================================== */
+body {
+  /* --- 1. Базовые коэффициенты (Числа) --- */
+  --dp-bg-alpha: 0.025;
+  --dp-brd-alpha: 0.35;
+  --dp-shd-alpha: 0.12;
 
-  /* --- ДИНАМИКА (При наведении) --- */
-  --dp-bg-hover-opacity: 0.075;
-  --dp-border-hover-opacity: 0.60;
-  --dp-shadow-hover-opacity: 0.25;
+  --dp-hover-bg-alpha: 0.075;
+  --dp-hover-brd-alpha: 0.60;
+  --dp-hover-shd-alpha: 0.25;
 
-  /* --- ССЫЛКИ (Hover State) --- */
   --dp-link-bg-hover-opacity: 0.1;
   --dp-link-text-hover-opacity: 0.9;
 
-  /* --- ИЕРАРХИЯ: НАСТРОЙКИ УРОВНЕЙ --- */
-  --dp-l1-padding: 1.5rem;
-  --dp-compact-padding: 0.4rem 0.5rem;
-  --dp-l3-border-width: 2px;
+  --dp-font-base: 1rem;
+  --font-s: 0.9; /* list / multilist / sysgrid-cards */
+  --font-m: 0.95; /* compact */
+  --font-l: 1; /* third */
+  --font-xl: 1.05; /* half */
+  --font-xxl: 1.1; /* wide / ultrawide */
 
+  /* --- 2. Математические маски (Процент прозрачности) --- */
+  /* Формула: calc(100% * (1 - коэффициент)) */
+  --mask-bg: transparent calc(100% * (0.99 - var(--dp-bg-alpha)));
+  --mask-brd: transparent calc(100% * (1 - var(--dp-brd-alpha)));
+  --mask-shd: transparent calc(100% * (1 - var(--dp-shd-alpha)));
+
+  --mask-hover-bg: transparent calc(100% * (1 - var(--dp-hover-bg-alpha)));
+  --mask-hover-brd: transparent calc(100% * (1 - var(--dp-hover-brd-alpha)));
+  --mask-hover-shd: transparent calc(100% * (1 - var(--dp-hover-shd-alpha)));
+
+  --mask-link-bg-hover: transparent calc(100% * (1 - var(--dp-link-bg-hover-opacity)));
+  --mask-link-text-hover: transparent calc(100% * (1 - var(--dp-link-text-hover-opacity)));
+
+  /* --- 3. Настройки геометрии --- */
   --dp-lift: -5px;
+  --dp-l1-padding: 1.5rem;
+  --dp-side-shadow-offset: -6px 0 10px -4px;
+  --dp-side-radius: 0 8px 8px 0;
+  --dp-side-shadow-hover-offset: -8px 0 12px -3px;
+  --dp-l3-border-width: 2px;
 }
-
-/* =========================================
-   ВНУТРЕННЯЯ 12-КОЛОНОЧНАЯ СЕТКА
-   Перебивает любые внешние хелперы (.cards-cols-X)
-   ========================================= */
-.list-cards.dashboard-premium.markdown-preview-view div > ul {
-  grid-template-columns: repeat(12, 1fr) !important;
-  display: grid;
-  gap: 10px;
-}
-
-/* 1. БАЗОВАЯ КАРТОЧКА (LI) - По умолчанию занимает половину (6 колонок) */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li {
-  grid-column: span 6; /* Дефолтное поведение: 2 колонки */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (0.99 - var(--dp-bg-opacity))));
-  box-shadow: 0 8px 24px -6px color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-shadow-opacity)))),
-              0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-border-opacity))));
-  padding: 0.9rem !important;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 2. ЭФФЕКТ ПРИ НАВЕДЕНИИ (Hover State) */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:hover {
-  transform: translateY(var(--dp-lift));
-  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-bg-hover-opacity))));
-  border-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-border-hover-opacity))));
-  box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-shadow-hover-opacity)))),
-              0 8px 15px -5px color-mix(in srgb, var(--accent-glow), transparent 80%);
-}
-
-/* =========================================
-   ФУНКЦИОНАЛЬНАЯ ИЕРАРХИЯ (ТЕГИ РАЗМЕТКИ)
-   ========================================= */
-
-/* --- УРОВЕНЬ 1: ОДИНОЧНЫЕ КАРТОЧКИ --- */
-
-/* #wide -> 12 колонок (100% ширины) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#wide"]) { 
-  grid-column: span 12; 
-  text-align: center;
-  align-items: center;
-  padding: var(--dp-l1-padding) !important;
-}
-
-/* #ultra-wide -> 12 колонок, но узкая по высоте */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#ultra-wide"]) {
-  grid-column: span 12;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  padding: calc(var(--dp-l1-padding) / 2) !important;
-  min-height: 55px;
-}
-
-/* #half -> 6 колонок (50% ширины) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#half"]) { 
-  grid-column: span 6 !important; 
-  text-align: center;
-  align-items: center;
-}
-
-/* #third -> 4 колонки (33% ширины - 3 в ряд) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#third"]) { 
-  grid-column: span 4 !important; 
-  text-align: center;
-  align-items: center;
-}
-
-/* Б. КОМПАКТНЫЙ РЕЖИМ (#compact -> 3 колонки, 4 в ряд) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#compact"]) { 
-  grid-column: span 3 !important; 
-  padding: var(--dp-compact-padding) !important;
-  flex-direction: row !important;
-  justify-content: center;
-  align-items: center;
-  min-height: 50px;
-  font-size: var(--font-small);
-}
-
-/* --- УРОВЕНЬ 2: ГРУППОВЫЕ БЛОКИ (СПИСКИ И СЕТКИ) --- */
-
-/* B. СЕТКА СИСТЕМЫ (#sysgrid и #sysgrid-cards) */
-
-/* 1. Основной контейнер */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) {
-  grid-column: span 12 !important; 
-  border: none !important;
-  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), transparent 75%) !important;
-  border-radius: 0 8px 8px 0;
-  box-shadow: -6px 0 10px -4px color-mix(in srgb, var(--accent-glow), transparent 80%);
-  padding: 12px 10px 8px 10px !important;
-  display: block;
-  margin-block-start: var(--size-4-1);
-}
-/* 2. Заголовок "Система" */
-.list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
-  display: block;
-  text-align: center;
-  margin: 0 0 12px 0 !important;
-  font-size: 0.90rem;
-  color: var(--text-muted);
-}
-/* 3. Сетка: ОБНУЛЯЕМ маркеры и отступы */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: 100%;
-}
-/* 4. Сами карточки-кнопки */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li {
-  background-color: color-mix(in srgb, var(--accent-glow), transparent 99%);
-  border: 1px solid color-mix(in srgb, var(--accent-glow), transparent 85%);
-  border-radius: 25px !important;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 16px !important;
-  margin: 0;
-  min-width: 0;
-}
-/* 4.1. Наведение на карточки-кнопки */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li:hover {
-  background-color: color-mix(in srgb, var(--accent-glow), transparent 85%);
-  border-color: color-mix(in srgb, var(--accent-glow), transparent 30%);
-  transform: translateY(-4px);
-}
-/* 5. Ссылка внутри карточки (активная область) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* С. ГИБКИЕ СПИСКИ (#listX) */
-
-/* Общие правила для всех списков */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) {
-  background-color: transparent;
-  box-shadow: -6px 0 10px -4px color-mix(in srgb, var(--accent-glow), transparent 80%);
-  border: none;
-  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), transparent 75%) !important;
-  border-radius: 0 8px 8px 0; 
-  padding: 0.4rem 0.8rem; 
-  justify-content: flex-start;
-  margin-block-start: var(--size-4-1);
-}
-
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover {
-  transform: translateX(4px); 
-  border-left-color: var(--accent-glow);
-  background-color: color-mix(in srgb, var(--accent-glow), transparent 96%);
-  box-shadow: -8px 0 12px -3px color-mix(in srgb, var(--accent-glow), transparent 70%);
-}
-
-/* Специфическая ширина для листов */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list6"]) { 
-  grid-column: span 6 !important; 
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list4"]) { 
-  grid-column: span 4 !important; 
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list3"]) { 
-  grid-column: span 3 !important; 
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list1"]) { 
-  grid-column: span 12 !important; 
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"])  { 
-  grid-column: span 6 !important; 
-}
-
-
-/* Г. СУПЕР-СПИСОК (#multilist): Эмуляция нескольких #list */
-
-/* 1. Обнуляем внешний контейнер */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) {
-  grid-column: span 12;
-  border: none;
-  border-radius: 0px !important;
-  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), transparent 75%);
-  box-shadow: -6px 0 10px -4px color-mix(in srgb, var(--accent-glow), transparent 80%);
-  padding: 5px 0 !important;
-  display: block;
-  margin-block-start: var(--size-4-1);
-}
-/* 2. Сетка для колонок */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 0px;
-  padding: 0;
-  margin: 0;
-}
-/* 3. Колонки (2 уровень): делаем их копиями #list */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
-  grid-column: span 1;
-  padding: 0 0 0 14px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-/* 5. Внутренний список ссылок (3 уровень) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 0;
-  margin: 0;
-  margin-block-start: var(--size-4-2);
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li {
-  padding: 0 ;
-  margin: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-/* 6. ЖЕСТКАЯ СЦЕПКА ИКОНКИ И ТЕКСТА */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  padding: 2px 0;
-}
-
-/* Эффект при наведении на ссылки внутри #list и #multilist */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"], a[href="#multilist"]) ul > li > a:hover {
-  background-color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-bg-hover-opacity))));
-  color: color-mix(in srgb, var(--accent-glow), transparent calc(100% * (1 - var(--dp-link-text-hover-opacity))));
-  padding-left: var(--size-4-1) !important;
-}
-
-
-/* АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ */
-@media (max-width: 800px) {
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 400pt) {
-  .list-cards.dashboard-premium.markdown-preview-view div > ul > li {
-    grid-column: span 12 !important; 
-  }
-}
-@media (max-width: 600px) {
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 6px;
-  }
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
-    padding-left: 8px;
-    font-size: 0.85em;
-  }
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
-    font-size: 0.95em;
-  }
-  .list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
-    font-size: 1.0em;
-  }
-}
-
-/* =========================================
-   ВНУТРЕННИЕ ЭЛЕМЕНТЫ (ССЫЛКИ И ТЕГИ)
-   ========================================= */
-
-/* Оформление ссылок */
-.list-cards.dashboard-premium.markdown-preview-view div ul li a {
-  text-decoration: none !important;
-  color: var(--text-normal);
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-/* Скрытие служебных ссылок-тегов */
-.list-cards.dashboard-premium.markdown-preview-view a[href*="#"] { 
-  display: none !important; 
-}
-
 
 /* =========================================
    УПРАВЛЕНИЕ ЦВЕТОМ 
@@ -1293,3 +1021,302 @@ body:not(.is-phone) {
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
+
+/* =========================================
+   ВНУТРЕННЯЯ 12-КОЛОНОЧНАЯ СЕТКА
+   Перебивает любые внешние хелперы (.cards-cols-X)
+   ========================================= */
+.list-cards.dashboard-premium.markdown-preview-view div > ul {
+  grid-template-columns: repeat(12, 1fr) !important;
+  display: grid;
+  gap: 10px;
+}
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li {
+  --local-color: var(--accent-glow, var(--text-accent));
+  
+  --final-bg: color-mix(in srgb, var(--local-color), var(--mask-bg));
+  --final-brd: color-mix(in srgb, var(--local-color), var(--mask-brd));
+  --final-shd: 0 8px 24px -6px color-mix(in srgb, var(--local-color), var(--mask-shd)), 0 4px 6px -2px rgba(0,0,0,0.05);
+
+  --final-hover-bg: color-mix(in srgb, var(--local-color), var(--mask-hover-bg));
+  --final-hover-brd: color-mix(in srgb, var(--local-color), var(--mask-hover-brd));
+  --final-hover-shd: 0 20px 40px -12px color-mix(in srgb, var(--local-color), var(--mask-hover-shd));
+  
+  background-color: var(--final-bg);
+  border: 1px solid var(--final-brd);
+  box-shadow: var(--final-shd);
+  transition: all 0.25s ease;
+}
+
+.list-cards.dashboard-premium.markdown-preview-view div > ul > li:hover {
+  transform: translateY(var(--dp-lift));
+  background-color: var(--final-hover-bg);
+  border-color: var(--final-hover-brd);
+  box-shadow: var(--final-hover-shd);
+}
+
+/* =========================================
+   ФУНКЦИОНАЛЬНАЯ ИЕРАРХИЯ (ТЕГИ РАЗМЕТКИ)
+   ========================================= */
+
+/* --- УРОВЕНЬ 1: ОДИНОЧНЫЕ КАРТОЧКИ --- */
+
+/* #wide -> 12 колонок (100% ширины) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#wide"]) { 
+  grid-column: span 12; 
+  text-align: center;
+  align-items: center;
+  padding: var(--dp-l1-padding) !important;
+  font-size: calc(var(--dp-font-base) * var(--font-xxl)) !important;
+}
+
+/* #ultra-wide -> 12 колонок, но узкая по высоте */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#ultra-wide"]) {
+  grid-column: span 12;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--dp-l1-padding) / 2) !important;
+  min-height: 55px;
+  font-size: calc(var(--dp-font-base) * var(--font-xxl)) !important;
+}
+
+/* #half -> 6 колонок (50% ширины) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#half"]) { 
+  grid-column: span 6 !important; 
+  text-align: center;
+  align-items: center;
+  font-size: calc(var(--dp-font-base) * var(--font-xl)) !important;
+}
+
+/* #third -> 4 колонки (33% ширины - 3 в ряд) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#third"]) { 
+  grid-column: span 4 !important; 
+  text-align: center;
+  align-items: center;
+  font-size: calc(var(--dp-font-base) * var(--font-l)) !important;
+}
+
+/* Б. КОМПАКТНЫЙ РЕЖИМ (#compact -> 3 колонки, 4 в ряд) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#compact"]) { 
+  grid-column: span 3 !important; 
+  padding: var(--dp-compact-padding) !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+}
+
+/* --- УРОВЕНЬ 2: ГРУППОВЫЕ БЛОКИ (СПИСКИ И СЕТКИ) --- */
+
+/* B. СЕТКА СИСТЕМЫ (#sysgrid и #sysgrid-cards) */
+
+/* 1. Основной контейнер */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) {
+  grid-column: span 12 !important; 
+  border: none;
+  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
+  border-radius: var(--dp-side-radius);
+  box-shadow: var(--dp-side-shadow-offset) color-mix(in srgb, var(--accent-glow), var(--mask-shd));
+  padding: 12px 10px 8px 10px !important;
+  display: block;
+  margin-block-start: var(--size-4-1);
+}
+/* 2. Заголовок "Система" */
+.list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
+  display: block;
+  text-align: center;
+  margin: 0 0 12px 0 !important;
+  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+  color: var(--text-muted);
+}
+/* 3. Сетка: ОБНУЛЯЕМ маркеры и отступы */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+/* 4. Сами карточки-кнопки */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li {
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-bg));
+  border: 1px solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
+  border-radius: 25px !important;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 16px !important;
+  margin: 0;
+  min-width: 0;
+}
+/* 4.1. Наведение на карточки-кнопки */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li:hover {
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg));
+  border-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd));
+  transform: translateY(-4px);
+}
+/* 5. Ссылка внутри карточки (активная область) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--dp-font-base) * var(--font-s)) !important;
+}
+
+
+/* С. ГИБКИЕ СПИСКИ (#listX) */
+
+/* Общие правила для всех списков */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) {
+  background-color: transparent;
+  box-shadow: var(--dp-side-shadow-offset) color-mix(in srgb, var(--accent-glow), var(--mask-shd));
+  border: none;
+  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
+  border-radius: var(--dp-side-radius); 
+  padding: 0.4rem 0.8rem; 
+  justify-content: flex-start;
+  margin-block-start: var(--size-4-1);
+  font-size: calc(var(--dp-font-base) * var(--font-s)) !important;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover {
+  transform: translateX(4px); 
+  border-left-color: var(--accent-glow);
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg));
+  box-shadow: var(--dp-side-shadow-hover-offset) color-mix(in srgb, var(--accent-glow), var(--mask-hover-shd));
+}
+
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"]) ul li a,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul li a {
+  font-size: calc(var(--dp-font-base) * var(--font-s)) !important;
+}
+
+/* Специфическая ширина для листов */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list6"]) { 
+  grid-column: span 6 !important; 
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list4"]) { 
+  grid-column: span 4 !important; 
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list3"]) { 
+  grid-column: span 3 !important; 
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list1"]) { 
+  grid-column: span 12 !important; 
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"])  { 
+  grid-column: span 6 !important; 
+}
+
+
+/* Г. СУПЕР-СПИСОК (#multilist): Эмуляция нескольких #list */
+
+/* 1. Обнуляем внешний контейнер */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) {
+  grid-column: span 12;
+  border: none;
+  border-radius: 0px;
+  border-left: var(--dp-l3-border-width) solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
+  box-shadow: var(--dp-side-shadow-offset) color-mix(in srgb, var(--accent-glow), var(--mask-shd));
+  padding: 5px 0 !important;
+  display: block;
+  margin-block-start: var(--size-4-1);
+}
+/* 2. Сетка для колонок */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0px;
+  padding: 0;
+  margin: 0;
+}
+/* 3. Колонки (2 уровень): делаем их копиями #list */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+  grid-column: span 1;
+  padding: 0 0 0 14px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+}
+/* 5. Внутренний список ссылок (3 уровень) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  margin: 0;
+  margin-block-start: var(--size-4-2);
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li {
+  padding: 0 ;
+  margin: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+/* 6. ЖЕСТКАЯ СЦЕПКА ИКОНКИ И ТЕКСТА */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 2px 0;
+}
+
+/* Эффект при наведении на ссылки внутри #list и #multilist */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"], a[href="#multilist"]) ul > li > a:hover {
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-link-bg-hover));
+  color: color-mix(in srgb, var(--accent-glow), var(--mask-link-text-hover));
+  padding-left: var(--size-4-1) !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    --dp-font-base: 1.05rem;
+    --font-s: 0.95; /* list / multilist / sysgrid */
+    --font-m: 1.0; /* compact */
+    --font-l: 1.05; /* third */
+    --font-xl: 1.10; /* half */
+    --font-xxl: 1.15; /* wide / ultrawide */
+  }
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px;
+  }
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+    padding-left: 8px;
+  }
+}
+
+/* =========================================
+   ВНУТРЕННИЕ ЭЛЕМЕНТЫ (ССЫЛКИ И ТЕГИ)
+   ========================================= */
+
+/* Оформление ссылок */
+.list-cards.dashboard-premium.markdown-preview-view div ul li a {
+  text-decoration: none !important;
+  color: var(--text-normal);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+/* Скрытие служебных ссылок-тегов */
+.list-cards.dashboard-premium.markdown-preview-view a[href*="#"] { 
+  display: none !important; 
+}
