@@ -646,11 +646,6 @@ body.is-phone {
   } 
   */
 }
-/* 📱 Подвинуть заголовок вкладки ближе к верху
-  Только когда активны хлебные крошки Zoom */
-  body.is-phone .mod-root:has(.cm-panels.cm-panels-top) .view-header-title-container {
-    margin-bottom: 1rem;
-}
 
 
 /* # DATAVIEW */
