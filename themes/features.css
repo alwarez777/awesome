@@ -1207,6 +1207,7 @@ body {
 }
 
 /* Специфическая ширина для листов */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"]),
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list6"]) { 
   grid-column: span 6 !important; 
 }
@@ -1218,9 +1219,6 @@ body {
 }
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list1"]) { 
   grid-column: span 12 !important; 
-}
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"])  { 
-  grid-column: span 6 !important; 
 }
 
 
