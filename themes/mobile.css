@@ -251,28 +251,40 @@ body.is-phone {
   }
 
   /* // Edge blur */
-  &.is-floating-nav:not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content {
+  &.is-floating-nav .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content {
     &::before,
     &::after {
       position: absolute;
       z-index: 1;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(4px) saturate(120%);
+      -webkit-backdrop-filter: blur(4px) saturate(120%);
       inset-inline: 0;
       pointer-events: none;
       content: "";
       transition: var(--anim-duration-moderate);
     }
+    /* Верхнее размытие (заголовок + Zoom крошки) */
     &::before {
       top: 0;
-      mask: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
+      mask: linear-gradient(to bottom,
+      black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 1.25), 
+      transparent 100%)
+      );
+      -webkit-mask: linear-gradient(to bottom,
+        black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 1.25)), 
+        transparent 100%
+      );
       height: var(--view-top-spacing-markdown);
     }
+    /* Нижнее размытие (навбар) */
     &::after {
       bottom: 0;
       mask: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
+      -webkit-mask: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
       height: var(--view-bottom-spacing);
     }
   }
+
   &:not(html:where([style*="--keyboard-height: 0px"], :not([style*="--keyboard-height"])) body):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] {
     .view-actions button:nth-last-child(1) {
       opacity: 0;
