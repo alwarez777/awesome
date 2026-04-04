@@ -736,17 +736,21 @@ body:not(.is-phone) {
 
 /* 📱💻 Уменьшить отступ от нижнего края заметки */
 
-/* Live Preview */
-body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
-/* Source Mode */
-body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
-/* Reading Mode */
-body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-reading-view > div > div {
-    padding-bottom: 50px !important;
+body:not(.is-mobile) {
+  /* Source Mode */
+  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
+  /* Reading Mode */
+  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-reading-view > div > div {
+      padding-bottom: 50px !important;
+  }
 }
-/* Live Preview + если есть хлебные крошки Zoom */
-body > div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content:has(.cm-panels.cm-panels-top) > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div {
-  padding-bottom: 62.5px !important;
+body.is-mobile {
+  /* Source Mode */
+  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-source-view.cm-s-obsidian.mod-cm6.node-insert-event.is-readable-line-width.is-live-preview.is-folding.show-properties > div > div.cm-scroller > div.cm-sizer > div.cm-contentContainer > div,
+  /* Reading Mode */
+  div.app-container > div.horizontal-main-container > div > div.workspace-split.mod-vertical.mod-root > div > div.workspace-tab-container > div.workspace-leaf.mod-active > div > div.view-content > div.markdown-reading-view > div > div {
+      padding-bottom: 100px !important;
+  }
 }
 
 /* 💻 Увеличить отступ контейнера заметки от заголовка #1.11.4 */
