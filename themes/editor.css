@@ -517,10 +517,9 @@ body.is-mobile {
 
 /* # СВОЙСТВА */
 
-/* ––––––––––––––––––––––––––––––––––––––––––––––––
-## 📱💻 Улучшенный блок свойств с авто-скрытием (СТАРТ)
-––––––––––––––––––––––––––––––––––––––––––––––––– */
-
+/* ==========================================
+   1. БАЗОВЫЕ СБРОСЫ И ОФОРМЛЕНИЕ
+   ========================================== */
 .metadata-property-key,
 .metadata-property-value,
 .metadata-property,
@@ -533,10 +532,12 @@ body.is-mobile {
   border: none;
   background-color: transparent;
 }
+
 /* 💻 Увеличить ширину блока свойств-ключей */
 body:not(.is-mobile) .metadata-property-key {
   flex: 0 0 10em !important;
 }
+
 .metadata-property {
   margin: -5px 0 -5px 0;
   padding: 0;
@@ -545,12 +546,16 @@ body:not(.is-mobile) .metadata-property-key {
   font-size: 13px;
   line-height: 1.3;
 }
-.metadata-property[data-property-key="tags"] .multi-select-pill {
-  background: var(--tag-background-image);
-  font-size: var(--font-smaller);
-  line-height: 1.1;
-  margin-inline-start: -4px;
+
+/* Скрытие системного заголовка "Свойства" */
+.markdown-preview-view .metadata-properties-heading,
+.cm-editor .metadata-properties-heading {
+  display: none;
 }
+
+/* ==========================================
+   2. КОНТЕЙНЕР И АВТОСКРЫТИЕ (АНИМАЦИЯ •••)
+   ========================================== */
 .metadata-container {
   border: 1px solid var(--background-modifier-border);
   padding: 0.6em 0.5em;
@@ -567,66 +572,12 @@ body:not(.is-mobile) .metadata-property-key {
     max-height 0.45s ease-in-out,
     padding 0.4s ease-in-out;
 }
-.markdown-preview-view .metadata-properties-heading,
-.cm-editor .metadata-properties-heading {
-  display: none;
-}
-.metadata-container.collapsed {
-  max-height: 1.1em;
-  padding: 0.6em 0.5em;
-  background-color: transparent;
-  border-color: transparent;
-  box-shadow: none;
 
-  .metadata-content {
-    opacity: 0;
-    transform: translateY(-6px);
-    pointer-events: none;
-    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
-  }
-  &::before {
-    content: '•••';
-    position: absolute;
-    top: -4px;
-    left: 0;
-    text-indent: 3px;
-    font-size: 18px;
-    color: rgba(var(--mono-rgb-100), 0.15);
-    opacity: 1;
-    pointer-events: auto;
-    border-radius: 4px;
-    padding: 0.05em 0.35em;
-    animation: fadePulse 3.5s ease-in-out infinite;
-    transition: opacity 0.45s ease-in-out, background-color 0.25s ease-in-out;
-  }
-
-  &:hover::before {
-    background-color: rgba(var(--mono-rgb-100), 0.08);
-    box-shadow: 0 0 6px rgba(var(--mono-rgb-100), 0.08);
-  }
-}
-.metadata-container:not(.collapsed),
-.metadata-container.collapsed:hover {
-  max-height: 500px;
-  background-color: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
-  box-shadow: var(--shadow-xs);
-
-  &::before {
-    opacity: 0;
-    animation: none;
-  }
-  .metadata-content {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-.popover { 
-	& .metadata-container {
-    margin-block-start: -15px !important; 
-    margin-block-end: 5px;   } 
-}
+/* Внешние отступы контейнера в разных режимах */
+.popover .metadata-container { 
+  margin-block-start: -15px !important; 
+  margin-block-end: 5px;   
+} 
 .cm-editor .metadata-container { 
   margin-block-start: 10px; 
   margin-block-end: 5px; 
@@ -636,7 +587,14 @@ body:not(.is-mobile) .metadata-property-key {
   margin-block-end: 45px; 
 }
 
-/* 📱💻 Включить автоскрытие блока и раскрытие при наведении */
+/* Анимация пульсации для ••• */
+@keyframes fadePulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+
+/* 📱💻 Свернутое состояние (Автоскрытие, когда нет фокуса и наведения) */
+.metadata-container.collapsed,
 .cm-editor .metadata-container:not(:hover):not(:focus-within),
 .markdown-preview-view .metadata-container:not(:hover):not(:focus-within) {
   max-height: 1.1em;
@@ -670,29 +628,93 @@ body:not(.is-mobile) .metadata-property-key {
     opacity: 0;
     transform: translateY(-6px);
     pointer-events: none;
+    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
   }
 }
 
-@keyframes fadePulse {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.4; }
+/* Раскрытое состояние (При наведении) */
+.metadata-container:not(.collapsed),
+.metadata-container.collapsed:hover {
+  max-height: 500px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-xs);
+
+  &::before {
+    opacity: 0;
+    animation: none;
+  }
+  .metadata-content {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }
+
+/* ==========================================
+   3. ЛОГИКА ПУСТЫХ СВОЙСТВ ("СКРЫТИЕ ВНУТРИ СКРЫТИЯ")
+   ========================================== */
+
+/* 3.1. ПЛАВНОЕ скрытие пустых свойств (вместо резкого display: none) */
+.metadata-property:not(:focus-within):has(.metadata-input-longtext:empty),
+.metadata-property:not(:focus-within):has(.multi-select-input[placeholder*="значения"]),
+.metadata-property:not(:focus-within):has(.multi-select-container:empty) {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none; /* Отключаем клики по скрытым элементам */
+  border: none;
+  /* Анимируем схлопывание, чтобы весь контейнер не дергался */
+  transition: 
+    max-height 0.35s ease-in-out,
+    opacity 0.25s ease-in-out,
+    margin 0.35s ease-in-out,
+    padding 0.35s ease-in-out;
+}
+
+/* 3.2. РЕЖИМ РЕДАКТИРОВАНИЯ (Показ при клике/фокусе внутри контейнера)
+   Срабатывает, если ты кликнул в любое существующее свойство 
+   или нажал кнопку "+ Добавить свойство" */
+.metadata-container:focus-within .metadata-property:not(:focus-within):has(.metadata-input-longtext:empty),
+.metadata-container:focus-within .metadata-property:not(:focus-within):has(.multi-select-input[placeholder*="значения"]),
+.metadata-container:focus-within .metadata-property:not(:focus-within):has(.multi-select-container:empty) {
+  max-height: 50px; /* Даем высоту для плавного разворачивания */
+  opacity: 0.5;     /* Делаем их бледными, чтобы отличать от заполненных */
+  margin: -5px 0 -5px 0; /* Возвращаем твой оригинальный margin */
+  pointer-events: auto;
+}
+
+/* 3.3. АКТИВНОЕ СВОЙСТВО (Когда ты печатаешь прямо в нем) */
+.metadata-property:focus-within {
+  opacity: 1 !important;
+  max-height: none !important; /* Снимаем лимит высоты для длинного текста */
+}
+
 .metadata-container .metadata-add-button {
   font-variant: all-small-caps;
 }
-/* Снять ограничения на высоту блока 
-Закоммонетировать/удалить, когда верну автосвертывание */
-/* .metadata-container {
-  max-height: none !important;
-  height: auto !important;
-} */
+
+/* ==========================================
+   4. ОФОРМЛЕНИЕ ТИПА "СПИСОК" (ТЕГИ И ПИЛЮЛИ)
+   ========================================== */
+.metadata-property[data-property-key="tags"] .multi-select-pill {
+  background: var(--tag-background-image);
+  font-size: var(--font-smaller);
+  line-height: 1.1;
+  margin-inline-start: -4px;
+}
+
 /* 📱💻 Убрать перенос слов в ссылке для свойств типа Список */
 .multi-select-pill {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: padding 0.2s ease;
 }
-/* 💻 Скрыть крестик для значений в свойствах типа "Список" */
+
+/* 💻 Скрыть крестик для значений в свойствах типа "Список" (Появление по ховеру) */
 body:not(.is-phone) {
   .multi-select-pill-remove-button {
     width: 0;
@@ -709,14 +731,13 @@ body:not(.is-phone) {
     margin-inline-end: var(--pill-padding-x);
     opacity: 1;
   }
-  .multi-select-pill {
-    transition: padding 0.2s ease;
-  }
 }
+
 /* 📱💻 Скрытие свойств в Live Preview и Reading Mode */
 .hide-properties .metadata-container {
   display: none !important;
 }
+
 
 
 /* # ХАЙЛАЙТ */
