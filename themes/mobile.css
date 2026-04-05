@@ -626,59 +626,184 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   padding-left: 10px !important;
   padding-right: 10px !important;
 }
-.workspace-drawer.mod-left .view-header {
-  display: none;
+
+
+
+/* ==========================================================
+   📱 ОПТИМИЗАЦИЯ ЛЕВОГО САЙДБАРА OBSIDIAN (iOS)
+   ========================================================== */
+
+/* --- ЧАСТЬ 1: УЛЬТИМАТИВНОЕ РЕШЕНИЕ ДЛЯ ЗАМЕТКИ В САЙДБАРЕ --- */
+
+/* 1.1 Принудительно поднимаем всё содержимое вверх, игнорируя системный отступ */
+.workspace-drawer.mod-left .workspace-leaf-content[data-type="markdown"] .view-content {
+  padding-top: 0 !important;
+  margin-top: calc(var(--safe-area-inset-top) * -0.5) !important;
+}
+
+/* 1.2 Чистим внутренние скроллеры от скрытых отступов и возвращаем контролируемый отступ */
+.workspace-drawer.mod-left .cm-scroller,
+.workspace-drawer.mod-left .markdown-rendered,
+.workspace-drawer.mod-left .markdown-preview-view {
+  padding-top: var(--safe-area-inset-top) !important;
+  background-color: transparent !important;
+}
+
+/* 1.3 Делаем сам контейнер "прозрачным" для наложения нашего фона */
+.workspace-drawer.mod-left .workspace-leaf,
+.workspace-drawer.mod-left .workspace-leaf-content {
+  background-color: transparent !important;
+}
+
+/* 1.4 Накладываем эффект размытия (Overlay) на козырек */
+.is-mobile .workspace-drawer-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--safe-area-inset-top) + 15px);
+  z-index: 9999;
+  pointer-events: none;
+
+  -webkit-backdrop-filter: blur(5px) saturate(150%);
+  backdrop-filter: blur(5px) saturate(150%);
+
+  /* Мягкое исчезновение размытия книзу */
+  -webkit-mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black var(--safe-area-inset-top), 
+    transparent 100%
+  );
 }
 
 
-/* 📱 МИНИМАЛИСТИЧНЫЙ КОНТРОЛЬ-ЦЕНТР САЙДБАРА */
+/* --- ЧАСТЬ 2: МИНИМАЛИСТИЧНЫЙ КОНТРОЛЬ-ЦЕНТР САЙДБАРА --- */
 
 body.is-phone {
-  /* Базовые состояния и отклик */
+  
+  /* === 2.1 ПРОЗРАЧНАЯ ЗОНА И РАЗМЫТИЕ ДЛЯ САЙДБАРА === */
+  
+  /* Убиваем все системные заливки фона, чтобы видеть насквозь */
+  .workspace-drawer.mod-left,
+  .workspace-drawer-tab-container,
+  .workspace-drawer-active-tab-container {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  /* Убираем системные отступы, из-за которых была пустая зона сверху */
+  .workspace-drawer-inner,
+  .workspace-drawer-tab-container {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Создаем собственный фон: сплошной, но прозрачный в зоне челки */
+  .workspace-drawer.mod-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-color: var(--background-secondary);
+    mask-image: linear-gradient(to bottom, 
+      transparent 0%, 
+      transparent var(--safe-area-inset-top), 
+      black calc(var(--safe-area-inset-top) + 1px)
+    );
+    -webkit-mask-image: linear-gradient(to bottom, 
+      transparent 0%, 
+      transparent var(--safe-area-inset-top), 
+      black calc(var(--safe-area-inset-top) + 1px)
+    );
+  }
+
+  /* Накладываем слой размытия прямо на статус-бар */
+  .workspace-drawer.mod-left::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--safe-area-inset-top) + 15px);
+    z-index: -1;
+    pointer-events: none;
+    
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    
+    mask-image: linear-gradient(to bottom, 
+      black 0%, 
+      black var(--safe-area-inset-top), 
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(to bottom, 
+      black 0%, 
+      black var(--safe-area-inset-top), 
+      transparent 100%
+    );
+  }
+
+  /* Задаем отступ скроллу: папки открываются под статус-баром, 
+     но при скролле уходят ПОД размытие */
+  .workspace-drawer-tab-container .view-content {
+    padding-top: calc(var(--safe-area-inset-top) + 10px) !important;
+  }
+  
+  /* === 2.2 БАЗОВЫЕ СОСТОЯНИЯ И ОТКЛИК === */
+  
   .workspace-drawer-header-name,
   .workspace-drawer-header-icon,
   .workspace-drawer-tab-select {
     opacity: 0.2;
     transition: opacity 0.3s ease;
   }
+  
   :is(.workspace-drawer-header-name, .workspace-drawer-header-icon, .workspace-drawer-tab-select):active {
     opacity: 1 !important;
     transition: none !important; 
     transform: none !important;
   }
+  
   .workspace-drawer-header-info {
     color: var(--text-faint);
   }
 
-  /* Скрываем лишнее */
+  /* Скрываем лишние шевроны и иконки */
   :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-chevron, .workspace-drawer-header-name-chevron) {
     display: none !important;
   }
-  /* 🌟 УМНЫЙ КОНТЕЙНЕР БЕЗ КОСТЫЛЕЙ 🌟 */
+
+  /* === 2.3 УМНЫЙ КОНТЕЙНЕР ЗАГОЛОВКА (GRID) === */
+  
   .workspace-drawer-header {
     display: grid !important;
     grid-template-columns: 1fr auto !important; /* Левая колонка для текста (1fr), правая для шестеренки (auto) */
     grid-template-rows: auto auto !important;   /* Две строки по высоте текста */
-    row-gap: 0px !important;                    /* Тот самый идеальный зазор между "Пультом" и "Awesome" */
-    align-items: end !important;             /* Идеальное центрирование по вертикали */
+    row-gap: 0px !important;                    /* Идеальный зазор между "Пультом" и названием */
+    align-items: end !important;                /* Центрирование по вертикали */
     padding-top: 0 !important;
-    margin-top: auto !important; /* padding-bottom: calc(var(--safe-area-inset-bottom, 16px) - 32px) */
+    margin-top: auto !important; 
   }
-  /* СТРОКА 1: Селектор плагина */
+  
+  /* Строка 1: Селектор плагина */
   .workspace-drawer.mod-left .workspace-drawer-tab-select {
-    grid-column: 1 !important; /* Ставим в первую колонку */
-    grid-row: 1 !important;    /* Ставим в первую строку */
+    grid-column: 1 !important;
+    grid-row: 1 !important;
     margin: 0 !important;
     min-height: 0 !important;
     height: auto !important;
     margin-bottom: calc(var(--size-4-4) * (-1)) !important;
   }
+  
   .workspace-drawer.mod-right .workspace-drawer-tab-select {
     grid-column: 1 !important;
     grid-row: 1 !important;
     margin: 0 !important;
     margin-bottom: calc(var(--size-3-2) * (-1)) !important;
   }
+  
   .workspace-drawer.mod-right .workspace-drawer-header-left {
     grid-column: 1 !important;
     grid-row: 2 !important;
@@ -688,12 +813,14 @@ body.is-phone {
     flex-direction: row !important;
     align-items: baseline !important;
   }
+  
   .workspace-drawer-tab-select .workspace-tab-header-inner {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     min-height: 20px !important;
     background: transparent !important;
   }
+  
   .workspace-drawer-tab-select .workspace-tab-header-inner-title {
     font-size: var(--font-ui-medium) !important;
     font-weight: 500 !important;
@@ -702,43 +829,50 @@ body.is-phone {
     transform: none !important;
     animation: none !important;
   }
-  /* СТРОКА 2: Название + Статистика */
+  
+  /* Строка 2: Название хранилища + Статистика */
   .workspace-drawer-header-left {
-    grid-column: 1 !important; /* Ставим в первую колонку, под селектор */
-    grid-row: 2 !important;    /* Ставим во вторую строку */
-    margin: 0 !important;      /* Убиваем твои 30px */
+    grid-column: 1 !important; 
+    grid-row: 2 !important;    
+    margin: 0 !important;      
     display: flex !important;
     flex-direction: row !important;
     align-items: baseline !important;
     gap: 8px !important;
   }
+  
   .workspace-drawer-header-name-text,
   .workspace-drawer-header-info {
     font-size: var(--font-ui-medium) !important;
     margin: 0 !important;
     line-height: 1 !important;
   }
-  /* ИКОНКА ⚙️: Центрируем по высоте двух строк */
+  
+  /* Иконка ⚙️: Центрируем по высоте двух строк */
   .workspace-drawer-header-icon {
-    grid-column: 2 !important;       /* Ставим во вторую колонку справа */
-    grid-row: 1 / span 2 !important; /* УКАЗЫВАЕМ ЗАНЯТЬ ВЫСОТУ ОБЕИХ СТРОК */
-    align-self: center !important;   /* ЦЕНТРИРУЕМ ТОЧНО ПО СЕРЕДИНЕ */
-    justify-self: end !important;    /* Прижимаем вправо */
+    grid-column: 2 !important;       
+    grid-row: 1 / span 2 !important; 
+    align-self: center !important;   
+    justify-self: end !important;    
     margin: 0 !important;
     padding: 4px !important;
   }
-  /* ПУНКТЫ МЕНЮ СЕЛЕКТОРА */
+
+  /* === 2.4 ПУНКТЫ МЕНЮ СЕЛЕКТОРА === */
+  
   .workspace-drawer-tab-options-list {
     transition: none !important; 
     animation: none !important;
     opacity: 1 !important;
   }
+  
   .workspace-drawer.mod-left .workspace-drawer-tab-options-list {
     padding-top: var(--size-4-2);
-    padding-bottom: calc(var(--touch-size-l) - 24px); /* var(--touch-size-l) */
+    padding-bottom: calc(var(--touch-size-l) - 24px); 
     bottom: 0;
     top: unset;
   }
+  
   .workspace-drawer-tab-options.is-collapsed .workspace-drawer-tab-options-list {
     display: none !important;
   }
