@@ -638,7 +638,7 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
 /* 1.1 Принудительно поднимаем всё содержимое вверх, игнорируя системный отступ */
 .workspace-drawer.mod-left .workspace-leaf-content[data-type="markdown"] .view-content {
   padding-top: 0 !important;
-  margin-top: calc(var(--safe-area-inset-top) * -0.5) !important;
+  margin-top: calc(var(--safe-area-inset-top) * (-0.5)) !important;
 }
 
 /* 1.2 Чистим внутренние скроллеры от скрытых отступов и возвращаем контролируемый отступ */
@@ -655,6 +655,9 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   background-color: transparent !important;
 }
 
+.is-mobile .workspace-drawer-inner::before {
+  display: none;
+}
 /* 1.4 Накладываем эффект размытия (Overlay) на козырек */
 .is-mobile .workspace-drawer-inner::after {
   content: "";
@@ -662,17 +665,24 @@ body > div.app-container > div.mobile-navbar > div > div.mobile-navbar-action.mo
   top: 0;
   left: 0;
   right: 0;
-  height: calc(var(--safe-area-inset-top) + 15px);
+  height: calc(var(--safe-area-inset-top) + 30px);
   z-index: 9999;
   pointer-events: none;
 
-  -webkit-backdrop-filter: blur(5px) saturate(150%);
-  backdrop-filter: blur(5px) saturate(150%);
+  backdrop-filter: blur(4px) saturate(150%);
+  -webkit-backdrop-filter: blur(4px) saturate(150%);
 
-  /* Мягкое исчезновение размытия книзу */
+  /* СЛОЖНАЯ МАСКА: убираем эффект "рубленой линии" */
   -webkit-mask-image: linear-gradient(to bottom, 
     black 0%, 
     black var(--safe-area-inset-top), 
+    rgba(0, 0, 0, 0.5) calc(var(--safe-area-inset-top) + 15px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black var(--safe-area-inset-top), 
+    rgba(0, 0, 0, 0.5) calc(var(--safe-area-inset-top) + 15px),
     transparent 100%
   );
 }
