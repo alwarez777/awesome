@@ -1353,3 +1353,226 @@ body {
 .list-cards.dashboard-premium.markdown-preview-view .external-link::before { 
   display: none !important; 
 }
+
+
+/* ____________________________________________________________________________ */
+
+
+/* 
+  MCL Gallery Cards (Refactored for Cupertino)
+  Оригинальный автор: Faiz Khuzaimah
+  Версия: Optimized Clean Edition
+*/
+
+/* === 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ === */
+body {
+	--img-border-radius: 15px;
+	--img-max-height: 300px;
+	--img-max-width: 350px;
+	--img-max-height-list: 270px;
+	--img-max-width-list: 300px;
+	--callout-gallery-gap: 5px;
+	--gallery-snw-display: none;
+	--float-left-margin: 4px 12px 4px 0;
+	--float-right-margin: 4px 0 4px 12px;
+	--float-snw-display: none;
+	--mcl-banner-height-normal: 200px;
+	--mcl-banner-height-tall: 300px;
+	--mcl-banner-overlap-title-adj: 0px;
+	--mcl-banner-no-title-adj: 0px;
+	--bg-color-dv-card: var(--background-modifier-backlinks);
+	--border-color-dv-card: var(--background-modifier-border);
+}
+
+/* Базовое скругление для всех изображений */
+img { border-radius: var(--img-border-radius); }
+
+/* === 2. ФОТОГАЛЕРЕЯ (Callouts & CSS Class) === */
+/* Работает через [!info|gallery] или cssClass: image-gallery */
+
+.image-gallery .markdown-rendered div:has(> p .image-embed) > p,
+div[data-callout-metadata*="gallery"].callout > .callout-content > p { 
+	display: flex; 
+	gap: var(--callout-gallery-gap); 
+	margin-top: calc(var(--callout-gallery-gap)); 
+	margin-bottom: 0; 
+}
+
+.image-gallery .markdown-rendered div:has(> p .image-embed) { margin-top: var(--callout-gallery-gap); }
+div[data-callout-metadata*="gallery"].callout > .callout-content { --callout-content-padding: 0.5rem 0 0 0; }
+
+.image-gallery .markdown-rendered div:has(> p .image-embed) > p img,
+div[data-callout-metadata*="gallery"].callout > .callout-content > p img { 
+	max-height: var(--img-max-height); 
+	border: 1px solid var(--background-modifier-border); 
+	object-fit: cover; 
+	display: block;
+}
+
+/* Эмуляция галереи в Live Preview через :has() */
+.image-gallery div.cm-line:not(.HyperMD-list-line):not(.cm-active):has(> .image-embed:not(.cm-callout)) { 
+	display: flex; 
+	gap: var(--callout-gallery-gap); 
+	--img-gallery__buffer-display: none; 
+}
+
+.image-gallery div.cm-line > :is(img.cm-widgetBuffer, span[contenteditable]) { 
+	display: var(--img-gallery__buffer-display) !important; 
+}
+
+.image-gallery div:not(.cm-callout):not(.HyperMD-list-line).image-embed img { 
+	max-height: calc(var(--img-max-height)/1); 
+	display: unset; 
+	object-fit: cover; 
+}
+
+/* Плагин SNW в галереях */
+.image-gallery div[data-embed-type="image"] > p .snw-embed-preview,
+.image-gallery .internal-embed.image-embed ~ .snw-reference.snw-embed,
+div[data-callout-metadata*="gallery"].callout > .callout-content > p .snw-embed-preview { 
+	display: var(--gallery-snw-display); 
+	width: min-content; 
+	height: min-content; 
+}
+div[data-callout-metadata*="gallery"].callout > .callout-content > p .internal-embed.image-embed ~ br { display: none; }
+
+/* === 3. ИЗОБРАЖЕНИЯ В СПИСКАХ === */
+
+/* Ограничивает размер картинок внутри маркированных списков */
+body:not(.list-image-control-off) :is(.HyperMD-list-line, ul) .image-embed.image-embed img:not([width]) { 
+	max-height: var(--img-max-height-list); 
+	max-width: var(--img-max-width-list); 
+	margin-inline: 0; 
+	display: unset; 
+	object-fit: cover; 
+}
+
+/* Адаптация под мобильные устройства */
+body.is-mobile:not(.list-image-control-off) :is(.HyperMD-list-line, ul) .image-embed.image-embed img:not([width]) { 
+	max-width: clamp(calc(var(--img-max-width-list)/2), var(--img-max-width-list), 100%);
+}
+
+/* === 4. ОБТЕКАНИЕ ТЕКСТОМ (FLOAT) === */
+
+/* Использование: ![|left] или ![|right] */
+img[alt^="left"], img[alt^="float-left"] { float: left; margin: var(--float-left-margin); }
+img[alt^="right"], img[alt^="float-right"] { float: right; margin: var(--float-right-margin); }
+
+.internal-embed.image-embed[alt*="float-left"],
+.internal-embed.image-embed[alt*="float-right"] { display: contents; }
+
+div.no-float { clear: both; display: inline-grid; height: 1px; width: 100%; background-color: var(--background-secondary); }
+
+p > :is(.image-embed[alt*="left"], .image-embed[alt*="right"]) + br { display: none; }
+
+/* SNW в обтекании */
+.internal-embed.image-embed:is([alt="left"],[alt*="|left"],[alt*="left|"],[alt*="float-left"],[alt="right"],[alt*="|right"],[alt*="right|"],[alt*="float-right"]) + .snw-reference.snw-embed { display: var(--float-snw-display); }
+
+/* === 5. IMAGE ZOOM === */
+
+/* Установить scale 100% для изображений */
+.image-zoom .view-content :is(.cm-editor, .markdown-preview-view) img { 
+	max-width: 100%; 
+	cursor: zoom-in; 
+}
+/* CSS-зум для изображений */
+body.image-zoom:not(.is-mobile) .view-content :is(.cm-editor,.markdown-preview-view) img:active,
+body.image-zoom:not(.is-mobile) .view-content .image-embed:active,
+.image-zoom :is(.HyperMD-list-line,ul) .image-embed.image-embed img:active {
+	cursor: zoom-out; 
+	display: block; 
+	backdrop-filter: var(--blur-s);
+	max-height: calc(100% + 1px); 
+	max-width: calc(100% - 20px); 
+	height: calc(100% + 1px); 
+	width: 100%;
+	object-fit: contain; 
+	margin: -0.5px auto 0;
+	padding: 0; 
+	text-align: center;
+	position: fixed; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	z-index: 100;
+}
+
+/* === 6. МАСШТАБИРОВАНИЕ MERMAID === */
+
+body:not(.mermaid-scale-off) .view-content :is(.cm-editor, .markdown-preview-view) .mermaid svg { max-width: 100%; height: 100% }
+body.mermaid-scale-off .mermaid { overflow-x: auto; }
+
+.mermaid-zoom .view-content .mermaid svg { cursor: zoom-in; }
+
+body.mermaid-zoom:not(.is-mobile) .view-content .markdown-reading-view .mermaid svg:active {
+	cursor: zoom-out; display: block; object-fit: contain; margin: -0.5px auto 0; padding: 0;
+	max-height: calc(100% + 1px); max-width: calc(100% - 20px); height: calc(100% + 1px); width: 100%;
+	text-align: center; z-index: 100; position: fixed; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8);
+}
+
+/* Зум диаграмм Mermaid при клике */
+body.mermaid-zoom:not(.is-mobile) .markdown-source-view .cm-embed-block:has(.mermaid svg:active) {
+	text-align: center; top: 0; left: 0; right: 0; bottom: 0; z-index: 100; position: fixed; backdrop-filter: var(--blur-s);
+}
+body.mermaid-zoom:not(.is-mobile) .markdown-source-view .mermaid svg:active {
+	cursor: zoom-out; position: fixed; width: 100%; height: 100%; top: 0; left: 0;
+}
+
+/* === 7. КАРТОЧКИ DATAVIEW === */
+/* Включается через cssClass: dv-card */
+
+.dv-card table.dataview { position: relative; display: flex; flex-direction: column; font-size: 0.9em; }
+.dv-card table.dataview thead { display: flex; flex-flow: row-reverse; border-radius: var(--size-4-2); position: relative; padding-bottom: 0.4em; }
+.dv-card table.dataview thead tr { margin: 0; }
+.dv-card table.dataview.table-view-table thead th { padding-left: 0; padding: 0.2em 1.3em 0 0.3em; border-width: 0; font-size: 0.9rem; color: var(--text-faint); }
+
+.dv-card table.dataview tbody { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); grid-gap: var(--size-4-2); }
+.dv-card table.dataview tbody tr { background-color: var(--bg-color-dv-card); display: flex; flex-direction: column; border: 1px solid var(--border-color-dv-card); border-radius: var(--size-4-2); margin-top: 0; margin-bottom: 0; }
+.dv-card table.dataview tbody tr:hover { background-color: var(--background-secondary) !important; }
+.dv-card table.dataview tbody td { display: flex; padding-block: 0; }
+
+/* === 7. БАННЕРЫ === */
+/* Использование: ![|mcl-banner] в начале заметки */
+
+.markdown-source-view .cm-line:has(> .internal-embed.image-embed > img[alt*="mcl-banner"]),
+.markdown-source-view :is(.internal-embed.image-embed, .cm-line):has(> img[alt*="mcl-banner"]) { display: contents; }
+
+img[alt*="mcl-banner"] {
+	position: absolute; top: 0; left: 0;
+	height: var(--mcl-banner-height-normal); width: 100%;
+	object-fit: cover; object-position: 50% 50%;
+	overflow: hidden; user-select: none; border-radius: revert;
+}
+
+img[alt*="mcl-banner"][alt*="gradient"] {
+	-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+	mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
+
+.view-content:has(img[alt*="mcl-banner"]) :is(.cm-sizer, .markdown-preview-section) { 
+	padding-top: calc(var(--mcl-banner-height-normal) - 50px + var(--mcl-banner-overlap-title-adj) + var(--mcl-banner-no-title-adj)); 
+}
+
+img[alt*="mcl-banner"][alt*="-tall"] { height: var(--mcl-banner-height-tall); }
+.view-content:has(img[alt*="mcl-banner"][alt*="-tall"]) :is(.cm-sizer, .markdown-preview-section) { 
+	padding-top: calc(var(--mcl-banner-height-tall) - 50px + var(--mcl-banner-overlap-title-adj) + var(--mcl-banner-no-title-adj)); 
+}
+
+/* Позиционирование баннера */
+img[alt*="mcl-banner"][alt*="y-30"] { object-position: 50% 20%; }
+img[alt*="mcl-banner"][alt*="y-10"] { object-position: 50% 40%; }
+img[alt*="mcl-banner"][alt*="y+10"] { object-position: 50% 60%; }
+img[alt*="mcl-banner"][alt*="y+30"] { object-position: 50% 80%; }
+
+/* === 9. УТИЛИТЫ (Пропорции и Подписи) === */
+
+img[alt*="1-1"] { aspect-ratio: 1/1; object-fit: cover; }
+img[alt*="4-3"] { aspect-ratio: 4/3; object-fit: cover; }
+img[alt*="16-9"] { aspect-ratio: 16/9; object-fit: cover; }
+
+:is(.markdown-source-view.mod-cm6, .markdown-reading-view) .internal-embed.image-embed[src*="caption"] { display: inline-block; width: fit-content; }
+.image-embed[src*="caption"]::after { content: attr(alt); display: block; text-align: center; font-style: italic; }
+
+
+/* ____________________________________________________________________________ */
+
