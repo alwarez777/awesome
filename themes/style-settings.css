@@ -227,6 +227,12 @@ settings:
     description: Добавляет нумерацию для строк слева внутри блока
     type: class-toggle
     default: true
+-
+    id: text-justify
+    title: 📱💻 Выравнивать текст по ширине
+    description: Приводит строки к одной ширине за счет уменьшения или увеличения интервалов между словами
+    type: class-toggle
+    default: true
 
 - 
 	id: mcl-custom-settings
@@ -335,4 +341,228 @@ settings:
 	id: mermaid-zoom
 	title: Включить зум для Mermaid
 	type: class-toggle
+
+
+-
+	id: mcl-multi-column
+	title: MCL - Мультиколонки и плавающие блоки
+	type: heading
+	level: 1
+	collapsed: true
+-
+	id: mcc-section
+	title: 🗂 Многоколоночные блоки (MCC)
+	type: heading
+	level: 2
+	collapsed: true
+
+-
+	id: mcc-general
+	title: Общие параметры
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: mcc-img-snw-display
+	title: Скрывать SNW-индикатор для изображений
+	description: Показывать или скрывать иконку плагина SNW внутри MCC
+	type: variable-select
+	default: none
+	options:
+	- 
+		label: Показывать
+		value: inline
+	- 
+		label: Скрывать
+		value: none
+
+-
+	id: mcc-width
+	title: Ширина колонок
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: callout-min-width
+	title: Мин. ширина вложенного блока
+	description: Для обычных коллаутов внутри [!multi-column]. В пикселях
+	type: variable-number-slider
+	default: 200
+	min: 100
+	max: 500
+	step: 50
+	format: px
+
+-
+	id: callout-nowrap-min-width
+	title: Мин. ширина блока без переноса
+	description: Для [!multi-column|no-wrap]. В пикселях
+	type: variable-number-slider
+	default: 250
+	min: 100
+	max: 500
+	step: 50
+	format: px
+
+-
+	id: mcc-spacing
+	title: Отступы и интервалы
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: callout-gap
+	title: Расстояние между колонками
+	description: Можно использовать любые единицы (em, px, rem)
+	type: variable-text
+	default: 1em
+
+-
+	id: callout-margin
+	title: Внешний отступ блоков
+	description: Пространство для тени вокруг коллаутов. Любые единицы
+	type: variable-text
+	default: 0px
+
+
+-
+	id: float-section
+	title: 🪂 Плавающие блоки (обтекание)
+	type: heading
+	level: 2
+	collapsed: true
+
+-
+	id: float-general
+	title: Общие настройки
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: float-callout-snw-display
+	title: Скрывать SNW-индикатор в плавающих блоках
+	description: Показывать или скрывать иконку плагина SNW
+	type: variable-select
+	default: none
+	options:
+	- 
+		label: Показывать
+		value: inline-block
+	- 
+		label: Скрывать
+		value: none
+
+-
+	id: float-width
+	title: Размеры плавающих блоков
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: float-small-width
+	title: Малый размер
+	description: Ширина в пикселях для блоков с меткой -small
+	type: variable-number-slider
+	default: 300
+	min: 200
+	max: 450
+	step: 50
+	format: px
+
+-
+	id: float-medium-width
+	title: Средний размер
+	description: Ширина в пикселях для блоков с меткой -medium
+	type: variable-number-slider
+	default: 400
+	min: 300
+	max: 550
+	step: 50
+	format: px
+
+-
+	id: float-large-width
+	title: Большой размер
+	description: Ширина в пикселях для блоков с меткой -large
+	type: variable-number-slider
+	default: 600
+	min: 500
+	max: 750
+	step: 50
+	format: px
+
+-
+	id: float-spacing
+	title: Отступы плавающих блоков
+	type: heading
+	level: 3
+	collapsed: false
+
+-
+	id: float-callout-top-margin
+	title: Верхний отступ
+	description: Для блоков слева и справа. Можно использовать em или px
+	type: variable-text
+	default: 0em
+
+-
+	id: float-left-callout-margin-inline
+	title: Боковые отступы (слева)
+	description: Формат - «слева справа». Пример - 0px 12px
+	type: variable-text
+	default: 0px 12px
+
+-
+	id: float-right-callout-margin-inline
+	title: Боковые отступы (справа)
+	description: Формат - «слева справа». Пример - 12px 0px
+	type: variable-text
+	default: 12px 0px
+
+
+
+-
+    id: mcl-wide-views
+    title: MCL - Широкие виды
+    type: heading
+    level: 1
+    collapsed: true
+-
+    id: adj-rll-section
+    title: 📏 Регулируемая ширина строки (RLL)
+    description: Управление максимальной шириной для всех страниц по умолчанию. Читаемая длина строки должна быть включена
+    type: heading
+    level: 2
+    collapsed: true
+-
+    id: is-adj-rll
+    title: Включить регулируемую ширину строки
+    description: Добавляет класс "is-adj-rll" к элементу body
+    type: class-toggle
+-
+    id: adj-rll-max-width
+    title: Максимальная ширина для обычной страницы
+    description: Можно использовать любые единицы "px", "em", "ch"
+    type: variable-text
+    default: 700px
+
+-
+    id: narrow-section
+    title: 📐 Узкая страница
+    description: Управление шириной страницы с классом "narrow-page". Читаемая длина строки должна быть отключена
+    type: heading
+    level: 2
+    collapsed: true
+-
+    id: narrow-max-width
+    title: Максимальная ширина для узкой страницы
+    description: Можно использовать любые единицы "px", "em", "ch"
+    type: variable-text
+    default: 750px
+
 */
