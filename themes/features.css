@@ -1355,6 +1355,154 @@ body {
 }
 
 
+
+
+/* =========================================
+   FOOTNOTES: THE DEFINITIVE FIX (STABLE)
+========================================= */
+
+/* 1. ВОЗВРАЩАЕМ ВИДИМОСТЬ (ТВОЯ БАЗА) */
+.list-cards.dashboard-premium.markdown-preview-view sup.footnote-ref,
+.list-cards.dashboard-premium.markdown-preview-view a.footnote-link {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 0.8 !important;
+}
+
+/* 2. ПОЗИЦИОНИРОВАНИЕ (ИСПРАВЛЕННОЕ ВЫРАВНИВАНИЕ) */
+.list-cards.dashboard-premium.markdown-preview-view sup.footnote-ref {
+    vertical-align: super;
+    position: relative;
+    z-index: 99;
+    /* Убираем отрицательный маржин, заменяем на нулевую ширину */
+    /* Это заставит сноску не толкать иконку/текст влево */
+    margin-left: 0px !important; 
+    width: 0px; 
+    line-height: 0;
+    pointer-events: auto;
+}
+
+/* Выводим цифру через absolute */
+.list-cards.dashboard-premium.markdown-preview-view .footnote-link {
+    font-size: 0px !important;
+    color: transparent !important;
+    text-decoration: none;
+    position: relative;
+}
+
+.list-cards.dashboard-premium.markdown-preview-view .footnote-link::before {
+    content: attr(data-footref);
+    color: var(--accent-glow);
+    visibility: visible !important;
+    position: absolute;
+    /* Регулируем положение цифры относительно иконки тут */
+    left: 4px; 
+    top: -2px;     
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* 3. LIVE PREVIEW (ВОЗВРАЩАЕМ РАБОЧИЙ ВИД) */
+.list-cards.dashboard-premium .cm-footref {
+    font-size: 8px !important;
+    color: var(--accent-glow) !important;
+    font-weight: 700;
+    cursor: help;
+}
+/* Скрываем скобки в LP через форматирование */
+.list-cards.dashboard-premium .cm-footref.cm-formatting {
+    display: none !important;
+}
+
+/* 4. ПОДВАЛ-ТРАНСФОРМЕР (ЛОГИКА PROPERTIES + FLASH FIX) */
+
+/* Свернутое состояние */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes {
+    margin-top: 10px !important;
+    padding: 5px 10px !important;
+    max-height: 25px !important; /* Высота для многоточия */
+    overflow: hidden !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    transition: all 0.3s ease-in-out !important;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Рисуем ••• через псевдоэлемент подвала */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes::before {
+    content: '•••' !important;
+    display: block !important;
+    text-align: left;
+    color: var(--text-faint);
+    font-size: 18px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* Скрываем список внутри, пока не навели или не перешли по ссылке */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes > * {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* РАСКРЫТОЕ СОСТОЯНИЕ (Hover, Target ИЛИ при прыжке .is-flashing) */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:focus-within,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing) {
+    max-height: 800px !important; 
+    background: var(--background-secondary) !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    border-radius: 6px;
+    padding: 10px 15px !important; /* Немного уменьшил padding для аккуратности */
+    opacity: 1 !important;
+    overflow: auto !important; 
+}
+
+/* УБИРАЕМ ПУСТОТУ ВНУТРИ ВЫНОСКИ */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes hr {
+    display: none !important; /* Убираем линию-разделитель */
+}
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes ol {
+    margin: 0 !important; /* Убираем внешние отступы списка */
+    padding-inline-start: 20px !important; /* Оставляем только место под цифры сносок */
+}
+
+/* Показываем контент при раскрытии */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover > *,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target > *,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing) > * {
+    opacity: 1;
+}
+
+/* Прячем точки при раскрытии */
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover::before,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target::before,
+.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing)::before {
+    display: none !important;
+}
+
+/* Эффект подсветки целевой сноски из твоего видео */
+.list-cards.dashboard-premium.markdown-preview-view .is-flashing {
+    background-color: var(--text-selection) !important;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Скрыть блок в режиме LP */
+.cm-s-obsidian .cm-line.HyperMD-footnote {
+  display: none;
+}
+
+/* 5. ХОВЕР НА ЦИФРЫ */
+.list-cards.dashboard-premium .footnote-link:hover::before,
+.list-cards.dashboard-premium .cm-footref:hover {
+    color: var(--text-accent) !important;
+    opacity: 1 !important;
+}
+
+
 /* ____________________________________________________________________________ */
 
 
