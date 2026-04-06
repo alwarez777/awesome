@@ -4,212 +4,335 @@
 name: Awesome
 id: awesome
 settings:
-    -
-        id: colorful-frame
-        title: Tinted sidebar
-        description: Apply a subtle tint to the sidebar based on accent color.
-        type: class-toggle
-    -
-        id: material-color
-        title: Dynamic color
-        description: Apply dynamic theming based on accent color.
-        type: class-toggle
-    -
-        id: adaptive-mode-off
-        title: Disable adaptive mode
-        description: Prevent automatic styling based on operating system.
-        type: class-toggle
-    -
-        id: tab-floating
-        title: Disable centered tabs
-        type: class-toggle
-    -
-        id: desktop-header
-        title: Desktop
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: hover-ribbon
-        title: Hover ribbon
-        description: Reveal ribbon by hovering over left window edge.
-        type: class-toggle
-        addCommand: true
-    -
-        id: hover-sidedock
-        title: Hover sidebar
-        description: Reveal collapsed sidebars by hovering over window edges.
-        type: class-toggle
-        addCommand: true
-    -
-        id: focus-view
-        title: Focus view
-        description: Hide tabs and table title bar when both sidebars are collapsed.
-        type: class-toggle
-        addCommand: true
-    -
-        id: nav-action-center
-        title: Disable compact panel actions
-        type: class-toggle
-    -
-        id: tab-icon
-        title: Disable compact sidebar tabs
-        type: class-toggle
-    -
-        id: status-bar-baseline
-        title: Disable compact status bar
-        type: class-toggle
-    -
-        id: zoom-off
-        title: Disable media zoom
-        type: class-toggle
-    -
-        id: editor
-        title: Editor
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: awe-feature-activeline
-        title: 📱💻 Стиль оформления линии
-        type: class-select
-        allowEmpty: false
-        default: awe-feature-activeline-def
-        options:
-          - label: "Стандартный"
-            value: awe-feature-activeline-def
-          - label: "Индикатор слева"
-            value: awe-feature-activeline-line
-          - label: "Нижняя граница"
-            value: awe-feature-activeline-bord
-          - label: "Фоновый цвет"
-            value: awe-feature-activeline-bg
-    -
-        id: awe-feature-activeline-hover
-        title: 🖱️ Включить эффект наведения (Hover)
-        description: Подсвечивает строку под курсором мыши в том же стиле, что и активную.
-        type: class-toggle
-        value: awe-hover-enabled
-    -
-        id: awe-feature-activeline-accent
-        title: ✨ Использовать акцентный цвет
-        description: Если выключено — используется системный серый, если включено — твой акцентный цвет.
-        type: class-toggle
-        default: false
-    -
-        id: banner-off
-        title: Disable banner
-        type: class-toggle
-    -
-        id: block-width-off
-        title: Disable block width
-        type: class-toggle
-    -
-        id: font-variant-off
-        title: Disable font variants
-        type: class-toggle
-    -
-        id: full-width-media-off
-        title: Disable full-width elements
-        type: class-toggle
-    -
-        id: mode-switcher-off
-        title: Disable quick mode switcher
-        type: class-toggle
-    -
-        id: accessibility
-        title: Accessibility
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: reduce-contrast-change
-        title: Reduce contrast change
-        description: Minimize contrast shifts when window loses focus.
-        type: class-toggle
-    -
-        id: reduce-motion
-        title: Reduce motion
-        description: Minimize animation effects throughout the app.
-        type: class-toggle
-    -
-        id: clean-link-off
-        title: Underlined links
-        description: Always underline links for improved visibility.
-        type: class-toggle
-    -
-        id: customize
-        title: Customize
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: av-workspace-tabs-hide
-        title: 💻 Скрыть контейнер вкладок
-        description: Полностью скрывает панель вкладок для центральной части пространства (подходит для плагинов вроде Vertical Tabs).
-        type: class-toggle
-    -
-        id: av-workspace-tabs-opacity
-        title: 💻 Отображать вкладки при наведении
-        description: Скрывает вкладки на центральной панели через понижение прозрачности и отображает их при наведении через увеличение прозрачности.
-        type: class-toggle
-    -
-        id: tab-top-left-dropdown
-        title: 💻 Выпадающий список плагинов для левого сайдбара
-        description: Заменяет сгруппированные иконки плагинов на иконку + надпись активного плагина и выбор плагинов с помощью выпадающего списка.
-        type: class-toggle
+-
+    id: colorful-frame
+    title: Tinted sidebar
+    description: Apply a subtle tint to the sidebar based on accent color.
+    type: class-toggle
+-
+    id: material-color
+    title: Dynamic color
+    description: Apply dynamic theming based on accent color.
+    type: class-toggle
+-
+    id: adaptive-mode-off
+    title: Disable adaptive mode
+    description: Prevent automatic styling based on operating system.
+    type: class-toggle
+-
+    id: tab-floating
+    title: Disable centered tabs
+    type: class-toggle
+-
+    id: desktop-header
+    title: Desktop
+    type: heading
+    level: 1
+    collapsed: true
+-
+    id: hover-ribbon
+    title: Hover ribbon
+    description: Reveal ribbon by hovering over left window edge.
+    type: class-toggle
+    addCommand: true
+-
+    id: hover-sidedock
+    title: Hover sidebar
+    description: Reveal collapsed sidebars by hovering over window edges.
+    type: class-toggle
+    addCommand: true
+-
+    id: focus-view
+    title: Focus view
+    description: Hide tabs and table title bar when both sidebars are collapsed.
+    type: class-toggle
+    addCommand: true
+-
+    id: nav-action-center
+    title: Disable compact panel actions
+    type: class-toggle
+-
+    id: tab-icon
+    title: Disable compact sidebar tabs
+    type: class-toggle
+-
+    id: status-bar-baseline
+    title: Disable compact status bar
+    type: class-toggle
+-
+    id: zoom-off
+    title: Disable media zoom
+    type: class-toggle
+-
+    id: editor
+    title: Editor
+    type: heading
+    level: 1
+    collapsed: true
+-
+    id: awe-feature-activeline
+    title: 📱💻 Стиль оформления линии
+    type: class-select
+    allowEmpty: false
+    default: awe-feature-activeline-def
+    options:
     - 
-        id: hm-show-indicators
-        title: 🏷️ Включить индикаторы (маркеры)
-        type: class-toggle
-        default: true
-    -
-        id: hm-indicator-style
-        title: 🎨 Стиль маркера (символы)
-        type: class-select
-        allowEmpty: false
-        default: hm-mark-hashes
-        options:
-          - label: "Решетки (# ## ###)"
-            value: hm-mark-hashes
-          - label: "Уровни (L1 L2 L3)"
-            value: hm-mark-levels
-          - label: "Заголовки (H1 H2 H3)"
-            value: hm-mark-headers
-          - label: "Точки (• •• •••)"
-            value: hm-mark-dots
-    -
-        id: hm-indicator-color-style
-        title: 🌈 Цвет маркеров
-        type: class-select
-        allowEmpty: false
-        default: hm-mark-accent
-        options:
-          - label: "Стандартный (серый)"
-            value: hm-mark-std
-          - label: "Как текст заголовка"
-            value: hm-mark-match
-          - label: "Разноцветный"
-            value: hm-mark-colorful
-          - label: "Акцентный (системный)"
-            value: hm-mark-accent
-    -
-        id: hm-bg-style
-        title: 🖼️ Фон заголовков
-        type: class-select
-        allowEmpty: false
-        default: hm-bg-off
-        options:
-          - label: "Без фона"
-            value: hm-bg-off
-          - label: "Разноцветный (Colorful)"
-            value: hm-bg-colorful
-          - label: "Монохромный (Mono)"
-            value: hm-bg-mono
-    -
-        id: code-line-number
-        title: 📱💻 Отображать номера строк в блоке кода
-        description: Добавляет нумерацию для строк слева внутри блока
-        type: class-toggle
-        default: true
+        label: "Стандартный"
+        value: awe-feature-activeline-def
+    - 
+        label: "Индикатор слева"
+        value: awe-feature-activeline-line
+    - 
+        label: "Нижняя граница"
+        value: awe-feature-activeline-bord
+    - 
+        label: "Фоновый цвет"
+        value: awe-feature-activeline-bg
+-
+    id: awe-feature-activeline-hover
+    title: 🖱️ Включить эффект наведения (Hover)
+    description: Подсвечивает строку под курсором мыши в том же стиле, что и активную.
+    type: class-toggle
+    value: awe-hover-enabled
+-
+    id: awe-feature-activeline-accent
+    title: ✨ Использовать акцентный цвет
+    description: Если выключено — используется системный серый, если включено — твой акцентный цвет.
+    type: class-toggle
+    default: false
+-
+    id: banner-off
+    title: Disable banner
+    type: class-toggle
+-
+    id: block-width-off
+    title: Disable block width
+    type: class-toggle
+-
+    id: font-variant-off
+    title: Disable font variants
+    type: class-toggle
+-
+    id: full-width-media-off
+    title: Disable full-width elements
+    type: class-toggle
+-
+    id: mode-switcher-off
+    title: Disable quick mode switcher
+    type: class-toggle
+-
+    id: accessibility
+    title: Accessibility
+    type: heading
+    level: 1
+    collapsed: true
+-
+    id: reduce-contrast-change
+    title: Reduce contrast change
+    description: Minimize contrast shifts when window loses focus.
+    type: class-toggle
+-
+    id: reduce-motion
+    title: Reduce motion
+    description: Minimize animation effects throughout the app.
+    type: class-toggle
+-
+    id: clean-link-off
+    title: Underlined links
+    description: Always underline links for improved visibility.
+    type: class-toggle
+-
+    id: customize
+    title: Customize
+    type: heading
+    level: 1
+    collapsed: true
+-
+    id: av-workspace-tabs-hide
+    title: 💻 Скрыть контейнер вкладок
+    description: Полностью скрывает панель вкладок для центральной части пространства (подходит для плагинов вроде Vertical Tabs).
+    type: class-toggle
+-
+    id: av-workspace-tabs-opacity
+    title: 💻 Отображать вкладки при наведении
+    description: Скрывает вкладки на центральной панели через понижение прозрачности и отображает их при наведении через увеличение прозрачности.
+    type: class-toggle
+-
+    id: tab-top-left-dropdown
+    title: 💻 Выпадающий список плагинов для левого сайдбара
+    description: Заменяет сгруппированные иконки плагинов на иконку + надпись активного плагина и выбор плагинов с помощью выпадающего списка.
+    type: class-toggle
+- 
+    id: hm-show-indicators
+    title: 🏷️ Включить индикаторы (маркеры)
+    type: class-toggle
+    default: true
+-
+    id: hm-indicator-style
+    title: 🎨 Стиль маркера (символы)
+    type: class-select
+    allowEmpty: false
+    default: hm-mark-hashes
+    options:
+    - 
+        label: "Решетки (# ## ###)"
+        value: hm-mark-hashes
+    - 
+        label: "Уровни (L1 L2 L3)"
+        value: hm-mark-levels
+    - 
+        label: "Заголовки (H1 H2 H3)"
+        value: hm-mark-headers
+    - 
+        label: "Точки (• •• •••)"
+        value: hm-mark-dots
+-
+    id: hm-indicator-color-style
+    title: 🌈 Цвет маркеров
+    type: class-select
+    allowEmpty: false
+    default: hm-mark-accent
+    options:
+    - 
+        label: "Стандартный (серый)"
+        value: hm-mark-std
+    - 
+        label: "Как текст заголовка"
+        value: hm-mark-match
+    - 
+        label: "Разноцветный"
+        value: hm-mark-colorful
+    - 
+        label: "Акцентный (системный)"
+        value: hm-mark-accent
+-
+    id: hm-bg-style
+    title: 🖼️ Фон заголовков
+    type: class-select
+    allowEmpty: false
+    default: hm-bg-off
+    options:
+    - 
+        label: "Без фона"
+        value: hm-bg-off
+    - 
+        label: "Разноцветный (Colorful)"
+        value: hm-bg-colorful
+    - 
+        label: "Монохромный (Mono)"
+        value: hm-bg-mono
+-
+    id: code-line-number
+    title: 📱💻 Отображать номера строк в блоке кода
+    description: Добавляет нумерацию для строк слева внутри блока
+    type: class-toggle
+    default: true
+
+- 
+	id: mcl-custom-settings
+	title: MCL - Галереи и изображения
+	type: heading
+	level: 1
+	collapsed: true
+- 
+	id: gc-general-title
+	title: Общие настройки изображений
+	type: heading
+	level: 2
+	collapsed: true
+- 
+	id: image-zoom
+	title: Включить зум изображений
+	description: Увеличение картинки на весь экран при клике и удержании
+	type: class-toggle
+- 
+	id: img-border-radius
+	title: Радиус скругления углов
+	type: variable-text
+	default: 15px
+- 
+	id: gc-callout-title
+	title: Настройки фотогалереи
+	type: heading
+	level: 2
+	collapsed: true
+- 
+	id: gallery-snw-display
+	title: Индикаторы SNW в галерее
+	type: variable-select
+	default: none
+	options:
+    - 
+        label: Показать
+        value: inline-block
+    - 
+        label: Скрыть
+        value: none
+- 
+	id: callout-gallery-gap
+	title: Отступ между фото в галерее
+	type: variable-text
+	default: 5px
+- 
+	id: img-max-height
+	title: Макс. высота фото в галерее
+	type: variable-text
+	default: 300px
+- 
+	id: img-max-width
+	title: Макс. ширина фото в галерее
+	type: variable-text
+	default: 350px
+- 
+	id: gc-float-title
+	title: Обтекание текстом (Float)
+	type: heading
+	level: 2
+	collapsed: true
+- 
+	id: float-left-margin
+	title: Отступы для обтекания слева
+	description: Порядок - "верх право низ лево"
+	type: variable-text
+	default: 4px 12px 4px 0px
+- 
+	id: float-right-margin
+	title: Отступы для обтекания справа
+	type: variable-text
+	default: 4px 0px 4px 12px
+- 
+	id: gc-list-title
+	title: Картинки в списках
+	type: heading
+	level: 2
+	collapsed: true
+- 
+	id: list-image-control-off
+	title: Отключить контроль размера в списках
+	description: Возвращает стандартное поведение Obsidian
+	type: class-toggle
+- 
+	id: img-max-height-list
+	title: Макс. высота фото в списке
+	type: variable-text
+	default: 270px
+- 
+	id: img-max-width-list
+	title: Макс. ширина фото в списке
+	type: variable-text
+	default: 300px
+- 
+	id: gc-mermaid-title
+	title: Настройки Mermaid
+	type: heading
+	level: 2
+	collapsed: true
+- 
+	id: mermaid-scale-off
+	title: Отключить авто-масштабирование Mermaid
+	type: class-toggle
+- 
+	id: mermaid-zoom
+	title: Включить зум для Mermaid
+	type: class-toggle
 */
