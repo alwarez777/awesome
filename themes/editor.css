@@ -506,9 +506,6 @@ body.is-mobile {
 }
 
 
-
-
-
 /* 📱💻 Отключить кнопку Edit/View Mode */
 .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
   display: none; 
@@ -519,7 +516,7 @@ body.is-mobile {
 
 /* ==========================================
    1. БАЗОВЫЕ СБРОСЫ И ОФОРМЛЕНИЕ
-   ========================================== */
+========================================== */
 .metadata-property-key,
 .metadata-property-value,
 .metadata-property,
@@ -540,7 +537,7 @@ body:not(.is-mobile) .metadata-property-key {
 
 .metadata-property {
   margin: -5px 0 -5px 0;
-  padding: 0;
+  padding: 0 5px;
   box-shadow: none;
   border: none;
   font-size: 13px;
@@ -566,11 +563,11 @@ body:not(.is-mobile) .metadata-property-key {
   position: relative;
   overflow: hidden;
   transition:
-    background-color 0.4s ease-in-out,
-    border-color 0.4s ease-in-out,
-    box-shadow 0.4s ease-in-out,
-    max-height 0.45s ease-in-out,
-    padding 0.4s ease-in-out;
+    max-height 0.4s ease-in-out,
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    padding 0.4s ease;
 }
 
 /* Внешние отступы контейнера в разных режимах */
@@ -597,11 +594,12 @@ body:not(.is-mobile) .metadata-property-key {
 .metadata-container.collapsed,
 .cm-editor .metadata-container:not(:hover):not(:focus-within),
 .markdown-preview-view .metadata-container:not(:hover):not(:focus-within) {
-  max-height: 1.1em;
+  max-height: 1.4em;
   padding: 0.6em 0.5em;
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
+  pointer-events: none;
 
   &::before {
     content: '•••';
@@ -612,11 +610,12 @@ body:not(.is-mobile) .metadata-property-key {
     font-size: 18px;
     color: rgba(var(--mono-rgb-100), 0.3);
     opacity: 1;
+    z-index: 10;
     pointer-events: auto;
     border-radius: 4px;
     padding: 0.05em 0.35em;
     animation: fadePulse 3.5s ease-in-out infinite;
-    transition: opacity 0.45s ease-in-out, background-color 0.25s ease-in-out;
+    transition: opacity 0.3s ease;
   }
 
   &:hover::before {
@@ -626,28 +625,31 @@ body:not(.is-mobile) .metadata-property-key {
 
   .metadata-content {
     opacity: 0;
-    transform: translateY(-6px);
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
+    transition: opacity 0.2s ease;
   }
 }
 
 /* Раскрытое состояние (При наведении) */
 .metadata-container:not(.collapsed),
 .metadata-container.collapsed:hover {
-  max-height: 500px;
+  max-height: 1200px;
   background-color: var(--background-secondary);
   border: 1px solid var(--background-modifier-border);
   box-shadow: var(--shadow-xs);
+  pointer-events: auto;
 
   &::before {
     opacity: 0;
     animation: none;
+    pointer-events: none; /* Убираем точки, чтобы не мешали кликать по свойствам */
   }
   .metadata-content {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
     pointer-events: auto;
+    transition: opacity 0.4s ease 0.1s;
   }
 }
 
@@ -667,11 +669,7 @@ body:not(.is-mobile) .metadata-property-key {
   pointer-events: none; /* Отключаем клики по скрытым элементам */
   border: none;
   /* Анимируем схлопывание, чтобы весь контейнер не дергался */
-  transition: 
-    max-height 0.35s ease-in-out,
-    opacity 0.25s ease-in-out,
-    margin 0.35s ease-in-out,
-    padding 0.35s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 /* 3.2. РЕЖИМ РЕДАКТИРОВАНИЯ (Показ при клике/фокусе внутри контейнера)
@@ -681,8 +679,8 @@ body:not(.is-mobile) .metadata-property-key {
 .metadata-container:focus-within .metadata-property:not(:focus-within):has(.multi-select-input[placeholder*="значения"]),
 .metadata-container:focus-within .metadata-property:not(:focus-within):has(.multi-select-container:empty) {
   max-height: 50px; /* Даем высоту для плавного разворачивания */
-  opacity: 0.5;     /* Делаем их бледными, чтобы отличать от заполненных */
-  margin: -5px 0 -5px 0; /* Возвращаем твой оригинальный margin */
+  opacity: 0.5;
+  margin: -5px 0 -5px 0;
   pointer-events: auto;
 }
 
@@ -711,7 +709,7 @@ body:not(.is-mobile) .metadata-property-key {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: padding 0.2s ease;
+  /* transition: padding 0.2s ease; */
 }
 
 /* 💻 Скрыть крестик для значений в свойствах типа "Список" (Появление по ховеру) */
@@ -723,7 +721,7 @@ body:not(.is-phone) {
     overflow: hidden;
     transition: 
         width 0.2s ease, 
-        margin 0.2s ease, 
+        /* margin 0.2s ease, */ 
         opacity 0.1s ease;
   }
   .multi-select-pill:hover .multi-select-pill-remove-button {
@@ -732,6 +730,7 @@ body:not(.is-phone) {
     opacity: 1;
   }
 }
+
 
 /* 📱💻 Скрытие свойств в Live Preview и Reading Mode */
 .hide-properties .metadata-container {
