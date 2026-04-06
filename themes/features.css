@@ -218,6 +218,135 @@ body:not(.block-width-off) {
   }
 }
 
+/* ============================================================================
+   ДОПОЛНИТЕЛЬНЫЕ ФУНКИИ: BACKLINKS, CALLOUT, GUTTER, RLL, NARROW
+   Интеграция техник из MCL с адаптацией под архитектуру Dashboard Premium
+   ============================================================================ */
+
+body:not(.block-width-off) {
+  
+  /* ==========================================================================
+     1. КОРРЕКЦИЯ ПОД GUTTER В РЕЖИМЕ РЕДАКТИРОВАНИЯ
+     Когда видны номера строк (gutter), корректируем отступы для широких блоков
+     ========================================================================== */
+  
+  /* Переменная для отступа в режиме редактирования (по умолчанию = базовый) */
+  --block-width-offset-ev: var(--block-width-offset);
+  
+  /* Если gutter виден — добавляем компенсацию (~1.5rem под ширину gutter) */
+  body:has(.cm-gutters) {
+    --block-width-offset-ev: calc(-1 * var(--file-margins-x) + 1.5rem);
+  }
+
+
+  /* ==========================================================================
+     2. BACKLINKS: КОНТРОЛЬ ШИРИНЫ
+     Использование: добавьте класс .backlinks-wide / .backlinks-max / .backlinks-100
+     ========================================================================== */
+  
+  div:is(.backlinks-wide, .backlinks-max, .backlinks-100) {
+    .embedded-backlinks {
+      max-width: var(--backlinks-line-max-width);
+      width: var(--backlinks-line-width) !important;
+      justify-self: center;
+      margin-inline: var(--backlinks-line-width-offset) !important;
+    }
+  }
+  
+  .backlinks-wide {
+    --backlinks-line-max-width: var(--block-width-max);
+    --backlinks-line-width: var(--block-width-wide);
+    --backlinks-line-width-offset: var(--block-width-offset-ev);
+  }
+  
+  .backlinks-max {
+    --backlinks-line-max-width: var(--block-width-max);
+    --backlinks-line-width: var(--block-width-max);
+    --backlinks-line-width-offset: var(--block-width-offset-ev);
+  }
+  
+  .backlinks-100 {
+    --backlinks-line-max-width: 100cqw;
+    --backlinks-line-width: 100cqw;
+    --backlinks-line-width-offset: var(--block-width-offset);
+    
+    /* Визуальный полиш для 100%-ширины: убираем лишние границы */
+    .embedded-backlinks {
+      border-radius: 0 !important;
+    }
+  }
+
+
+  /* ==========================================================================
+     3. CALLOUT: КОНТРОЛЬ ШИРИНЫ
+     Использование: добавьте класс .callout-wide / .callout-max / .callout-100
+     ========================================================================== */
+  
+  div:is(.callout-wide, .callout-max, .callout-100) {
+    .callout,
+    .cm-callout {
+      max-width: var(--callout-line-max-width);
+      width: var(--callout-line-width) !important;
+      justify-self: center;
+      margin-inline: var(--callout-line-width-offset) !important;
+    }
+  }
+  
+  .callout-wide {
+    --callout-line-max-width: var(--block-width-max);
+    --callout-line-width: var(--block-width-wide);
+    --callout-line-width-offset: var(--block-width-offset-ev);
+  }
+  
+  .callout-max {
+    --callout-line-max-width: var(--block-width-max);
+    --callout-line-width: var(--block-width-max);
+    --callout-line-width-offset: var(--block-width-offset-ev);
+  }
+  
+  .callout-100 {
+    --callout-line-max-width: 100cqw;
+    --callout-line-width: 100cqw;
+    --callout-line-width-offset: var(--block-width-offset);
+    
+    /* Визуальный полиш для 100%-ширины: убираем скругления и границы */
+    .callout {
+      border-radius: 0 !important;
+      border-width: 0 !important;
+    }
+  }
+
+
+  /* ==========================================================================
+     4. RLL (READABLE LINE LENGTH) + NARROW PAGE
+     Использование:
+     • Класс "is-adj-rll" на body — включить регулируемую ширину строки
+     • Класс "narrow-page" на заметке — узкая ширина для конкретной страницы
+     ========================================================================== */
+  
+  /* Переменные для RLL и Narrow */
+  --rll-max-width: 700px;
+  --narrow-max-width: 750px;
+  
+  /* Регулируемая ширина строки (RLL) — применяется ко всему контенту */
+  body.is-adj-rll .view-content {
+    --file-line-width: var(--rll-max-width);
+  }
+  
+  /* Узкая страница — переопределяет ширину для конкретной заметки */
+  .narrow-page.markdown-source-view .cm-sizer,
+  .narrow-page.markdown-preview-view .markdown-preview-sizer {
+    max-width: var(--narrow-max-width);
+    margin-inline: auto;
+  }
+  
+  /* Если RLL включён, но нужна узкая страница — narrow имеет приоритет */
+  body.is-adj-rll .narrow-page.markdown-source-view .cm-sizer,
+  body.is-adj-rll .narrow-page.markdown-preview-view .markdown-preview-sizer {
+    max-width: var(--narrow-max-width);
+  }
+}
+
 
 /* # HELPER TABLES */
 .table-small {
@@ -1491,7 +1620,7 @@ body {
 }
 
 /* Скрыть блок в режиме LP */
-.cm-s-obsidian .cm-line.HyperMD-footnote {
+.cm-s-obsidian.is-live-preview .cm-line.HyperMD-footnote {
   display: none;
 }
 
@@ -1501,6 +1630,304 @@ body {
     color: var(--text-accent) !important;
     opacity: 1 !important;
 }
+
+
+
+/* ____________________________________________________________________________ */
+
+
+
+/* === MCL Multi Column — Оптимизированная версия ===
+   Автор: Faiz Khuzaimah | Адаптация: [Ваше имя]
+   Функции: многоколоночные блоки, плавающие коллауты
+   Использование: см. комментарии в каждом разделе
+*/
+
+
+/* ============================================================================
+	1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+	Все CSS-переменные собраны в одном месте для удобной настройки
+============================================================================ */
+
+body {
+	/* === MCC: общие параметры === */
+	--mcc-img-snw-display: none;          /* Показывать ли SNW-индикатор для изображений в MCC */
+	--callout-min-width: 200px;           /* Мин. ширина вложенного коллаута в MCC */
+	--callout-nowrap-min-width: 250px;    /* Мин. ширина коллаута в режиме no-wrap */
+	--callout-gap: 1em;                   /* Отступ между колонками в MCC */
+	--callout-margin: 0px;                /* Внешний отступ коллаутов в MCC (для тени) */
+
+	/* === Плавающие коллауты: размеры === */
+	--float-small-width: 300px;
+	--float-medium-width: 400px;
+	--float-large-width: 600px;
+
+	/* === Плавающие коллауты: отступы === */
+	--float-left-callout-margin-inline: 0 12px;  /* Отступы: [слева] [справа] для левого флоата */
+	--float-right-callout-margin-inline: 12px 0; /* Отступы: [слева] [справа] для правого флоата */
+	--float-callout-top-margin: 0em;             /* Верхний отступ для всех флоатов */
+	--float-callout-snw-display: none;           /* Показывать ли SNW-индикатор в флоатах */
+}
+
+
+/* ============================================================================
+		2. ФИКСИРОВАННАЯ ШИРИНА КОЛОНОК (FW / PW / DW)
+		Использование в [!multi-column]: добавьте в метаданные:
+		• fw3 → фиксированная ширина 300px
+		• pw5 → ширина 48% от контейнера
+		• dw2 → гибкий вес: колонка будет в 2 раза шире соседней с dw1
+============================================================================ */
+
+/* -- Фиксированная ширина в пикселях (fw1–fw9) -- */
+div[data-callout-metadata*="fw"].callout.callout.callout { flex-grow: 0; flex-shrink: 0; }
+div[data-callout-metadata*="fw1"].callout.callout.callout.callout { flex-basis: 100px; width: 100px; }
+div[data-callout-metadata*="fw2"].callout.callout.callout.callout { flex-basis: 200px; width: 200px; }
+div[data-callout-metadata*="fw3"].callout.callout.callout.callout { flex-basis: 300px; width: 300px; }
+div[data-callout-metadata*="fw4"].callout.callout.callout.callout { flex-basis: 400px; width: 400px; }
+div[data-callout-metadata*="fw5"].callout.callout.callout.callout { flex-basis: 500px; width: 500px; }
+div[data-callout-metadata*="fw6"].callout.callout.callout.callout { flex-basis: 600px; width: 600px; }
+div[data-callout-metadata*="fw7"].callout.callout.callout.callout { flex-basis: 700px; width: 700px; }
+div[data-callout-metadata*="fw8"].callout.callout.callout.callout { flex-basis: 800px; width: 800px; }
+div[data-callout-metadata*="fw9"].callout.callout.callout.callout { flex-basis: 900px; width: 900px; }
+
+/* -- Ширина в процентах (pw1–pw9) -- */
+div[data-callout-metadata*="pw1"].callout.callout.callout.callout { flex-basis: 10%; width: 10%; }
+div[data-callout-metadata*="pw2"].callout.callout.callout.callout { flex-basis: 18%; width: 18%; }
+div[data-callout-metadata*="pw3"].callout.callout.callout.callout { flex-basis: 28%; width: 28%; }
+div[data-callout-metadata*="pw4"].callout.callout.callout.callout { flex-basis: 38%; width: 38%; }
+div[data-callout-metadata*="pw5"].callout.callout.callout.callout { flex-basis: 48%; width: 48%; }
+div[data-callout-metadata*="pw6"].callout.callout.callout.callout { flex-basis: 58%; width: 58%; }
+div[data-callout-metadata*="pw7"].callout.callout.callout.callout { flex-basis: 68%; width: 68%; }
+div[data-callout-metadata*="pw8"].callout.callout.callout.callout { flex-basis: 78%; width: 78%; }
+div[data-callout-metadata*="pw9"].callout.callout.callout.callout { flex-basis: 88%; width: 88%; }
+
+/* -- Гибкие веса колонок (dw1–dw9) и mw0 -- */
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="mw0"].callout.callout { flex-basis: 0; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw1"].callout { flex: 1 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw2"].callout { flex: 2 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw3"].callout { flex: 3 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw4"].callout { flex: 4 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw5"].callout { flex: 5 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw6"].callout { flex: 6 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw7"].callout { flex: 7 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw8"].callout { flex: 8 0 auto; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="dw9"].callout { flex: 9 0 auto; }
+
+
+/* ============================================================================
+		3. MULTI-COLUMN CALLOUT (MCC) — МНОГОКОЛОНОЧНЫЕ БЛОКИ
+		Использование: [!multi-column] как контейнер, внутри — обычные коллауты
+============================================================================ */
+
+/* -- 3.1. Ядро MCC: базовая разметка -- */
+div[data-callout="multi-column"].callout > .callout-title { display: none; }
+div[data-callout="multi-column"].callout > .callout-content { display: contents; }
+
+div[data-callout="multi-column"].callout {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--callout-gap);
+	background: unset;
+	border: unset;
+	margin: unset;
+	padding: unset;
+	clear: both;
+	--columns: unset; /* Сброс модификаций тем (например, Sanctum) */
+}
+
+/* Вложенные коллауты: вертикальная ориентация + растягивание контента */
+div[data-callout="multi-column"].callout .callout:not([data-callout="multi-column"]) {
+	display: flex;
+	flex-direction: column;
+}
+div[data-callout="multi-column"].callout:not(.is-collapsed) .callout {
+	margin-inline: var(--callout-margin);
+	margin-block: var(--callout-margin);
+}
+div[data-callout="multi-column"].callout .callout .callout-content { flex-grow: 1; }
+
+/* Дочерние элементы (списки, параграфы) — базовое поведение */
+div[data-callout="multi-column"].callout > .callout-content > *:is(div, ul, blockquote, p) {
+	flex: 1 1 var(--callout-min-width);
+	margin: 0;
+}
+
+/* -- 3.2. Варианты пропорций: wide-2 → wide-5 -- */
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="wide-2"] { flex-grow: 2; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="wide-3"] { flex-grow: 3; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="wide-4"] { flex-grow: 4; }
+div[data-callout="multi-column"].callout > .callout-content > div[data-callout-metadata*="wide-5"] { flex-grow: 5; }
+
+/* -- 3.3. Вариант: гибкая высота (выравнивание по верху) -- */
+div[data-callout="multi-column"][data-callout-metadata*="flex-h"].callout { align-items: flex-start; }
+
+/* -- 3.4. Вариант: фиксированная сетка из 3 колонок (без иконок) -- */
+div[data-callout="multi-column"][data-callout-metadata*="col3"]:not([data-callout-metadata*="icons"]).callout {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* -- 3.5. Вариант: иконки с центрированием -- */
+div[data-callout="multi-column"][data-callout-metadata*="icons"] {
+	&.callout { justify-content: center; }
+	&.callout .callout { display: flex; flex-direction: row; flex-wrap: wrap; }
+	&.callout.callout .callout-content > p { flex-grow: 1; text-align: center; }
+	&[data-callout-metadata*="col2"].callout.callout .callout-content > p { flex-basis: 40%; }
+	&[data-callout-metadata*="col3"].callout.callout .callout-content > p { flex-basis: 30%; }
+	&[data-callout-metadata*="col4"].callout.callout .callout-content > p { flex-basis: 22%; }
+	&[data-callout-metadata*="col5"].callout.callout .callout-content > p { flex-basis: 18%; }
+}
+
+/* -- 3.6. Вариант: фиксированное выравнивание контента внутри MCC -- */
+div[data-callout="multi-column"][data-callout-metadata*="center-fixed"].callout { justify-content: center; }
+div[data-callout="multi-column"][data-callout-metadata*="left-fixed"].callout { justify-content: flex-start; }
+div[data-callout="multi-column"][data-callout-metadata*="right-fixed"].callout { justify-content: flex-end; }
+div[data-callout="multi-column"][data-callout-metadata*="fixed"].callout > .callout-content > *:is(div, ul) { flex-grow: 0; }
+div[data-callout="multi-column"][data-callout-metadata*="fixed"][data-callout-metadata*="small"].callout > .callout-content > *:is(div, ul) { flex-basis: calc(var(--float-small-width) * 0.5); }
+div[data-callout="multi-column"][data-callout-metadata*="fixed"][data-callout-metadata*="medium"].callout > .callout-content > *:is(div, ul) { flex-basis: calc(var(--float-medium-width) * 0.65); }
+div[data-callout="multi-column"][data-callout-metadata*="fixed"][data-callout-metadata*="large"].callout > .callout-content > *:is(div, ul) { flex-basis: calc(var(--float-large-width) * 0.8); }
+
+/* -- 3.7. Вариант: no-wrap (горизонтальный скролл) -- */
+div[data-callout="multi-column"][data-callout-metadata*="no-wrap"].callout {
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	& > .callout-content > *:is(div, ul) { flex-shrink: 0; }
+}
+.callout[data-callout="multi-column"][data-callout-metadata*="no-wrap"] .callout[data-callout-metadata*="small"] { flex-basis: 300px; }
+.callout[data-callout="multi-column"][data-callout-metadata*="no-wrap"] .callout[data-callout-metadata*="medium"] { flex-basis: 400px; }
+.callout[data-callout="multi-column"][data-callout-metadata*="no-wrap"] .callout[data-callout-metadata*="large"] { flex-basis: 600px; }
+
+/* -- 3.8. Центрирование контента в под-коллаутах -- */
+div[data-callout="multi-column"] .callout[data-callout-metadata*="center"] { text-align: center; }
+
+/* -- 3.9. Коррекция для свёрнутых коллаутов (на десктопе) -- */
+@media (min-width: 500px) {
+	div[data-callout="multi-column"].callout > div.callout-content .callout.is-collapsed {
+		box-shadow: unset;
+		height: min-content;
+	}
+}
+
+/* -- 3.10. Плагин SNW: скрытие индикаторов в MCC -- */
+div[data-callout*="multi-column"].callout .callout-content span.image-embed + .snw-reference {
+	display: var(--mcc-img-snw-display);
+}
+
+
+/* ============================================================================
+		4. BLANK CONTAINER — «ПУСТОЙ» КОНТЕЙНЕР
+		Использование: [!blank] или [!blank-container]
+		Убирает оформление коллаута: фон, рамку, заголовок, тень
+============================================================================ */
+
+div[data-callout*="blank"].callout {
+	--callout-blend-mode: normal;
+	border: 0;
+	padding-top: 0;
+	padding-inline: 5px;
+	background: unset;
+	box-shadow: unset;
+}
+div[data-callout*="blank"].callout > .callout-title { display: none; }
+div[data-callout*="blank"].callout > .callout-content { display: contents; }
+
+/* Убираем отступы у одиночного параграфа внутри blank */
+div[data-callout*="blank"].callout .callout-content > p:only-child { margin-block: 0; }
+
+/* Опция no-margin: убирает отступы у коллаутов с метаданными */
+div[data-callout-metadata*="no-margin"]:is(.cm-callout, .callout.callout, .callout.callout .callout-content) {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* ============================================================================
+		5. ПЛАВАЮЩИЕ КОЛЛАУТЫ (FLOAT)
+		Использование: добавьте в метаданные коллаута:
+		• float-left / left — обтекание слева
+		• float-right / right — обтекание справа
+		Работает только при ширине экрана ≥500px
+============================================================================ */
+
+
+@media (min-width: 500px) {
+	/* -- 5.1. Базовое поведение в режиме редактирования -- */
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-left"]) {
+		display: inline;
+		z-index: 30;
+	}
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-left"]) > div > .callout {
+		float: left;
+		z-index: 30;
+	}
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-left"]) > .edit-block-button {
+		display: none;
+	}
+	.markdown-reading-view div[data-callout-metadata*="left"].callout { float: left; }
+
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-right"]) {
+		display: inline;
+		z-index: 30;
+	}
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-right"]) > div > .callout {
+		float: right;
+		z-index: 30;
+	}
+	.markdown-source-view .cm-embed-block.cm-callout:has(> div.markdown-rendered > [data-callout-metadata*="float-right"]) > .edit-block-button {
+		display: none;
+	}
+	.markdown-reading-view div[data-callout-metadata*="right"].callout { float: right; }
+
+	/* -- 5.2. Отступы и выравнивание -- */
+	.callout:is(div[data-callout-metadata*="left"], div[data-callout-metadata*="right"]) .callout-content > :is(p:first-child, ul:first-child, ol:first-child) {
+		margin-top: 0;
+	}
+	.markdown-source-view.mod-cm6 .callout:is(div[data-callout-metadata*="left"]),
+	.markdown-reading-view div[data-callout-metadata*="left"].callout {
+		margin-inline: var(--float-left-callout-margin-inline);
+	}
+	.markdown-source-view.mod-cm6 .callout:is(div[data-callout-metadata*="right"]),
+	.markdown-reading-view div[data-callout-metadata*="right"].callout {
+		margin-inline: var(--float-right-callout-margin-inline);
+	}
+	.markdown-source-view.mod-cm6 .callout:is(div[data-callout-metadata*="left"]),
+	.markdown-source-view.mod-cm6 .callout:is(div[data-callout-metadata*="right"]) {
+		margin-top: calc(1em * var(--line-height-normal) + var(--float-callout-top-margin));
+	}
+
+	/* -- 5.3. Размеры флоатов (legacy-опции) -- */
+	[data-callout-metadata*="-small"].callout { width: var(--float-small-width); }
+	[data-callout-metadata*="-medium"].callout { width: var(--float-medium-width); }
+	[data-callout-metadata*="-large"].callout { width: var(--float-large-width); }
+}
+
+/* -- 5.4. Подписи к изображениям (caption) -- */
+div:is([data-callout-metadata*="caption"]).callout > .callout-content > p .image-embed[alt]:not([alt$=".png"], [alt$=".jpg"], [alt$=".jpeg"], [alt$=".tiff"])::after {
+	content: attr(alt);
+	text-align: center;
+	display: block;
+	font-style: italic;
+	color: var(--text-muted);
+}
+div:is([data-callout-metadata*="caption"]).callout > .callout-content > p img:not(.emoji) {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* -- 5.5. Разрыв обтекания (clear) для бэклинков -- */
+.embedded-backlinks { clear: both; }
+
+/* -- 5.6. Плагин SNW: скрытие индикаторов в флоатах -- */
+div:is([data-callout-metadata*="caption"], [data-callout-metadata*="left"], [data-callout-metadata*="right"]).callout > .callout-content > p .snw-embed-preview {
+	display: var(--float-callout-snw-display);
+	width: min-content;
+	height: min-content;
+}
+div:is([data-callout-metadata*="caption"], [data-callout-metadata*="left"], [data-callout-metadata*="right"]).callout > .callout-content > p .internal-embed.image-embed ~ br {
+	display: none;
+}
+
 
 
 /* ____________________________________________________________________________ */
