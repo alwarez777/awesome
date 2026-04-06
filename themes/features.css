@@ -1310,6 +1310,7 @@ body {
    ========================================= */
 
 /* 1. ОВЕРЛЕЙ: Делаем всю карточку кликабельной (включая **жирный** текст) */
+/* Применяем ко всем ссылкам сразу, чтобы создать кликабельный слой */
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li a:not([href^="#"])::after {
   content: "";
   position: absolute;
@@ -1322,19 +1323,60 @@ body {
 }
 
 /* 2. Оформление визуального поведения ссылок */
-.list-cards.dashboard-premium.markdown-preview-view div ul li a {
+.list-cards.dashboard-premium.markdown-preview-view div ul li a,
+.list-cards.dashboard-premium.markdown-preview-view .external-link {
   text-decoration: none !important;
   color: var(--text-normal);
-  position: static; /* Важно: ссылка остается в нормальном потоке */
+  position: static; /* Позволяет оверлею ::after растянуться до границ li */
   border-radius: 6px;
   transition: all 0.2s ease;
   display: inline-block;
 }
 
-/* 3. Скрытие служебных ссылок-тегов */
-.list-cards.dashboard-premium.markdown-preview-view a[href*="#"] { 
+/* 3. СПЕЦИФИКА ДЛЯ ВНЕШНИХ ССЫЛОК ВНУТРИ КАРТ */
+/* Сбрасываем стандартную иконку-маску Obsidian, чтобы не было синего квадрата */
+.list-cards.dashboard-premium.markdown-preview-view .external-link::after {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  background-color: transparent !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.list-cards.dashboard-premium.markdown-preview-view .external-link {
+  padding-inline-end: 0 !important;
+  background-image: none !important;
+}
+
+/* 4. Скрытие служебных ссылок-тегов и иконок-префиксов */
+.list-cards.dashboard-premium.markdown-preview-view a[href*="#"],
+.list-cards.dashboard-premium.markdown-preview-view .external-link::before { 
   display: none !important; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
