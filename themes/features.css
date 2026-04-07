@@ -2011,6 +2011,119 @@ div[data-callout-metadata*="gallery"].callout > .callout-content > p .snw-embed-
 }
 div[data-callout-metadata*="gallery"].callout > .callout-content > p .internal-embed.image-embed ~ br { display: none; }
 
+
+/* === УНИВЕРСАЛЬНАЯ КНОПКА РЕДАКТИРОВАНИЯ В ГАЛЕРЕЕ === */
+
+/* Базовое позиционирование */
+.image-gallery .cm-line:not(.cm-active) .internal-embed {
+  position: relative;
+}
+
+/* Общий вид кнопки для обеих платформ */
+.image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button {
+  display: flex;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* 📱 iOS: Кнопка всегда слегка видима, чтобы понимать, куда тапать */
+.is-mobile .image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button {
+  opacity: 0.5; 
+}
+/* 💻 macOS: Кнопка скрыта, появляется только при наведении на картинку */
+body:not(.is-mobile) .image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button {
+  opacity: 0; 
+}
+body:not(.is-mobile) .image-gallery .cm-line:not(.cm-active) .internal-embed:hover .edit-block-button {
+  opacity: 0.8;
+}
+/* Общее: Реакция на наведение/тап по самой кнопке */
+.image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button:hover,
+.image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button:active {
+  opacity: 1;
+  background-color: var(--interactive-accent);
+}
+
+
+/* === ГАЛЕРЕЯ: ИНТЕРАКТИВНЫЕ КНОПКИ-ИНДИКАТОРЫ === */
+
+/* 1. Контейнер неактивной встройки — теперь это "кнопка" */
+.image-gallery .cm-line.cm-active .internal-embed:not(.cm-active):not(:has(.cm-formatting)) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 24px !important; /* Увеличил, чтобы удобнее попадать мышкой */
+  height: 20px !important;
+  margin: 0 2px !important;
+  background-color: var(--background-secondary-alt);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+/* Эмуляция иконки кода внутри квадрата */
+.image-gallery .cm-line.cm-active .internal-embed:not(.cm-active):not(:has(.cm-formatting))::after {
+  content: "</>";
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: bold;
+}
+/* Подсветка при наведении */
+.image-gallery .cm-line.cm-active .internal-embed:not(.cm-active):not(:has(.cm-formatting)):hover {
+  background-color: var(--interactive-accent);
+  border-color: var(--interactive-accent);
+}
+.image-gallery .cm-line.cm-active .internal-embed:not(.cm-active):not(:has(.cm-formatting)):hover::after {
+  color: white;
+}
+/* 2. Родная кнопка редактирования: растягиваем на весь квадрат */
+.image-gallery .cm-line.cm-active .internal-embed:not(.cm-active) .edit-block-button {
+  display: flex !important;
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important; /* Делаем невидимой, но кликабельной */
+  z-index: 10;
+}
+/* 3. Когда ссылка активна (текст) — убираем всё лишнее */
+.image-gallery .cm-line.cm-active .internal-embed:has(.cm-formatting),
+.image-gallery .cm-line.cm-active .internal-embed.cm-active {
+  display: inline !important;
+  background: transparent !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+.image-gallery .cm-line.cm-active .internal-embed:has(.cm-formatting)::after {
+  display: none;
+}
+/* 4. Скрываем картинки и ресайзеры */
+.image-gallery .cm-line.cm-active .internal-embed img,
+.image-gallery .cm-line.cm-active .image-resize-corner {
+  display: none !important;
+}
+/* 5. Убираем фон у image-wrapper внутри активных строк */
+.image-gallery .cm-line.cm-active .image-wrapper {
+  display: contents !important;
+}
+
+
 /* === 3. ИЗОБРАЖЕНИЯ В СПИСКАХ === */
 
 /* Ограничивает размер картинок внутри маркированных списков */
@@ -2045,31 +2158,30 @@ p > :is(.image-embed[alt*="left"], .image-embed[alt*="right"]) + br { display: n
 
 /* === 5. IMAGE ZOOM === */
 
-/* Установить scale 100% для изображений */
 .image-zoom .view-content :is(.cm-editor, .markdown-preview-view) img { 
-	max-width: 100%; 
-	cursor: zoom-in; 
+  max-width: 100%; 
+  cursor: zoom-in; 
 }
-/* CSS-зум для изображений */
-body.image-zoom:not(.is-mobile) .view-content :is(.cm-editor,.markdown-preview-view) img:active,
-body.image-zoom:not(.is-mobile) .view-content .image-embed:active,
-.image-zoom :is(.HyperMD-list-line,ul) .image-embed.image-embed img:active {
-	cursor: zoom-out; 
-	display: block; 
-	backdrop-filter: var(--blur-s);
-	max-height: calc(100% + 1px); 
-	max-width: calc(100% - 20px); 
-	height: calc(100% + 1px); 
-	width: 100%;
-	object-fit: contain; 
-	margin: -0.5px auto 0;
-	padding: 0; 
-	text-align: center;
-	position: fixed; 
-	left: 0; 
-	right: 0; 
-	bottom: 0; 
-	z-index: 100;
+/* Триггерим зум ТОЛЬКО если курсор НЕ находится над кнопкой редактирования */
+body.image-zoom:not(.is-mobile) .view-content :is(.cm-editor,.markdown-preview-view) img:not(:has(~ .edit-block-button:hover)):active,
+body.image-zoom:not(.is-mobile) .view-content .image-embed:not(:has(.edit-block-button:hover)):active,
+.image-zoom :is(.HyperMD-list-line,ul) .image-embed.image-embed:not(:has(.edit-block-button:hover)) img:active {
+  cursor: zoom-out; 
+  display: block; 
+  backdrop-filter: var(--blur-s);
+  max-height: calc(100% + 1px); 
+  max-width: calc(100% - 20px); 
+  height: calc(100% + 1px); 
+  width: 100%;
+  object-fit: contain; 
+  margin: -0.5px auto 0;
+  padding: 0; 
+  text-align: center;
+  position: fixed; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  z-index: 100;
 }
 
 /* === 6. МАСШТАБИРОВАНИЕ MERMAID === */
@@ -2150,67 +2262,3 @@ img[alt*="16-9"] { aspect-ratio: 16/9; object-fit: cover; }
 
 
 /* ____________________________________________________________________________ */
-
-
-/* === ГАЛЕРЕЯ: УЛЬТИМАТИВНЫЙ РЕЖИМ ТЕКСТА === */
-
-/* 1. Общая настройка активной строки */
-.image-gallery .cm-line.cm-active:has(.internal-embed) {
-  display: block !important;
-  white-space: pre-wrap !important;
-  padding: 0 !important;
-  gap: 0 !important;
-}
-
-/* 2. Квадрат-индикатор для НЕАКТИВНЫХ ссылок */
-/* Мы используем :not(:has(...)) и проверку на наличие текстовых братьев-сегментов */
-.image-gallery .cm-line.cm-active .internal-embed {
-  display: inline-block !important;
-  width: 14px !important;
-  height: 14px !important;
-  margin: 0 4px !important;
-  background-color: var(--background-modifier-border);
-  border-radius: 3px;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-  cursor: text;
-}
-
-/* 3. ХАК: Скрываем квадрат, если ссылка развернута в текст */
-/* Если внутри или СРАЗУ ПОСЛЕ встройки идет форматирование (скобки), схлопываем квадрат */
-.image-gallery .cm-line.cm-active .internal-embed:has(.cm-formatting),
-.image-gallery .cm-line.cm-active .cm-formatting + .internal-embed,
-.image-gallery .cm-line.cm-active .internal-embed:has(~ .cm-formatting),
-.image-gallery .cm-line.cm-active .internal-embed.cm-active,
-.image-gallery .cm-line.cm-active .internal-embed:focus-within {
-  display: inline !important;
-  width: 0 !important;   /* Убираем ширину полностью */
-  height: auto !important;
-  margin: 0 !important;
-  background: transparent !important;
-  opacity: 0 !important; /* Делаем невидимым */
-  pointer-events: none;  /* Чтобы не мешал кликать по тексту */
-}
-
-/* 4. Чиним отображение активного текста */
-/* Когда Obsidian вставляет span.cm-formatting и span.cm-hmd-internal-link */
-.image-gallery .cm-line.cm-active .cm-formatting,
-.image-gallery .cm-line.cm-active .cm-hmd-internal-link {
-  display: inline !important;
-  visibility: visible !important;
-}
-
-/* 5. Убираем "мусор" (картинки, кнопки ресайза) */
-.image-gallery .cm-line.cm-active .internal-embed img,
-.image-gallery .cm-line.cm-active .edit-block-button,
-.image-gallery .cm-line.cm-active .image-resize-corner,
-.image-gallery .cm-line.cm-active .image-wrapper {
-  display: none !important;
-}
-
-/* 6. Филлер для кликов: оставляем буферы микроскопическими */
-.image-gallery .cm-line.cm-active .cm-widgetBuffer {
-  display: inline !important;
-  width: 0px !important;
-}
