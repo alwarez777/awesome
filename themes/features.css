@@ -2151,3 +2151,66 @@ img[alt*="16-9"] { aspect-ratio: 16/9; object-fit: cover; }
 
 /* ____________________________________________________________________________ */
 
+
+/* === ГАЛЕРЕЯ: УЛЬТИМАТИВНЫЙ РЕЖИМ ТЕКСТА === */
+
+/* 1. Общая настройка активной строки */
+.image-gallery .cm-line.cm-active:has(.internal-embed) {
+  display: block !important;
+  white-space: pre-wrap !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+/* 2. Квадрат-индикатор для НЕАКТИВНЫХ ссылок */
+/* Мы используем :not(:has(...)) и проверку на наличие текстовых братьев-сегментов */
+.image-gallery .cm-line.cm-active .internal-embed {
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin: 0 4px !important;
+  background-color: var(--background-modifier-border);
+  border-radius: 3px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  cursor: text;
+}
+
+/* 3. ХАК: Скрываем квадрат, если ссылка развернута в текст */
+/* Если внутри или СРАЗУ ПОСЛЕ встройки идет форматирование (скобки), схлопываем квадрат */
+.image-gallery .cm-line.cm-active .internal-embed:has(.cm-formatting),
+.image-gallery .cm-line.cm-active .cm-formatting + .internal-embed,
+.image-gallery .cm-line.cm-active .internal-embed:has(~ .cm-formatting),
+.image-gallery .cm-line.cm-active .internal-embed.cm-active,
+.image-gallery .cm-line.cm-active .internal-embed:focus-within {
+  display: inline !important;
+  width: 0 !important;   /* Убираем ширину полностью */
+  height: auto !important;
+  margin: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important; /* Делаем невидимым */
+  pointer-events: none;  /* Чтобы не мешал кликать по тексту */
+}
+
+/* 4. Чиним отображение активного текста */
+/* Когда Obsidian вставляет span.cm-formatting и span.cm-hmd-internal-link */
+.image-gallery .cm-line.cm-active .cm-formatting,
+.image-gallery .cm-line.cm-active .cm-hmd-internal-link {
+  display: inline !important;
+  visibility: visible !important;
+}
+
+/* 5. Убираем "мусор" (картинки, кнопки ресайза) */
+.image-gallery .cm-line.cm-active .internal-embed img,
+.image-gallery .cm-line.cm-active .edit-block-button,
+.image-gallery .cm-line.cm-active .image-resize-corner,
+.image-gallery .cm-line.cm-active .image-wrapper {
+  display: none !important;
+}
+
+/* 6. Филлер для кликов: оставляем буферы микроскопическими */
+.image-gallery .cm-line.cm-active .cm-widgetBuffer {
+  display: inline !important;
+  width: 0px !important;
+}
