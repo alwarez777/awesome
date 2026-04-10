@@ -2254,7 +2254,8 @@ body:not(.is-mobile) .image-gallery .cm-line:not(.cm-active) .internal-embed:hov
 .image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button:hover,
 .image-gallery .cm-line:not(.cm-active) .internal-embed .edit-block-button:active {
   opacity: 1;
-  background-color: var(--interactive-accent);
+  background-color: var(--background-modifier-border-hover);
+  transform: scale(1.05);
 }
 
 
