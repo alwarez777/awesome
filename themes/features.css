@@ -1129,16 +1129,16 @@ body {
    ========================================= */
 
 /* 1. СЕМАНТИЧЕСКИЕ ЦВЕТА */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-red"])    { --accent-glow: #FF3131; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-green"])  { --accent-glow: #22C55E; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-teal"])   { --accent-glow: #008080; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#c-gray"])   { --accent-glow: #888888; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-red"])    { --accent-glow: #FF3131; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-green"])  { --accent-glow: #22C55E; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-teal"])   { --accent-glow: #008080; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
+.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-gray"])   { --accent-glow: #888888; }
 
 /* 2. АВТОМАТИЧЕСКАЯ ПАЛИТРА */
 .list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(1):not(:has(a[href^="#c-"])) { --accent-glow: #B8860B; }
@@ -1245,7 +1245,7 @@ body {
 
 /* B. СЕТКА СИСТЕМЫ (#sysgrid и #sysgrid-cards) */
 
-/* 1. Основной контейнер */
+/* Основной контейнер */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) {
   grid-column: span 12 !important; 
   border: none;
@@ -1256,15 +1256,7 @@ body {
   display: block;
   margin-block-start: var(--size-4-1);
 }
-/* 2. Заголовок "Система" */
-.list-cards.dashboard-premium.markdown-preview-view ul > li:has(a[href^="#sysgrid"]) > p {
-  display: block;
-  text-align: center;
-  margin: 0 0 12px 0 !important;
-  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
-  color: var(--text-muted);
-}
-/* 3. Сетка: ОБНУЛЯЕМ маркеры и отступы */
+/* Сетка: ОБНУЛЯЕМ маркеры и отступы */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1274,11 +1266,11 @@ body {
   list-style: none;
   width: 100%;
 }
-/* 4. Сами карточки-кнопки */
+/* Сами карточки-кнопки */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-bg));
-  border: 1px solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
-  border-radius: 25px !important;
+  border: 0px solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
+  border-radius: 15px !important;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -1287,13 +1279,13 @@ body {
   margin: 0;
   min-width: 0;
 }
-/* 4.1. Наведение на карточки-кнопки */
+/* Наведение на карточки-кнопки */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li:hover {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg));
   border-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd));
   transform: translateY(-4px);
 }
-/* 5. Ссылка внутри карточки (активная область) */
+/* Ссылка внутри карточки (активная область) */
 .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
   background-color: transparent;
   border: none;
@@ -1413,6 +1405,16 @@ body {
   padding-left: var(--size-4-1) !important;
 }
 
+/* СЕТКА ИКОНОК: Выравниваем текст по вертикали */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"], a[href^="#multilist"]) ul li a img,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"], a[href^="#multilist"]) ul li a span {
+  width: 1.4em; /* Фиксированная ширина под иконку */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   body {
     --dp-font-base: 1.05rem;
@@ -1432,6 +1434,81 @@ body {
   .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
     padding-left: var(--size-4-2);
   }
+}
+
+/* =========================================
+   АДАПТАЦИЯ ПОД ВЫНОСКИ (CALLOUTS) — КОНФЕТКА
+   ========================================= */
+
+/* 1. ГЕОМЕТРИЯ КОНТЕЙНЕРА И КОНТЕНТА */
+.list-cards.dashboard-premium .callout {
+  padding: 0;
+}
+.list-cards.dashboard-premium .callout-content {
+  margin: 0;
+  padding: 0 var(--size-4-1) 0 var(--size-4-3);
+  margin-block-end: calc(var(--size-4-2) * (-1));
+}
+/* 2. УПРАВЛЕНИЕ ЗАГОЛОВКОМ (TITLE) */
+.list-cards.dashboard-premium .callout .callout-title {
+  margin: 8px 0 -8px 0;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var(--size-4-4);
+  transition: min-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              padding 0.3s ease,
+              margin 0.3s ease;
+}
+/* 3. СОСТОЯНИЕ: СВЕРНУТО (IS-COLLAPSED) */
+.list-cards.dashboard-premium .callout.is-collapsed .callout-title {
+  min-height: var(--size-4-4); /* Высота в сложенном виде больше */
+  margin-bottom: 8px; /* Компенсируем отсутствие контента снизу */
+}
+/* 4. ПЛАВНОСТЬ РАСКРЫТИЯ КОНТЕНТА */
+.list-cards.dashboard-premium .callout-content {
+  transition: padding 0.3s ease;
+}
+
+/* =========================================
+   ВЫНОСКИ (CALLOUTS) — ПОЛНАЯ СИНХРОНИЗАЦИЯ
+   ========================================= */
+
+/* 1. БАЗОВОЕ СОСТОЯНИЕ */
+.list-cards.dashboard-premium.markdown-preview-view .callout {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+    box-shadow 0.25s ease, 
+    background-color 0.25s ease,
+    border-color 0.25s ease !important;
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-bg)) !important;
+  border: 1px solid color-mix(in srgb, var(--accent-glow), var(--mask-brd)) !important;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-glow), var(--mask-shd)) !important;
+}
+/* 2. ТЕКСТ И ИКОНКА */
+.list-cards.dashboard-premium.markdown-preview-view .callout .callout-title {
+  cursor: pointer;
+  color: var(--accent-glow) !important;
+  --callout-icon-color: var(--accent-glow);
+}
+/* 3. ЭФФЕКТ ПРИ НАВЕДЕНИИ (HOVER) */
+.list-cards.dashboard-premium.markdown-preview-view .callout:hover {
+  /* Физика: подпрыгивание */
+  transform: translateY(var(--dp-lift, -5px)); 
+  /* Цвет: использование масок ховера из твоих настроек */
+  background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg)) !important;
+  border-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd)) !important;
+  /* Свечение: усиление тени при наведении */
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-glow), var(--mask-hover-shd)) !important;
+}
+/* 4. ЭФФЕКТ ПРИ КЛИКЕ (ACTIVE) */
+.list-cards.dashboard-premium.markdown-preview-view .callout:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
 }
 
 /* =========================================
@@ -1484,6 +1561,131 @@ body {
 }
 
 
+/* =========================================
+   ЗАГОЛОВКИ СЕКЦИЙ И СВОРАЧИВАНИЕ (COLLAPSE V2)
+   ========================================= */
+
+/* 1. ЕДИНЫЙ СТИЛЬ ЗАГОЛОВКОВ (Система, Раздел и т.д.) */
+/* Применяем ко всем главным блокам для единообразия */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > p,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > p {
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  margin: 0 0 12px 0 !important;
+  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding-left: var(--size-2-1);
+}
+body:not(.is-phone) .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p {
+  padding-left: calc(var(--size-4-3) + var(--size-2-1)) !important;
+}
+body.is-phone .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p {
+  padding-left: var(--size-4-2) !important;
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > p {
+  display: inline-flex !important;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 2. ПРЯЧЕМ КОНТЕНТ ПРИ СВОРАЧИВАНИИ */
+.list-cards.dashboard-premium.markdown-preview-view li.is-collapsed > ul {
+  display: none !important;
+}
+
+/* 3. ДЕЛАЕМ КОНТЕЙНЕРЫ ОТНОСИТЕЛЬНЫМИ */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]),
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]),
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]),
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+  position: relative;
+}
+
+/* 4. ПОЗИЦИОНИРОВАНИЕ ШЕВРОНОВ */
+/* Для главных блоков (Система, Раздел, #list) */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
+  display: flex !important;
+  position: absolute;
+  left: auto !important;
+  right: 18px; /* Аккуратный отступ от правой границы карточки */
+  top: 18px; /* Центрируем относительно нового левостороннего заголовка */
+  transform: translate(50%, -50%);
+  padding: 4px;
+  color: var(--text-faint);
+  transition: opacity 0.2s ease, color 0.2s ease;
+  z-index: 10;
+  opacity: 0;
+}
+/* Выровнять пункты-разделы 2 уровня по вертикали */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
+  align-items: start;
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator {
+  display: inline-flex;
+  position: static;
+  margin-left: 8px;
+  padding: 2px 4px;
+  color: var(--text-faint);
+  transition: opacity 0.2s ease, color 0.2s ease;
+  z-index: 10;
+  align-items: center;
+  order: 1;
+  opacity: 0;
+}
+body.is-mobile {
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator,
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
+/*   .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator, */ /* раскомментировать, если нужно скрывать блок 1 уровня в #multilist */
+  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
+    opacity: 1;
+  }
+}
+/* 5. Унификация контейнера уровня 2 — делаем header-строку горизонтальной, а вложенный ul — ниже */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > ul {
+  order: 2;
+  flex-basis: 100%;
+  margin-top: var(--size-4-2); /* сохраняем оригинальный вертикальный отступ под заголовком */
+}
+
+/* 5. ПОКАЗЫВАЕМ ПРИ НАВЕДЕНИИ */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]):hover > .list-collapse-indicator,
+/* .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]):hover > .list-collapse-indicator, */ /* раскомментировать, если нужно скрывать блок 1 уровня в #multilist */
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover > .list-collapse-indicator,
+.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li:hover > .list-collapse-indicator {
+  opacity: 1;
+}
+
+/* 6. ХОВЕР НА САМ ШЕВРОН */
+.list-cards.dashboard-premium.markdown-preview-view .list-collapse-indicator:hover {
+  color: var(--text-accent);
+}
+
+/* =========================================
+   ВЕРТИКАЛЬНОЕ ЦЕНТРИРОВАНИЕ КОНТЕНТА
+   ========================================= */
+
+/* 1. ДЛЯ РЕЖИМА ЧТЕНИЯ (PREVIEW) */
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center; /* Центрирует по вертикали */
+  min-height: 100% !important; /* Растягиваем на всё окно */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 
 /* =========================================
