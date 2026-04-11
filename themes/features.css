@@ -1165,7 +1165,8 @@ body {
 .list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] > .callout-content {
   display: grid !important;
   grid-template-columns: repeat(12, 1fr) !important;
-  gap: 10px;
+  row-gap: calc(var(--size-4-1) * (2.5));
+  column-gap: calc(var(--size-4-1) * (2));
   width: 100%;
   align-items: start;
 }
@@ -1266,7 +1267,7 @@ body {
   grid-column: span 4 !important;
   text-align: center;
   align-items: center;
-  padding: 12px 14px !important;
+  padding: 14px 14px !important;
   font-size: calc(var(--dp-font-base) * var(--font-l)) !important;
 }
 
