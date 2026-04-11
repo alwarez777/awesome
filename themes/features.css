@@ -1131,28 +1131,28 @@ body {
    ========================================= */
 
 /* 1. СЕМАНТИЧЕСКИЕ ЦВЕТА */
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-red"])    { --accent-glow: #FF3131; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-green"])  { --accent-glow: #22C55E; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-teal"])   { --accent-glow: #008080; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
-.list-cards.dashboard-premium :is(li, .callout):has(a[href="#c-gray"])   { --accent-glow: #888888; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-red"])    { --accent-glow: #FF3131; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-green"])  { --accent-glow: #22C55E; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-teal"])   { --accent-glow: #008080; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
+.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-gray"])   { --accent-glow: #888888; }
 
 /* 2. АВТОМАТИЧЕСКАЯ ПАЛИТРА */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(1):not(:has(a[href^="#c-"])) { --accent-glow: #B8860B; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(2):not(:has(a[href^="#c-"])) { --accent-glow: #FF8C00; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(3):not(:has(a[href^="#c-"])) { --accent-glow: #008080; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(4):not(:has(a[href^="#c-"])) { --accent-glow: #FF3131; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(5):not(:has(a[href^="#c-"])) { --accent-glow: #800020; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(6):not(:has(a[href^="#c-"])) { --accent-glow: #D031FF; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(7):not(:has(a[href^="#c-"])) { --accent-glow: #4B0082; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(1):not(:has(a[href^="#c-"])) { --accent-glow: #B8860B; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(2):not(:has(a[href^="#c-"])) { --accent-glow: #FF8C00; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(3):not(:has(a[href^="#c-"])) { --accent-glow: #008080; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(4):not(:has(a[href^="#c-"])) { --accent-glow: #FF3131; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(5):not(:has(a[href^="#c-"])) { --accent-glow: #800020; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(6):not(:has(a[href^="#c-"])) { --accent-glow: #D031FF; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(7):not(:has(a[href^="#c-"])) { --accent-glow: #4B0082; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
 
 /* =========================================
    ГЛОБАЛЬНАЯ 12-КОЛОНОЧНАЯ СЕТКА
@@ -1161,8 +1161,8 @@ body {
    ========================================= */
 
 /* Настройка геометрии контейнера для списков/выносок */
-.list-cards.dashboard-premium.markdown-preview-view div > ul,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="dash-grid"] > .callout-content {
+.list-cards.awesomeboard.markdown-preview-view div > ul,
+.list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] > .callout-content {
   display: grid !important;
   grid-template-columns: repeat(12, 1fr) !important;
   gap: 10px;
@@ -1170,14 +1170,14 @@ body {
   align-items: start;
 }
 /* Настройка контейнера для выноски-разметки, внутри которой размещаются др. выноски */
-.list-cards.dashboard-premium .callout[data-callout-metadata~="dash-grid"] {
+.list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] {
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
   margin: 0;
 }
-.list-cards.dashboard-premium .callout[data-callout-metadata~="dash-grid"] > .callout-title {
+.list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] > .callout-title {
   display: none;
 }
 
@@ -1187,8 +1187,8 @@ body {
    ========================================= */
 
 /* Общие стили контейнера для списка/выноски */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li,
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) {
+.list-cards.awesomeboard.markdown-preview-view div > ul > li,
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) {
   position: relative;
   
   --local-color: var(--accent-glow, var(--text-accent));
@@ -1210,20 +1210,20 @@ body {
 }
 
 /* Стиль только для выноски - заголовка */
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-title {
   cursor: pointer;
   color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd));
 }
 
 /* HOVER: подъем, цвет, граница, тень */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li:hover,
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]):hover {
+.list-cards.awesomeboard.markdown-preview-view div > ul > li:hover,
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]):hover {
   background-color: var(--final-hover-bg);
   border-color: var(--final-hover-brd);
   box-shadow: var(--final-hover-shd);
 }
-.list-cards.dashboard-premium.markdown-preview-view .markdown-preview-section > div > ul > li:hover,
-.list-cards.dashboard-premium.markdown-preview-view .markdown-preview-section .callout:not([data-callout-metadata~="dash-grid"]):hover {
+.list-cards.awesomeboard.markdown-preview-view .markdown-preview-section > div > ul > li:hover,
+.list-cards.awesomeboard.markdown-preview-view .markdown-preview-section .callout:not([data-callout-metadata~="dash-grid"]):hover {
   transform: translateY(var(--dp-lift));
 }
 
@@ -1233,7 +1233,7 @@ body {
    ========================================= */
 
 /* #wide -> 12 колонок (100% ширины) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#wide"]) { 
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#wide"]) { 
   grid-column: span 12;
   text-align: center;
   align-items: center;
@@ -1242,7 +1242,7 @@ body {
 }
 
 /* #ultra-wide -> 12 колонок, узкая по высоте */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#ultra-wide"]) {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#ultra-wide"]) {
   grid-column: span 12;
   text-align: center;
   align-items: center;
@@ -1253,7 +1253,7 @@ body {
 }
 
 /* #half -> 6 колонок (50% ширины) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#half"]) { 
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#half"]) { 
   grid-column: span 6 !important;
   text-align: center;
   align-items: center;
@@ -1262,7 +1262,7 @@ body {
 }
 
 /* #third -> 4 колонки (33% ширины) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#third"]) { 
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#third"]) { 
   grid-column: span 4 !important;
   text-align: center;
   align-items: center;
@@ -1271,7 +1271,7 @@ body {
 }
 
 /* #compact -> 3 колонки, горизонтальный */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#compact"]) { 
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#compact"]) { 
   grid-column: span 3 !important;
   flex-direction: row !important;
   justify-content: center;
@@ -1287,9 +1287,9 @@ body {
    ========================================= */
 
 /* 1. Общий контейнер (левая граница, тень, отступы) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid"],
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid-cards"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid"],
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid-cards"] {
   grid-column: span 12 !important;
   border: none !important;
   border-radius: var(--dp-border-radius) !important;
@@ -1301,8 +1301,8 @@ body {
 }
 
 /* 2. Сетка внутри */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) ul,
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) ul,
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 8px;
@@ -1312,20 +1312,20 @@ body {
   width: 100%;
 }
 /* Убрать границы, тень, фон для ссылок */
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul > li {
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul > li {
   border: none; 
   box-shadow: none;
   background-color: transparent;
 }
 /* Добавить эффект при наведении на ссылки */
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul > li:hover {
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul > li:hover {
   transform: translateX(4px) !important;
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg));
 }
 
 /* 3. Карточки-кнопки (только sysgrid-cards) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li,
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-bg));
   border: 0.5px solid color-mix(in srgb, var(--accent-glow), var(--mask-brd));
   transition: all 0.2s ease;
@@ -1339,16 +1339,16 @@ body {
 }
 
 /* 4. Ховер на кнопки */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li:hover,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li:hover {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li:hover,
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li:hover {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-bg));
   border-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd));
   transform: translateY(-4px);
 }
 
 /* 5. Ссылки внутри кнопок */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content ul > li a {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a,
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content ul > li a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1358,13 +1358,13 @@ body {
   text-decoration: none;
   border-radius: inherit;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#sysgrid-cards"]) ul li a {
   padding: var(--size-4-2);
   background-color: transparent;
   border: none;
   height: 100%;
 }
-.list-cards.dashboard-premium .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li a {
+.list-cards.awesomeboard .callout[data-callout-metadata~="sysgrid-cards"] > .callout-content > ul > li a {
   padding: 12px var(--size-4-2);
 }
 
@@ -1374,8 +1374,8 @@ body {
    ========================================= */
 
 /* 1. Общий базовый вид и ховер */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="list"] {
   background-color: transparent;
   box-shadow: var(--dp-side-shadow-offset) color-mix(in srgb, var(--accent-glow), var(--mask-shd));
   border: none !important;
@@ -1388,17 +1388,17 @@ body {
   color: var(--text-muted);
 }
 /* 1-1. Уникальные настройки для списков */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]) {
   padding: 0.4rem 0.8rem;
 }
 /* 1-2. Уникальные настройки для выносок */
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list"] {
+.list-cards.awesomeboard .callout[data-callout-metadata~="list"] {
   padding: var(--size-4-3) 0 !important;
 }
 
 /* 2. Hover-эффект на списки и выноски */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list"]:hover {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]):hover,
+.list-cards.awesomeboard .callout[data-callout-metadata~="list"]:hover {
   transform: translateX(4px) !important;
   border-radius: var(--dp-border-radius) !important;
   border-color: color-mix(in srgb, var(--accent-glow), var(--mask-hover-brd)) !important;
@@ -1407,21 +1407,21 @@ body {
 }
 
 /* 3. УПРАВЛЕНИЕ ШИРИНОЙ В 12-КОЛОНОЧНОЙ СЕТКЕ: списки + выноски */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"]),
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list6"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list-6"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list"]),
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list6"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="list-6"] {
   grid-column: span 6 !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list4"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list-4"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list4"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="list-4"] {
   grid-column: span 4 !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list3"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list-3"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list3"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="list-3"] {
   grid-column: span 3 !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list1"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list-1"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list1"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="list-1"] {
   grid-column: span 12 !important;
 }
 
@@ -1431,26 +1431,26 @@ body {
    ========================================= */
 
 /* 1. Общий контейнер */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]),
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]),
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] {
   grid-column: span 12 !important;
   border: none !important;
   border-radius: var(--dp-border-radius) !important;
   box-shadow: var(--dp-side-shadow-offset) color-mix(in srgb, var(--accent-glow), var(--mask-shd));
   margin-block-start: var(--size-4-1);
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) {
   padding: 5px 0 !important;
   display: block;
 }
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] {
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] {
   padding: 12px 0 12px 16px !important;
   background: transparent;
 }
 
 /* 2. Сетка для колонок (2 уровень) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul,
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 0px;
@@ -1458,7 +1458,7 @@ body {
   margin: 0;
 }
 /* Убираем сетку для ul внутри выносок list и multilist */
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul {
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1469,8 +1469,8 @@ body {
 }
 
 /* 3. Колонки (2 уровень) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] > .callout-content > ul > li {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li,
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul > li {
   grid-column: span 1;
   font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
   font-weight: 600;
@@ -1481,7 +1481,7 @@ body {
   flex-direction: column;
 }
 /* Убираем стили карточек (тени, рамки, фон) для li внутри этих выносок */
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li {
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li {
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1492,16 +1492,16 @@ body {
 }
 
 /* 4. Внутренний список ссылок (3 уровень) */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] > .callout-content > ul ul {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) ul ul,
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul ul {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: 0;
   margin: 0;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] > .callout-content > ul ul li {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) ul ul li,
+.list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul ul li {
   padding: 0;
   margin: 0;
   background: transparent;
@@ -1510,25 +1510,25 @@ body {
 }
 
 /* 5. Ссылки внутри #list и выносок list/multilist */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) ul ul li a,
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) ul ul li a,
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a {
   padding: 2px 0;
   font-size: calc(var(--dp-font-base) * var(--font-s)) !important;
 }
 
 /* 6. Ховер на ссылки внутри #list и выносок list/multilist */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"], a[href="#multilist"]) ul > li > a:hover,
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a:hover {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list"], a[href="#multilist"]) ul > li > a:hover,
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a:hover {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-link-bg-hover));
   color: color-mix(in srgb, var(--accent-glow), var(--mask-link-text-hover));
   padding-left: var(--size-4-1) !important;
 }
 
 /* 7. Сетка для иконок/эмодзи: выравнивание по вертикали */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"], a[href="#multilist"]) ul li a img,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"], a[href="#multilist"]) ul li a span,
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a img,
-.list-cards.dashboard-premium .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a span {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"], a[href="#multilist"]) ul li a img,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"], a[href="#multilist"]) ul li a span,
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a img,
+.list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a span {
   width: 1.4em;
   display: flex;
   justify-content: center;
@@ -1542,9 +1542,9 @@ body {
    ========================================= */
 
 /* Добавить вертикальную линию слева от контейнера */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#list"])::before,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"])::before,
-.list-cards.dashboard-premium .callout[data-callout-metadata~="list"]::before {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#list"])::before,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"])::before,
+.list-cards.awesomeboard .callout[data-callout-metadata~="list"]::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1560,15 +1560,15 @@ body {
    ========================================= */
 
 /* 1. ГЕОМЕТРИЯ КОНТЕЙНЕРА И КОНТЕНТА */
-.list-cards.dashboard-premium.markdown-preview-view .callout {
+.list-cards.awesomeboard.markdown-preview-view .callout {
   padding: 0 !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-content {
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-content {
   margin: 0;
   padding: var(--size-4-2) var(--size-4-1) 0 var(--size-4-3);
   transition: padding 0.3s ease;
 }
-.list-cards.dashboard-premium.markdown-preview-view {
+.list-cards.awesomeboard.markdown-preview-view {
   .callout:is([data-callout-metadata~="common"]) .callout-content {
     margin-block-end: calc(var(--size-4-2) * (-1));
   }
@@ -1578,7 +1578,7 @@ body {
 }
 
 /* 2. УПРАВЛЕНИЕ ЗАГОЛОВКОМ (TITLE) */
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) .callout-title {
   margin: 8px 0 -8px 0;
   padding: 8px;
   display: flex;
@@ -1589,22 +1589,27 @@ body {
               padding 0.3s ease,
               margin 0.3s ease !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view .callout:is([data-callout-metadata~="dash-grid"]) .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout:is([data-callout-metadata~="dash-grid"]) .callout-title {
   margin: 0;
   padding: var(--size-4-2) 0;
   margin-block-start: calc(var(--size-4-2) * (1));
 }
 
 /* 3. СОСТОЯНИЕ: СВЕРНУТО (IS-COLLAPSED) */
-.list-cards.dashboard-premium.markdown-preview-view .callout[data-callout-metadata~="common"].is-collapsed .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout[data-callout-metadata~="common"].is-collapsed .callout-title {
   min-height: var(--size-4-2);
   margin-bottom: 8px;
   margin-block-end: calc(var(--size-4-2) * (1));
 }
-.list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="common"], [data-callout-metadata~="dash-grid"]).is-collapsed .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="common"], [data-callout-metadata~="dash-grid"]).is-collapsed .callout-title {
   min-height: var(--size-4-2);
   margin-bottom: 8px;
   margin-block-end: calc(var(--size-4-2) * (1));
+}
+
+/* 4. СКРЫТЬ ШЕВРОН ДЛЯ ВЫНОСОК */
+.callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"], [data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgridcards"]) .callout-fold {
+  display: none;
 }
 
 /* =========================================
@@ -1612,7 +1617,7 @@ body {
    ========================================= */
 
 /* 1. КЛИКАБЕЛЬНЫЙ ОВЕРЛЕЙ (вся карточка) */
-.list-cards.dashboard-premium.markdown-preview-view div > ul > li a:not([href^="#"])::after {
+.list-cards.awesomeboard.markdown-preview-view div > ul > li a:not([href^="#"])::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1624,8 +1629,8 @@ body {
 }
 
 /* 2. БАЗОВОЕ ОФОРМЛЕНИЕ ССЫЛОК */
-.list-cards.dashboard-premium.markdown-preview-view div ul li a,
-.list-cards.dashboard-premium.markdown-preview-view .external-link {
+.list-cards.awesomeboard.markdown-preview-view div ul li a,
+.list-cards.awesomeboard.markdown-preview-view .external-link {
   text-decoration: none !important;
   color: var(--text-normal);
   position: static;  /* Позволяет оверлею ::after растянуться до границ li */
@@ -1635,21 +1640,21 @@ body {
 }
 
 /* 3. СБРОС ИКОНОК ВНЕШНИХ ССЫЛОК */
-.list-cards.dashboard-premium.markdown-preview-view .external-link::after {
+.list-cards.awesomeboard.markdown-preview-view .external-link::after {
   -webkit-mask-image: none !important;
   mask-image: none !important;
   background-color: transparent !important;
   width: auto !important;
   height: auto !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view .external-link {
+.list-cards.awesomeboard.markdown-preview-view .external-link {
   padding-inline-end: 0 !important;
   background-image: none !important;
 }
 
 /* 4. СКРЫТИЕ СЛУЖЕБНЫХ ТЕГОВ */
-.list-cards.dashboard-premium.markdown-preview-view a[href*="#"],
-.list-cards.dashboard-premium.markdown-preview-view .external-link::before { 
+.list-cards.awesomeboard.markdown-preview-view a[href*="#"],
+.list-cards.awesomeboard.markdown-preview-view .external-link::before { 
   display: none !important; 
 }
 
@@ -1658,9 +1663,9 @@ body {
    ========================================= */
 
 /* 1. Заголовки контейнеров */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > p,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > p {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > p,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]) > p,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]) > p {
   display: inline-flex;
   align-items: center;
   text-align: left;
@@ -1671,13 +1676,13 @@ body {
   padding-left: var(--size-2-1);
 }
 
-body:not(.is-phone) .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p {
+body:not(.is-phone) .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]) > p {
   padding-left: calc(var(--size-4-3) + var(--size-2-1)) !important;
 }
-body.is-phone .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > p {
+body.is-phone .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]) > p {
   padding-left: var(--size-4-2) !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > p {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > p {
   display: inline-flex !important;
   align-items: center;
   margin: 0 !important;
@@ -1685,24 +1690,24 @@ body.is-phone .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^
 }
 
 /* 2. Скрытие контента при сворачивании */
-.list-cards.dashboard-premium.markdown-preview-view li.is-collapsed > ul {
+.list-cards.awesomeboard.markdown-preview-view li.is-collapsed > ul {
   display: none !important;
 }
 
 /* 3. Относительное позиционирование для шевронов */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]),
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]),
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]),
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]),
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]),
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]),
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
   position: relative;
 }
 
 /* 4. ПОЗИЦИОНИРОВАНИЕ ШЕВРОНОВ (индикаторы сворачивания) */
 
 /* Для разделов – пунктов 1 уровня */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
   display: flex !important;
   position: absolute;
   left: auto !important;
@@ -1717,7 +1722,7 @@ body.is-phone .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^
 }
 
 /* Для подразделов – пунктов 2 уровня */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator {
   display: inline-flex;
   position: static;
   margin-left: 8px;
@@ -1730,41 +1735,41 @@ body.is-phone .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^
   opacity: 0;
 }
 /* Выравнивание колонок multilist по вертикали */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul {
   align-items: start;
 }
 
 /* 5. Унификация пунктов 2 уровня: делаем строку горизонтальной, а вложенный ul — ниже */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
 }
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > ul {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > ul {
   order: 2;
   flex-basis: 100%;
   margin-top: var(--size-4-2);
 }
 
 /* 6. Показ шевронов при наведении */
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]):hover > .list-collapse-indicator,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]):hover > .list-collapse-indicator,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]):hover > .list-collapse-indicator,
-.list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li:hover > .list-collapse-indicator {
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]):hover > .list-collapse-indicator,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]):hover > .list-collapse-indicator,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]):hover > .list-collapse-indicator,
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li:hover > .list-collapse-indicator {
   opacity: 1;
 }
-.list-cards.dashboard-premium.markdown-preview-view .list-collapse-indicator:hover {
+.list-cards.awesomeboard.markdown-preview-view .list-collapse-indicator:hover {
   color: var(--text-accent);
 }
 
 /* 7. Мобильная адаптация шевронов (всегда видны) */
 body.is-mobile {
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator,
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator,
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li > .list-collapse-indicator,
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > .list-collapse-indicator,
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#multilist"]) > .list-collapse-indicator,
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#list"]) > .list-collapse-indicator {
     opacity: 1;
   }
 }
@@ -1786,15 +1791,15 @@ body.is-mobile {
 ========================================= */
 
 /* 1. ВОЗВРАЩАЕМ ВИДИМОСТЬ */
-.list-cards.dashboard-premium.markdown-preview-view sup.footnote-ref,
-.list-cards.dashboard-premium.markdown-preview-view a.footnote-link {
+.list-cards.awesomeboard.markdown-preview-view sup.footnote-ref,
+.list-cards.awesomeboard.markdown-preview-view a.footnote-link {
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 0.8 !important;
 }
 
 /* 2. ПОЗИЦИОНИРОВАНИЕ */
-.list-cards.dashboard-premium.markdown-preview-view sup.footnote-ref {
+.list-cards.awesomeboard.markdown-preview-view sup.footnote-ref {
     vertical-align: super;
     position: relative;
     z-index: 99;
@@ -1804,14 +1809,14 @@ body.is-mobile {
     pointer-events: auto;
 }
 
-.list-cards.dashboard-premium.markdown-preview-view .footnote-link {
+.list-cards.awesomeboard.markdown-preview-view .footnote-link {
     font-size: 0px !important;
     color: transparent !important;
     text-decoration: none;
     position: relative;
 }
 
-.list-cards.dashboard-premium.markdown-preview-view .footnote-link::before {
+.list-cards.awesomeboard.markdown-preview-view .footnote-link::before {
     content: attr(data-footref);
     color: var(--accent-glow);
     visibility: visible !important;
@@ -1824,21 +1829,21 @@ body.is-mobile {
 }
 
 /* 3. LIVE PREVIEW */
-.list-cards.dashboard-premium .cm-footref {
+.list-cards.awesomeboard .cm-footref {
     font-size: 8px !important;
     color: var(--accent-glow) !important;
     font-weight: 700;
     cursor: help;
 }
 
-.list-cards.dashboard-premium .cm-footref.cm-formatting {
+.list-cards.awesomeboard .cm-footref.cm-formatting {
     display: none !important;
 }
 
 /* 4. ПОДВАЛ-ТРАНСФОРМЕР (AS PROPERTIES) */
 
 /* Свернутое состояние */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes {
     margin-top: 10px !important;
     padding: 5px 10px !important;
     max-height: 25px !important; /* Высота для многоточия */
@@ -1851,7 +1856,7 @@ body.is-mobile {
 }
 
 /* Рисуем ••• через псевдоэлемент подвала */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes::before {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes::before {
     content: '•••' !important;
     display: block !important;
     text-align: left;
@@ -1862,16 +1867,16 @@ body.is-mobile {
 }
 
 /* Скрываем список внутри, пока не навели или не перешли по ссылке */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes > * {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes > * {
     opacity: 0;
     transition: opacity 0.2s ease;
 }
 
 /* РАСКРЫТОЕ СОСТОЯНИЕ (Hover, Target ИЛИ при прыжке .is-flashing) */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:focus-within,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing) {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:hover,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:target,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:focus-within,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing) {
     max-height: 800px !important;
     background: var(--background-secondary) !important;
     border: 1px solid var(--background-modifier-border) !important;
@@ -1882,29 +1887,29 @@ body.is-mobile {
 }
 
 /* УБИРАЕМ ПУСТОТУ ВНУТРИ ВЫНОСКИ */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes hr {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes hr {
     display: none !important;
 }
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes ol {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes ol {
     margin: 0 !important;
     padding-inline-start: 20px !important;
 }
 
 /* Показываем контент при раскрытии */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover > *,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target > *,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing) > * {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:hover > *,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:target > *,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing) > * {
     opacity: 1;
 }
 /* Прячем точки при раскрытии */
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:hover::before,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:target::before,
-.list-cards.dashboard-premium.markdown-preview-view section.footnotes:has(.is-flashing)::before {
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:hover::before,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:target::before,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing)::before {
     display: none !important;
 }
 
 /* Эффект подсветки целевой сноски */
-.list-cards.dashboard-premium.markdown-preview-view .is-flashing {
+.list-cards.awesomeboard.markdown-preview-view .is-flashing {
     background-color: var(--text-selection) !important;
     padding: 2px 4px;
     border-radius: 4px;
@@ -1916,8 +1921,8 @@ body.is-mobile {
 }
 
 /* 5. ХОВЕР НА ЦИФРЫ */
-.list-cards.dashboard-premium .footnote-link:hover::before,
-.list-cards.dashboard-premium .cm-footref:hover {
+.list-cards.awesomeboard .footnote-link:hover::before,
+.list-cards.awesomeboard .cm-footref:hover {
     color: var(--text-accent) !important;
     opacity: 1 !important;
 }
@@ -1934,18 +1939,18 @@ body.is-mobile {
     --font-xl: 1.10;
     --font-xxl: 1.15;
   }
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href^="#sysgrid"]) > ul,
-  .list-cards.dashboard-premium .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > ul,
+  .list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul,
-  .list-cards.dashboard-premium .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul,
+  .list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
     gap: 6px !important;
   }
-  .list-cards.dashboard-premium.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
     padding-left: var(--size-4-2);
   }
-  .list-cards.dashboard-premium .callout[data-callout-metadata~="list"] .callout-content {
+  .list-cards.awesomeboard .callout[data-callout-metadata~="list"] .callout-content {
     padding: 0 var(--size-2-3) !important;
   }
 }
