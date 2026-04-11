@@ -1604,7 +1604,7 @@ body {
 .list-cards.dashboard-premium.markdown-preview-view .callout:not([data-callout-metadata~="common"], [data-callout-metadata~="dash-grid"]).is-collapsed .callout-title {
   min-height: var(--size-4-2);
   margin-bottom: 8px;
-  margin-block-end: calc(var(--size-4-2) * (-0.5));
+  margin-block-end: calc(var(--size-4-2) * (1));
 }
 
 /* =========================================
