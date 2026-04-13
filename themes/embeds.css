@@ -390,28 +390,6 @@ body:not(.is-mobile) {
 
 /* # БЛОК КОДА */
 
-/* 📱💻 Кнопка для копирования кода */
-.markdown-source-view.mod-cm6 .code-block-flair {
-  right: 0px;
-  top: 0px; 
-  padding: 4px 5px 2px 6px;
-}
-.markdown-source-view.mod-cm6 .code-block-flair svg.svg-icon {
-  width: 12px;
-  height: 12px; 
-}
-
-/* 💻 Кнопка для редактирования кода */
-.markdown-source-view.mod-cm6 .edit-block-button {
-  right: 0px;
-  top: 0px;
-  padding: 4px 5px 2px 6px;
-}
-.markdown-source-view.mod-cm6 .edit-block-button {
-  width: 25px;
-  height: 25px; 
-}
-
 /* 📱💻 Скрыть направляющие линии внутри блоков кода */
 .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent::before,
 .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-active-indent::before {
@@ -420,6 +398,62 @@ body:not(.is-mobile) {
 /* 📱💻 Убрать фоновые элементы отступов в коде */
 .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent {
     border: none;
+}
+
+/* 1. Общие правила для стандартных кнопок (унификация) */
+.markdown-source-view.mod-cm6 .code-block-flair,
+.markdown-source-view.mod-cm6 .edit-block-button {
+  position: absolute;
+  top: var(--size-2-2);
+  right: var(--size-2-2);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-s);
+  border: none;
+  cursor: pointer !important;
+  transition: all 0.1s ease;
+  z-index: 20;
+  opacity: 1;
+}
+
+/* 2. Стилизация кнопок */
+.markdown-source-view.mod-cm6 .code-block-flair {
+  height: 25px;
+  width: 30px;
+  padding: 0;
+}
+.markdown-source-view.mod-cm6 .edit-block-button {
+  height: 22px;
+  width: 25px;
+  padding: 0;
+}
+
+/* 3. Центровка и размер иконки внутри кнопки */
+.markdown-source-view.mod-cm6 .edit-block-flair svg,
+.markdown-source-view.mod-cm6 .edit-block-button svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block;
+  opacity: 0.7;
+}
+
+/* 4. Эффект при наведении */
+@media (hover: hover) {
+  .markdown-source-view.mod-cm6 .code-block-flair:hover,
+  .markdown-source-view.mod-cm6 .edit-block-button:hover {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-normal);
+  }
+}
+
+/* 5. Эффект при нажатии */ 
+.markdown-source-view.mod-cm6 .code-block-flair:active,
+.markdown-source-view.mod-cm6 .edit-block-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.8);
 }
   
   
