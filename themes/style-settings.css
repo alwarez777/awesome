@@ -221,12 +221,7 @@ settings:
     - 
         label: "Монохромный (Mono)"
         value: hm-bg-mono
--
-    id: code-line-number
-    title: 📱💻 Отображать номера строк в блоке кода
-    description: Добавляет нумерацию для строк слева внутри блока
-    type: class-toggle
-    default: true
+
 -
     id: text-justify
     title: 📱💻 Выравнивать текст по ширине
