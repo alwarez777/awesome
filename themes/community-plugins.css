@@ -786,3 +786,97 @@ div:has(> .mb-error-collection) {
   padding: 0 !important;
   border: none !important;
 }
+
+
+/* # CODEBLOCK CUSTOMIZE */
+
+/* 1. Основной контейнер кнопок — всегда виден */
+.markdown-source-view.mod-cm6 .codeblock-customizer-button-container,
+.markdown-source-view.mod-cm6 .codeblock-customizer-header-button-container,
+.markdown-rendered .codeblock-customizer-pre .codeblock-customizer-button-container {
+  position: absolute;
+  right: var(--size-2-2);
+  top: 0; /* var(--size-2-2) */
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Центрируем кнопки друг относительно друга */
+  gap: var(--size-2-1);
+  z-index: 20;
+  opacity: 1 !important; /* Всегда видимы */
+}
+
+/* 2. Универсальный стиль кнопок */
+.codeblock-customizer-copy-code,
+.codeblock-customizer-snapshot-button,
+.markdown-rendered button.codeblock-customizer-copy-code-button {
+  height: 25px; /* Фиксированная высота для стабильности */
+  padding: 0 6px;
+  display: flex;
+  align-items: center;      /* Центрирует контент вертикально */
+  justify-content: center;   /* Центрирует контент горизонтально */
+  background-color: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-s);
+  border: none;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+/* 2-1. Улучшение кнопки копиирования кода */
+.codeblock-customizer-copy-code {
+  font-size: 11px;
+  line-height: normal;
+  font-family: var(--font-interface);
+  height: 22px; 
+  padding: 0 8px;
+}
+
+/* 2-2. Улучшение кнопки создания снимка */
+.codeblock-customizer-snapshot-button svg {
+  width: 15px !important;
+  height: 15px !important;
+  opacity: 0.7;
+}
+
+/* 3. Заменить надпись "Plain text" на TXT */
+.codeblock-customizer-copy-code[aria-label*="Plain text"] {
+  font-size: 0 !important;
+}
+.codeblock-customizer-copy-code[aria-label*="Plain text"]::after {
+  content: "TXT";
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+/* 4. Настройка иконок (камера и другие) */
+.codeblock-customizer-button-container svg,
+.codeblock-customizer-snapshot-button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+/* 5. Резервируем место под текст (чтобы не налезал) */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock,
+.markdown-rendered .codeblock-customizer-pre pre {
+  padding-right: var(--size-4-5); 
+}
+
+/* 6. Эффект при наведении */
+@media (hover: hover) {
+  .codeblock-customizer-copy-code:hover,
+  .codeblock-customizer-snapshot-button:hover,
+  .codeblock-customizer-copy-code:hover::after {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-normal);
+  }
+}
+
+/* 7. Эффект при нажатии */ 
+.codeblock-customizer-copy-code:active,
+.codeblock-customizer-snapshot-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.8);
+}
