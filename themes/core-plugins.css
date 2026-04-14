@@ -450,7 +450,7 @@ body:not(.is-mobile) {
   width: calc(100% + 48px);
   max-width: none;
   display: block;
-  margin-bottom: -12px; 
+  margin-bottom: -12px;
 }
 .canvas-node-content.markdown-embed.is-loaded {
   margin: 0; 
