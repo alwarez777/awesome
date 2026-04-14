@@ -1513,7 +1513,7 @@ body {
 /* 5. Ссылки внутри #list и выносок list/multilist */
 .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) ul ul li a,
 .list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a {
-  padding: 2px 0;
+  padding: 4px 5px 4px 2px; /* 2px 5px 2px 2px; */
   font-size: calc(var(--dp-font-base) * var(--font-s)) !important;
 }
 
@@ -1522,7 +1522,7 @@ body {
 .list-cards.awesomeboard .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .callout-content ul li a:hover {
   background-color: color-mix(in srgb, var(--accent-glow), var(--mask-link-bg-hover));
   color: color-mix(in srgb, var(--accent-glow), var(--mask-link-text-hover));
-  padding-left: var(--size-4-1) !important;
+  padding-left: calc(var(--size-4-1) * (1.5)) !important;
 }
 
 /* 7. Сетка для иконок/эмодзи: выравнивание по вертикали */
@@ -1796,7 +1796,7 @@ body.is-mobile {
 .list-cards.awesomeboard.markdown-preview-view a.footnote-link {
     display: inline-flex !important;
     visibility: visible !important;
-    opacity: 0.8 !important;
+    opacity: 0.8;
 }
 
 /* 2. ПОЗИЦИОНИРОВАНИЕ */
@@ -1819,14 +1819,32 @@ body.is-mobile {
 
 .list-cards.awesomeboard.markdown-preview-view .footnote-link::before {
     content: attr(data-footref);
-    color: var(--accent-glow);
+    color: var(--text-muted);
     visibility: visible !important;
     position: absolute;
     /* Регулировка положения цифры относительно иконки */
-    left: 4px;
-    top: -2px;
-    font-size: 10px;
+    left: 0;
+    top: calc(var(--size-4-2) * (-1));
+    font-size: 9px;
     font-weight: 700;
+}
+.list-cards.awesomeboard.markdown-preview-view .callout:is([data-callout-metadata~="list"], [data-callout-metadata~="multilist"]) .footnote-link::before {
+  left: calc(var(--size-4-1) * (-0.25));
+  top: 1px;
+}
+
+/* 💻 Скрывать сноски и показывать при наведении */
+body:not(.is-mobile) .list-cards.awesomeboard.markdown-preview-view {
+  .footnote-link::before {
+    opacity: 0;
+  }
+   li:hover .footnote-link::before {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease;
+  }
+  a:hover .footnote-link::before {
+    opacity: 1;
+  }
 }
 
 /* 3. LIVE PREVIEW */
@@ -1841,72 +1859,106 @@ body.is-mobile {
     display: none !important;
 }
 
-/* 4. ПОДВАЛ-ТРАНСФОРМЕР (AS PROPERTIES) */
+/* ==========================================
+   4. ПОДВАЛ-ТРАНСФОРМЕР (СНОСКИ АНАЛОГИЧНО СВОЙСТВАМ)
+   ========================================== */
 
-/* Свернутое состояние */
+/* Анимация пульсации для ••• */
+@keyframes fadePulseFootnotes {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.4; }
+}
+
+/* Базовый контейнер сносок со всеми плавными переходами */
 .list-cards.awesomeboard.markdown-preview-view section.footnotes {
     margin-top: 10px !important;
     padding: 5px 10px !important;
-    max-height: 25px !important; /* Высота для многоточия */
-    overflow: hidden !important;
-    background: transparent !important;
-    border: 1px solid transparent !important;
-    transition: all 0.3s ease-in-out !important;
-    cursor: pointer;
     position: relative;
+    overflow: hidden !important;
+    border-radius: 6px;
+    /* Точечные транзиции вместо грубого all 0.3s */
+    transition:
+        max-height 0.4s ease-in-out,
+        background-color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        padding 0.4s ease !important;
 }
 
-/* Рисуем ••• через псевдоэлемент подвала */
+/* 📱💻 СВЕРНУТОЕ СОСТОЯНИЕ (когда нет фокуса/наведения/таргета) */
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:not(:hover):not(:target):not(:focus-within):not(:has(.is-flashing)) {
+    max-height: 25px !important; /* Высота для многоточия */
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    pointer-events: none; /* Пропускаем случайные клики, кроме точек */
+}
+
+/* Точки в свернутом состоянии (абсолютное позиционирование) */
 .list-cards.awesomeboard.markdown-preview-view section.footnotes::before {
     content: '•••' !important;
-    display: block !important;
-    text-align: left;
-    color: var(--text-faint);
+    position: absolute;
+    top: 2px;
+    left: 10px;
     font-size: 18px;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+    color: var(--text-faint);
+    z-index: 10;
+    pointer-events: auto; /* Оставляем возможность навести на точки */
+    animation: fadePulseFootnotes 3.5s ease-in-out infinite;
+    transition: opacity 0.3s ease !important;
 }
 
-/* Скрываем список внутри, пока не навели или не перешли по ссылке */
-.list-cards.awesomeboard.markdown-preview-view section.footnotes > * {
-    opacity: 0;
-    transition: opacity 0.2s ease;
+/* Скрываем контент внутри в свернутом состоянии */
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:not(:hover):not(:target):not(:focus-within):not(:has(.is-flashing)) > * {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease, visibility 0.2s ease !important;
 }
 
-/* РАСКРЫТОЕ СОСТОЯНИЕ (Hover, Target ИЛИ при прыжке .is-flashing) */
+/* 📂 РАСКРЫТОЕ СОСТОЯНИЕ (Hover, Target, Focus ИЛИ при прыжке .is-flashing) */
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:hover,
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:target,
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:focus-within,
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing) {
     max-height: 800px !important;
-    background: var(--background-secondary) !important;
+    background-color: var(--background-secondary) !important;
     border: 1px solid var(--background-modifier-border) !important;
-    border-radius: 6px;
-    padding: 10px 15px !important;
-    opacity: 1 !important;
-    overflow: auto !important;
+    box-shadow: var(--shadow-xs) !important;
+    padding: var(--size-4-2) 0 !important;
+    pointer-events: auto;
 }
 
-/* УБИРАЕМ ПУСТОТУ ВНУТРИ ВЫНОСКИ */
-.list-cards.awesomeboard.markdown-preview-view section.footnotes hr {
-    display: none !important;
-}
-.list-cards.awesomeboard.markdown-preview-view section.footnotes ol {
-    margin: 0 !important;
-    padding-inline-start: 20px !important;
-}
-
-/* Показываем контент при раскрытии */
-.list-cards.awesomeboard.markdown-preview-view section.footnotes:hover > *,
-.list-cards.awesomeboard.markdown-preview-view section.footnotes:target > *,
-.list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing) > * {
-    opacity: 1;
-}
-/* Прячем точки при раскрытии */
+/* Плавно прячем точки при раскрытии (БЕЗ display: none) */
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:hover::before,
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:target::before,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:focus-within::before,
 .list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing)::before {
-    display: none !important;
+    opacity: 0 !important;
+    animation: none !important;
+    pointer-events: none !important; /* Отключаем их, чтобы не перекрывали текст */
+}
+
+/* Плавно показываем контент при раскрытии (с микро-задержкой 0.1s, как в свойствах) */
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:hover > *,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:target > *,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:focus-within > *,
+.list-cards.awesomeboard.markdown-preview-view section.footnotes:has(.is-flashing) > * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: opacity 0.4s ease 0.1s, visibility 0s linear 0.1s !important;
+}
+
+/* ==========================================
+   УБИРАЕМ ПУСТОТУ ВНУТРИ ВЫНОСКИ (твои настройки)
+   ========================================== */
+.list-cards.awesomeboard.markdown-preview-view section.footnotes hr {
+  display: none !important;
+}
+.list-cards.awesomeboard.markdown-preview-view section.footnotes ol {
+  margin: 0 !important;
+  padding-inline-start: var(--size-4-2) !important;
 }
 
 /* Эффект подсветки целевой сноски */
