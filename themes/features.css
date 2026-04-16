@@ -1131,28 +1131,32 @@ body {
    ========================================= */
 
 /* 1. СЕМАНТИЧЕСКИЕ ЦВЕТА */
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-red"])    { --accent-glow: #FF3131; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-green"])  { --accent-glow: #22C55E; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-teal"])   { --accent-glow: #008080; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
-.list-cards.awesomeboard :is(li, .callout):has(a[href="#c-gray"])   { --accent-glow: #888888; }
+.list-cards.awesomeboard {
+  :is(li, .callout):has(a[href="#c-red"])    { --accent-glow: #FF3131; }
+  :is(li, .callout):has(a[href="#c-orange"]) { --accent-glow: #FF8C00; }
+  :is(li, .callout):has(a[href="#c-yellow"]) { --accent-glow: #e2c107; }
+  :is(li, .callout):has(a[href="#c-green"])  { --accent-glow: #22C55E; }
+  :is(li, .callout):has(a[href="#c-teal"])   { --accent-glow: #008080; }
+  :is(li, .callout):has(a[href="#c-cyan"])   { --accent-glow: #00FFFF; }
+  :is(li, .callout):has(a[href="#c-blue"])   { --accent-glow: #00BFFF; }
+  :is(li, .callout):has(a[href="#c-purple"]) { --accent-glow: #D031FF; }
+  :is(li, .callout):has(a[href="#c-pink"])   { --accent-glow: #FF69B4; }
+  :is(li, .callout):has(a[href="#c-gray"])   { --accent-glow: #888888; }
+}
 
 /* 2. АВТОМАТИЧЕСКАЯ ПАЛИТРА */
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(1):not(:has(a[href^="#c-"])) { --accent-glow: #B8860B; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(2):not(:has(a[href^="#c-"])) { --accent-glow: #FF8C00; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(3):not(:has(a[href^="#c-"])) { --accent-glow: #008080; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(4):not(:has(a[href^="#c-"])) { --accent-glow: #FF3131; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(5):not(:has(a[href^="#c-"])) { --accent-glow: #800020; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(6):not(:has(a[href^="#c-"])) { --accent-glow: #D031FF; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(7):not(:has(a[href^="#c-"])) { --accent-glow: #4B0082; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
+.list-cards.awesomeboard.markdown-preview-view { 
+  div > ul > li:nth-child(1):not(:has(a[href^="#c-"])) { --accent-glow: #B8860B; }
+  div > ul > li:nth-child(2):not(:has(a[href^="#c-"])) { --accent-glow: #FF8C00; }
+  div > ul > li:nth-child(3):not(:has(a[href^="#c-"])) { --accent-glow: #008080; }
+  div > ul > li:nth-child(4):not(:has(a[href^="#c-"])) { --accent-glow: #FF3131; }
+  div > ul > li:nth-child(5):not(:has(a[href^="#c-"])) { --accent-glow: #800020; }
+  div > ul > li:nth-child(6):not(:has(a[href^="#c-"])) { --accent-glow: #D031FF; }
+  div > ul > li:nth-child(7):not(:has(a[href^="#c-"])) { --accent-glow: #4B0082; }
+  div > ul > li:nth-child(8):not(:has(a[href^="#c-"])) { --accent-glow: #00BFFF; }
+  div > ul > li:nth-child(9):not(:has(a[href^="#c-"])) { --accent-glow: #22C55E; }
+  div > ul > li:nth-child(10):not(:has(a[href^="#c-"])){ --accent-glow: #888888; }
+}
 
 /* =========================================
    ГЛОБАЛЬНАЯ 12-КОЛОНОЧНАЯ СЕТКА
@@ -1395,6 +1399,8 @@ body {
 /* 1-2. Уникальные настройки для выносок */
 .list-cards.awesomeboard .callout[data-callout-metadata~="list"] {
   padding: var(--size-4-3) 0 !important;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 /* 2. Hover-эффект на списки и выноски */
