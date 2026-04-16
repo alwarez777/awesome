@@ -911,6 +911,15 @@ body.is-mobile .cm-hmd-internal-link.cm-link-alias {
 		Использование: добавьте класс .text-justify к заметке или блоку
 ============================================================================ */
 
-.text-justify .workspace-split.mod-vertical.mod-root .workspace-tab-container .workspace-leaf.mod-active :is(.markdown-preview-view p, .markdown-source-view .cm-line) {
-	text-align: justify;
+.text-justify .workspace-split.mod-vertical.mod-root .workspace-tab-container .workspace-leaf.mod-active :is(
+  /* Режим чтения (Reading Mode) */
+  .markdown-preview-view p:not(:has(h1, h2, h3, h4, h5, h6, pre, code)),
+  /* Режим редактирования (Live Preview) */
+  .markdown-source-view .cm-line:not(
+    :has(.cm-inline-code), 
+    :has(.codeblock-customizer-inline-code-wrapper),
+    :has(.cm-formatting-code-output),
+    .HyperMD-header, 
+    .HyperMD-codeblock)) {
+      text-align: justify;
 }
