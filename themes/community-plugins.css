@@ -658,13 +658,20 @@ body.is-phone {
 }
 
 /* 📱💻 Убрать тень и фон при наведении на элементы */
-.dataview.task-list-item:hover,
-.dataview.task-list-basic-item:hover {
-  border-radius: var(--radius-s);
+.dataview.task-list-item,
+.dataview.task-list-basic-item,
+.table-view-table > tbody > tr {
+  transition: border-bottom 0.1s ease-in-out;
 }
-.table-view-table > tbody > tr:hover {
+.dataview.task-list-item:hover,
+.dataview.task-list-basic-item:hover,
+.table-view-table > tbody > tr:hover  {
+  border-radius: var(--radius-s);
   background-color: transparent !important;
   box-shadow: none;
+  border-radius: 1px;
+  border-bottom: 0.5px solid var(--al-main-hover);
+  transition: none;
 }
 
 body {
@@ -702,9 +709,6 @@ body {
   height: 0px;
   width: 100%;
 }
-
-/* Если хочешь вернуть сплошную линию, просто поменяй dashed на solid */
-
 
 
 /* # VERTICAL TABS */
