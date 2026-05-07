@@ -674,30 +674,30 @@ body.is-phone {
   transition: none;
 }
 
+/* Настройка блока, задач, маркеров и текста пунктов */
 body {
-  /* Блок кода DataviewJS */
-  .block-language-dataviewjs {
+/*   .block-language-dataviewjs {
     padding: 5px 2px;
     padding-inline-start: 15px;
     border: 0px solid var(--background-secondary);
-    border-radius: 7px; }
-  /* Задачи через Dataview */
+    border-radius: 7px; } */
+
   .dataview.task-list-item, 
   .dataview.task-list-basic-item {
     inset-inline-start: 0;
     padding-bottom: var(--size-4-1); 
   }
-  .dataview .task-list-item-checkbox {
+
+/*   .dataview .task-list-item-checkbox {
     inset-inline-start: 0;
-  }
-  /* Маркеры пунктов */
+  } */
+
   .block-language-dataviewjs div ul li input {
     margin-bottom: calc(var(--size-2-1) * (-1));
   }
-  /* Текст пунктов */
-  .block-language-dataviewjs div span {
+/*   .block-language-dataviewjs div span {
     padding: 0;
-  }
+  } */
 }
 
 /* Настройка разделителя внутри блока Dataview */
