@@ -920,7 +920,7 @@ table.dataview {
 	&.markdown-rendered.show-indentation-guide li > ul::before {
 		display:none;
 	}
-	div > ul {
+	div > ul:not(.contains-task-list) {
 		display: grid;
 		gap: 0.75rem;
 		grid-template-columns: var(--cards-columns);
@@ -1092,6 +1092,11 @@ body {
   --dp-hover-brd-alpha: 0.60;
   --dp-hover-shd-alpha: 0.25;
 
+  /* Коэффициенты для кнопок-действий */
+  --dp-action-bg-alpha: 0.175;
+  --dp-action-brd-alpha: 0.50;
+  --dp-action-hover-bg-alpha: 0.35;
+
   --dp-link-bg-hover-opacity: 0.1;
   --dp-link-text-hover-opacity: 0.9;
 
@@ -1112,6 +1117,11 @@ body {
   --mask-hover-brd: transparent calc(100% * (1 - var(--dp-hover-brd-alpha)));
   --mask-hover-shd: transparent calc(100% * (1 - var(--dp-hover-shd-alpha)));
 
+  /* Маски для действий */
+  --mask-action-bg: transparent calc(100% * (1 - var(--dp-action-bg-alpha)));
+  --mask-action-brd: transparent calc(100% * (1 - var(--dp-action-brd-alpha)));
+  --mask-action-hover: transparent calc(100% * (1 - var(--dp-action-hover-bg-alpha)));
+
   --mask-link-bg-hover: transparent calc(100% * (1 - var(--dp-link-bg-hover-opacity)));
   --mask-link-text-hover: transparent calc(100% * (1 - var(--dp-link-text-hover-opacity)));
 
@@ -1125,6 +1135,7 @@ body {
   --dp-side-shadow-hover-offset: -8px 0 12px -3px;
   --dp-l3-border-width: 2px;
 }
+
 
 /* =========================================
    УПРАВЛЕНИЕ ЦВЕТОМ 
@@ -1165,7 +1176,7 @@ body {
    ========================================= */
 
 /* Настройка геометрии контейнера для списков/выносок */
-.list-cards.awesomeboard.markdown-preview-view div > ul,
+.list-cards.awesomeboard.markdown-preview-view div > ul:not(.contains-task-list),
 .list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] > .callout-content {
   display: grid !important;
   grid-template-columns: repeat(12, 1fr) !important;
@@ -1186,13 +1197,14 @@ body {
   display: none;
 }
 
+
 /* =========================================
    БАЗОВЫЙ КОНТЕЙНЕР (КАРТОЧКИ СПИСКОВ / СТАНДАРТНЫЕ ВЫНОСКИ)
    Синхронизация цветов, теней, границ и ховера.
    ========================================= */
 
 /* Общие стили контейнера для списка/выноски */
-.list-cards.awesomeboard.markdown-preview-view div > ul > li,
+.list-cards.awesomeboard.markdown-preview-view div > ul:not(.contains-task-list) > li,
 .list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]) {
   position: relative;
   
@@ -1221,24 +1233,24 @@ body {
 }
 
 /* HOVER: подъем, цвет, граница, тень */
-.list-cards.awesomeboard.markdown-preview-view div > ul > li:hover,
+.list-cards.awesomeboard.markdown-preview-view div > ul:not(.contains-task-list) > li:hover,
 .list-cards.awesomeboard.markdown-preview-view .callout:not([data-callout-metadata~="dash-grid"]):hover {
   background-color: var(--final-hover-bg);
   border-color: var(--final-hover-brd);
   box-shadow: var(--final-hover-shd);
 }
-.list-cards.awesomeboard.markdown-preview-view .markdown-preview-section > div > ul > li:hover,
+.list-cards.awesomeboard.markdown-preview-view .markdown-preview-section > div > ul:not(.contains-task-list) > li:hover,
 .list-cards.awesomeboard.markdown-preview-view .markdown-preview-section .callout:not([data-callout-metadata~="dash-grid"]):hover {
   transform: translateY(var(--dp-lift));
 }
 
 /* =========================================
    ФУНКЦИОНАЛЬНАЯ ИЕРАРХИЯ (ТЕГИ РАЗМЕТКИ) — ШИРИНА
-   Применимо к li. Выноски управляют шириной через суффиксы -12, -6 и т.д. ниже.
+   Объединённая сетка: базовые ссылки + action-кнопки (-a)
    ========================================= */
 
 /* #wide -> 12 колонок (100% ширины) */
-.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#wide"]) { 
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#wide"], [href$="wide-a"]) { 
   grid-column: span 12;
   text-align: center;
   align-items: center;
@@ -1247,7 +1259,7 @@ body {
 }
 
 /* #ultra-wide -> 12 колонок, узкая по высоте */
-.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#ultra-wide"]) {
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#ultra-wide"], [href$="ultra-wide-a"]) {
   grid-column: span 12;
   text-align: center;
   align-items: center;
@@ -1258,7 +1270,7 @@ body {
 }
 
 /* #half -> 6 колонок (50% ширины) */
-.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#half"]) { 
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#half"], [href$="half-a"]) { 
   grid-column: span 6 !important;
   text-align: center;
   align-items: center;
@@ -1267,7 +1279,7 @@ body {
 }
 
 /* #third -> 4 колонки (33% ширины) */
-.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#third"]) { 
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#third"], [href$="third-a"]) { 
   grid-column: span 4 !important;
   text-align: center;
   align-items: center;
@@ -1276,14 +1288,54 @@ body {
 }
 
 /* #compact -> 3 колонки, горизонтальный */
-.list-cards.awesomeboard.markdown-preview-view li:has(a[href="#compact"]) { 
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#compact"], [href$="compact-a"]) { 
   grid-column: span 3 !important;
   flex-direction: row !important;
   justify-content: center;
   align-items: center;
   padding: var(--dp-compact-padding) !important;
-  min-height: 50px;
+  min-height: auto;
   font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+}
+
+/* #little -> 2 колонки, горизонтальный */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#little"], [href="#little-a"]) {
+  grid-column: span 2 !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  padding: var(--dp-compact-padding) !important;
+  font-size: calc(var(--dp-font-base) * var(--font-m)) !important;
+}
+
+/* #divider -> линия-разделитель */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#divider"], [href="#divider-post"]) {
+  grid-column: span 12;
+  height: 1px;
+  background-color: transparent;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  cursor: default;
+  pointer-events: none;
+}
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#divider-post"]) {
+  margin: -0.5rem 0;
+}
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#divider"], [href="#divider-post"]) a {
+  display: none;
+}
+
+/* #empty -> невидимость для блоков */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href*="-empty"]) {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+  transform: none;
+}
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href*="-empty"]) a {
+  display: none;
 }
 
 /* =========================================
@@ -1665,6 +1717,50 @@ body {
   display: none !important; 
 }
 
+
+/* =========================================
+ЯДРО ACTION-КНОПОК: форма, вес, состояния
+Применяется ко всем элементам с суффиксом -a
+========================================= */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href$="-a"]) {
+  /* 1. Форма: полная капсула (отличие от карточек 8px) */
+  border-radius: 999px !important;
+  /* 2. Плотность: перезапись базовых масок на action-переменные */
+  --final-bg: color-mix(in srgb, var(--local-color), var(--mask-action-bg));
+  --final-brd: color-mix(in srgb, var(--local-color), var(--mask-action-brd));
+  /* 3. Убираем "стеклянную" тень, добавляем тактильный контур */
+  --final-shd: none !important; 
+  border-width: 1.5px !important;
+  /* 4. Компактность и типографика */
+  padding: 6px 16px !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-top: calc(var(--size-4-3) * (-1));
+}
+  
+/* СОСТОЯНИЯ: hover/active */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href$="-a"]):hover {
+  --final-bg: color-mix(in srgb, var(--local-color), var(--mask-action-hover));
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--local-color), var(--mask-hover-shd)) !important;
+}
+.list-cards.awesomeboard.markdown-preview-view li:has(a[href$="-a"]):active {
+  transform: scale(0.97) !important;
+  box-shadow: none !important;
+  transition-duration: 0.08s;
+}
+  
+/*  НАСТРОЙКА ССЫЛОК В ДЕЙСТВИЯХ */
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href$="-a"]) a {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href$="-a"]):hover a {
+  color: var(--text-normal) !important;
+  transition: color 0.2s ease;
+}
+
+
 /* =========================================
    ЗАГОЛОВКИ СЕКЦИЙ И СВОРАЧИВАНИЕ (COLLAPSE)
    ========================================= */
@@ -1792,6 +1888,38 @@ body.is-mobile {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+
+/* =========================================
+MEDIA QUERIES & АДАПТИВ
+========================================= */
+@media (max-width: 768px) {
+body {
+  --dp-font-base: 1.05rem;
+  --font-s: 0.95;
+  --font-m: 1.0;
+  --font-l: 1.05;
+  --font-xl: 1.10;
+  --font-xxl: 1.15;
+  }
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > ul,
+  .list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul,
+  .list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
+    gap: 6px !important;
+  }
+  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
+    padding-left: var(--size-4-2);
+  }
+  .list-cards.awesomeboard .callout[data-callout-metadata~="list"] .callout-content {
+    padding: 0 var(--size-2-3) !important;
+  }
+}
+
+
+
+
 
 /* =========================================
    FOOTNOTES: THE DEFINITIVE FIX (STABLE)
@@ -1957,7 +2085,7 @@ body:not(.is-mobile) .list-cards.awesomeboard.markdown-preview-view {
 }
 
 /* ==========================================
-   УБИРАЕМ ПУСТОТУ ВНУТРИ ВЫНОСКИ (твои настройки)
+   УБИРАЕМ ПУСТОТУ ВНУТРИ СНОСКИ (твои настройки)
    ========================================== */
 .list-cards.awesomeboard.markdown-preview-view section.footnotes hr {
   display: none !important;
@@ -1986,35 +2114,23 @@ body:not(.is-mobile) .list-cards.awesomeboard.markdown-preview-view {
     opacity: 1 !important;
 }
 
-/* =========================================
-   MEDIA QUERIES & АДАПТИВ
-   ========================================= */
-@media (max-width: 768px) {
-  body {
-    --dp-font-base: 1.05rem;
-    --font-s: 0.95;
-    --font-m: 1.0;
-    --font-l: 1.05;
-    --font-xl: 1.10;
-    --font-xxl: 1.15;
-  }
-  .list-cards.awesomeboard.markdown-preview-view li:has(a[href^="#sysgrid"]) > ul,
-  .list-cards.awesomeboard .callout:is([data-callout-metadata~="sysgrid"], [data-callout-metadata~="sysgrid-cards"]) > .callout-content > ul {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul,
-  .list-cards.awesomeboard .callout[data-callout-metadata~="multilist"] > .callout-content > ul {
-    gap: 6px !important;
-  }
-  .list-cards.awesomeboard.markdown-preview-view li:has(a[href="#multilist"]) > ul > li {
-    padding-left: var(--size-4-2);
-  }
-  .list-cards.awesomeboard .callout[data-callout-metadata~="list"] .callout-content {
-    padding: 0 var(--size-2-3) !important;
-  }
+
+/* .list-cards.awesomeboard.markdown-preview-view .block-language-dataviewjs ul,
+.list-cards.awesomeboard.markdown-preview-view .gtd-tasks-container ul {
+  display: unset;
 }
-
-
+.list-cards.awesomeboard.markdown-preview-view li.dataview.task-list-item {
+  background: unset;
+  border: unset;
+  box-shadow: unset;
+}
+.list-cards.awesomeboard.markdown-preview-view .block-language-dataviewjs ul ul,
+.list-cards.awesomeboard.markdown-preview-view .gtd-tasks-container ul ul,
+.list-cards.awesomeboard.markdown-preview-view li.dataview ul {
+  display: block;
+  margin-inline-start: var(--size-4-5) !important;
+  padding-inline-start: var(--size-4-3) !important;
+} */
 
 /* ____________________________________________________________________________ */
 
