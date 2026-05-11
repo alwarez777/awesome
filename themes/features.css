@@ -1179,12 +1179,17 @@ body {
 .list-cards.awesomeboard.markdown-preview-view div > ul:not(.contains-task-list),
 .list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] > .callout-content {
   display: grid !important;
-  grid-template-columns: repeat(12, 1fr) !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
   row-gap: calc(var(--size-4-1) * (2.5));
   column-gap: calc(var(--size-4-1) * (2));
   width: 100%;
   align-items: start;
 }
+.is-phone .list-cards.awesomeboard.markdown-preview-view div > ul:not(.contains-task-list) {
+  row-gap: calc(var(--size-4-1) * (2));
+  column-gap: calc(var(--size-4-1) * (1.5));
+}
+
 /* Настройка контейнера для выноски-разметки, внутри которой размещаются др. выноски */
 .list-cards.awesomeboard .callout[data-callout-metadata~="dash-grid"] {
   background: transparent;
@@ -1279,10 +1284,11 @@ body {
 }
 
 /* #third -> 4 колонки (33% ширины) */
-.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#third"], [href$="third-a"]) { 
+.list-cards.awesomeboard.markdown-preview-view ul:not(.contains-task-list) li:has(a[href="#third"], [href$="third-a"]) {
   grid-column: span 4 !important;
   text-align: center;
   align-items: center;
+  justify-content: center;
   padding: 14px 14px !important;
   font-size: calc(var(--dp-font-base) * var(--font-l)) !important;
 }
@@ -1648,7 +1654,7 @@ body {
               padding 0.3s ease,
               margin 0.3s ease !important;
 }
-.list-cards.awesomeboard.markdown-preview-view .callout:is([data-callout-metadata~="dash-grid"]) .callout-title {
+.list-cards.awesomeboard.markdown-preview-view .callout[data-callout-metadata~="dash-grid"] .callout-title {
   margin: 0;
   padding: var(--size-4-2) 0;
   margin-block-start: calc(var(--size-4-2) * (1));
@@ -1717,6 +1723,12 @@ body {
   display: none !important; 
 }
 
+/* 5. ЦЕНТРИРОВАНИЕ ТЕКСТА В КНОПКАХ */
+.list-cards.awesomeboard.markdown-preview-view li > p {
+  all: unset !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
 
 /* =========================================
 ЯДРО ACTION-КНОПОК: форма, вес, состояния
@@ -1733,8 +1745,6 @@ body {
   border-width: 1.5px !important;
   /* 4. Компактность и типографика */
   padding: 6px 16px !important;
-  font-weight: 600;
-  letter-spacing: 0.02em;
   margin-top: calc(var(--size-4-3) * (-1));
 }
   
@@ -1916,9 +1926,6 @@ body {
     padding: 0 var(--size-2-3) !important;
   }
 }
-
-
-
 
 
 /* =========================================
