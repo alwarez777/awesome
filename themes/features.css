@@ -1890,7 +1890,8 @@ body.is-mobile {
 /* =========================================
    ВЕРТИКАЛЬНОЕ ЦЕНТРИРОВАНИЕ КОНТЕНТА
    ========================================= */
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+.mod-sidedock.mod-left-split .markdown-preview-view .markdown-preview-sizer,
+.workspace-drawer.mod-left .markdown-preview-view .markdown-preview-sizer {
   display: flex !important;
   flex-direction: column;
   justify-content: center;
