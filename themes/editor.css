@@ -904,6 +904,80 @@ body.is-mobile .cm-hmd-internal-link.cm-link-alias {
 }
 
 
+/* ## ССЫЛКИ - ВНЕШНИЕ - КНОПКИ */
+
+/* 1. БАЗОВЫЙ СТИЛЬ КНОПКИ (Читаемый и надежный) */
+.link-button .external-link,
+.link-button .internal-link,
+.link-button .cm-link:not(.cm-formatting) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  background-color: var(--background-secondary) !important;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 2em;
+  
+  /* Фиксируем отступы, чтобы на iOS не было "пузырей" как на image_20679e.png */
+  padding: 6px 12px !important;
+  margin: 2px 0 !important; /* Убираем боковые маржи, будем заменять их пробелами */
+  
+  color: var(--text-normal) !important;
+  text-decoration: none !important;
+  font-size: 0.85em;
+  font-weight: 500;
+  cursor: pointer;
+  
+  /* Чтобы текст не переносился внутри кнопки */
+  white-space: nowrap;
+}
+
+.markdown-source-view.mod-cm6 .cm-link .cm-underline, 
+.markdown-source-view.mod-cm6 .cm-url .cm-underline {
+  text-decoration: none !important;
+}
+
+/* 2. ЛЕЧИМ СКОБКИ И СИМВОЛЫ В РЕДАКТОРЕ */
+/* Убираем оформление со служебных символов [ ], чтобы они не были кнопками */
+.link-button .cm-formatting-link,
+.link-button .cm-formatting-link-start,
+.link-button .cm-formatting-link-end {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline !important;
+  color: var(--text-faint) !important;
+}
+
+/* 3. ЦЕНТРИРОВАНИЕ (Безопасный метод без flex на всю строку) */
+.link-button .markdown-rendered p:has(.external-link, .internal-link), 
+.link-button .cm-line:has(.cm-link, .internal-link) {
+  text-align: center !important;
+}
+
+/* 4. РАССТОЯНИЕ МЕЖДУ КНОПКАМИ И ТЕКСТОМ */
+/* Если кнопки стоят рядом, добавим им небольшой зазор */
+.link-button .external-link + .external-link,
+.link-button .internal-link + .internal-link,
+.link-button .cm-link + .cm-link {
+  margin-left: 6px !important;
+}
+
+/* Убираем лишнее в Live Preview */
+.link-button .cm-url {
+  display: none !important;
+}
+
+/* Иконка (опционально, если хочешь вернуть) */
+.link-button .external-link::after,
+.link-button .cm-link:not(.cm-formatting)::after {
+  font-size: 0.8em;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+
 
 
 /* ============================================================================
