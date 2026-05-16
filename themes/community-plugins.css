@@ -675,30 +675,35 @@ body.is-phone {
 }
 
 /* Настройка блока, задач, маркеров и текста пунктов */
-body {
-/*   .block-language-dataviewjs {
-    padding: 5px 2px;
-    padding-inline-start: 15px;
-    border: 0px solid var(--background-secondary);
-    border-radius: 7px; } */
 
-  .dataview.task-list-item, 
-  .dataview.task-list-basic-item {
-    inset-inline-start: 0;
-    padding-bottom: var(--size-4-1); 
-  }
+/* .block-language-dataviewjs {
+  padding: 5px 2px;
+  padding-inline-start: 15px;
+  border: 0px solid var(--background-secondary);
+  border-radius: 7px; } */
 
-/*   .dataview .task-list-item-checkbox {
-    inset-inline-start: 0;
-  } */
-
-  .markdown-source-view.mod-cm6 .block-language-dataviewjs div ul li input {
-    margin-bottom: calc(var(--size-2-1) * (-1));
-  }
-/*   .block-language-dataviewjs div span {
-    padding: 0;
-  } */
+.dataview.task-list-item, 
+.dataview.task-list-basic-item {
+  inset-inline-start: calc(var(--size-2-1) * (-1.75)) !important;
+  padding-bottom: var(--size-4-1); 
 }
+
+.is-phone .dataview.task-list-item, 
+.is-phone .dataview.task-list-basic-item {
+  inset-inline-start: calc(var(--size-2-1) * (-2.5)) !important;
+}
+
+.dataview .task-list-item-checkbox {
+  inset-inline-start: -1px;
+}
+
+.markdown-source-view.mod-cm6 .block-language-dataviewjs div ul li input {
+  margin-bottom: calc(var(--size-2-1) * (-1));
+}
+
+/* .block-language-dataviewjs div span {
+  padding: 0;
+} */
 
 /* Настройка разделителя внутри блока Dataview */
 .block-language-dataviewjs .gtd-separator {
