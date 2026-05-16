@@ -1111,7 +1111,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 body:is(.mod-macos, .adaptive-mode-off) {
     /* // Button */
-  button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([data-type="markdown"]) button, .copy-code-button)) {
+  button:where(:not(.clickable-icon, .ant-switch, .gtd-task-info-btn, .workspace-leaf-content:not([data-type="markdown"]) button, .copy-code-button)) {
     padding: 4px 12px;
   }
   &.is-phone button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([data-type="markdown"]) button, .copy-code-button)) {
