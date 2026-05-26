@@ -494,10 +494,17 @@ body.is-phone .workspace-tabs .workspace-leaf-content.beautitab .view-header-lef
   margin-left: unset;
 }
 /* 💻 Скрывать новую вкладку */
+/* 1. Скрываем вкладку по умолчанию, если она не активна */
 .workspace-tab-header[data-type="beautitab-react-view"] {
-  display: visible;
+  opacity: 0 !important;
+  transition: opacity 0.2s ease-in-out !important;
 }
-
+/* 2. Показываем, если навели ИЛИ если она активна/в фокусе */
+.workspace-tab-header[data-type="beautitab-react-view"]:hover,
+.workspace-tab-header[data-type="beautitab-react-view"].is-active,
+.workspace-tab-header[data-type="beautitab-react-view"].mod-active {
+  opacity: 1 !important;
+}
 
 
 /* # ZOOM */
