@@ -228,6 +228,18 @@ settings:
     description: Приводит строки к одной ширине за счет уменьшения или увеличения интервалов между словами
     type: class-toggle
     default: true
+-
+    id: awe-editor-betterchecklists
+    title: 📱💻 Задачи в виде карточек
+    description: Оформляет открытые задачи в блоки, чтобы сильнее фокусироваться на них.
+    type: class-toggle
+    default: false
+-
+    id: awe-rendered-betterchecklists
+    title: 📱💻 Задачи в виде карточек (Dataview)
+    description: Оформляет открытые задачи в блоки, чтобы сильнее фокусироваться на них.
+    type: class-toggle
+    default: true
 
 - 
 	id: mcl-custom-settings

@@ -481,6 +481,117 @@ body.is-mobile {
   transform: scale(1.15);
 }
 
+/* ## ЧЕК-ЛИСТЫ ## */
+/* 1a. LIVE PREVIEW: Structural Container (Cursor & Spacing Fix) */
+ .awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line {
+    position: relative !important;
+    background-color: transparent !important;
+
+    border-left: none !important;
+    border-right: none !important;
+
+    border-top: 4px solid transparent !important;
+    border-bottom: 4px solid transparent !important; 
+    
+    padding-top: 10px !important;
+    padding-bottom: 10px !important; 
+    padding-right: 14px !important;
+}
+
+/* 1b. LIVE PREVIEW: Visual Box via Ghost Element */
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line::before {
+    content: "" !important;
+    position: absolute !important;
+
+    top: 0 !important;
+    bottom: 0 !important; 
+    left: 0 !important;
+    right: 0 !important;
+    
+    border: 1px solid rgba(135, 135, 135, 0.4) !important;
+    border-radius: 8px !important;
+    background-color: rgba(135, 135, 135, 0.15) !important;
+    
+    pointer-events: none !important; 
+    z-index: -1 !important; 
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+/* 1c. READING VIEW: Standard Box Styling (Unchanged, naturally safe here) */
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item {
+    border: 0.5px solid rgba(135, 135, 135, 0.4) !important;
+    border-radius: 8px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important; /* Spacing between tasks */
+    margin-left: var(--size-4-1) !important;
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
+    padding-right: 14px !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    background-color: rgba(135, 135, 135, 0.05) !important;
+}
+
+/* 2. HOVER EFFECTS */
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line:hover::before {
+    border-color: rgba(135, 135, 135, 0.8) !important; 
+}
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item:hover {
+    border-color: rgba(135, 135, 135, 0.8) !important; 
+}
+
+/* 3. LIVE PREVIEW FIX: Pull the checkbox inside the left border */
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line .task-list-item-checkbox {
+    margin-left: 12px !important; 
+    margin-right: 10px !important; 
+}
+
+/* 4. READING VIEW FIX: Safely anchor the checkbox inside the border */
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item {
+    padding-left: 38px !important; 
+    position: relative !important; 
+}
+
+/* 5. Keep nested sub-tasks looking neat */
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item ul {
+    margin-top: 8px !important;
+}
+
+/* 6. CHECKBOX COLOR: Change checked tickbox to green */
+:is(.awe-rendered-betterchecklists, .awe-editor-betterchecklists) input[type="checkbox"]:checked,
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item > input[type="checkbox"]:checked,
+.awe-rendered-betterchecklists .markdown-rendered ul li.task-list-item > p > input[type="checkbox"]:checked {
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+}
+
+/* 7. STRIKETHROUGH TEXT & COMPLETED STYLING */
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="x"],
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="X"] {
+    text-decoration: line-through !important;
+    color: var(--text-muted) !important;
+}
+
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="x"]::before,
+.awe-editor-betterchecklists .markdown-source-view.mod-cm6 .cm-line.HyperMD-task-line[data-task="X"]::before {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.awe-rendered-betterchecklists {
+  .markdown-rendered ul li.task-list-item[data-task="x"],
+  .markdown-rendered ul li.task-list-item[data-task="X"] {
+      text-decoration: line-through !important;
+      color: var(--text-muted) !important;
+      background-color: transparent !important;
+      border-color: transparent !important;
+  }
+}
+.awe-rendered-betterchecklists {
+  .markdown-rendered ul li.task-list-item[data-task="x"]:hover,
+  .markdown-rendered ul li.task-list-item[data-task="X"]:hover {
+    border-color: transparent !important;
+  }
+}
+
 
 /* # ЦИТАТЫ */
 
