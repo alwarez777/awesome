@@ -424,11 +424,13 @@ body:not(.is-mobile) {
   height: 25px;
   width: 30px;
   padding: 0;
+  opacity: 0;
 }
 .markdown-source-view.mod-cm6 .edit-block-button {
   height: 22px;
   width: 25px;
   padding: 0;
+  opacity: 0;
 }
 
 /* 3. Центровка и размер иконки внутри кнопки */
@@ -446,6 +448,7 @@ body:not(.is-mobile) {
   .markdown-source-view.mod-cm6 .edit-block-button:hover {
     background-color: var(--background-modifier-hover);
     color: var(--text-normal);
+    opacity: 1;
   }
 }
 
