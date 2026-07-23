@@ -476,9 +476,27 @@ body:not(.is-mobile) {
   transition: all 0.5s; 
 }
 
-/* 📱 Выровнять кнопки управления с ••• */
+/* 📱 Выровнять кнопки управления с     */
 body.is-phone .canvas-controls {
   margin-right: 5px;
+}
+
+.canvas-node-label {
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--size-4-1) * var(--zoom-multiplier));
+  transform: translate(0, -100%) scale(var(--zoom-multiplier));
+  transform-origin: bottom left;
+  max-width: calc(100% / var(--zoom-multiplier));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  --icon-size: 1em;
+  /* Параметры шрифта */
+  color: var(--text-muted); /* var(--canvas-card-label-color) */
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  font-weight: 600;
 }
 
 /* 📱💻 Scroll indicator gradient for canvas cards with overflowing content */
